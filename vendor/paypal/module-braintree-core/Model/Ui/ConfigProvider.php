@@ -7,6 +7,7 @@ namespace PayPal\Braintree\Model\Ui;
 
 use Braintree\Result\Error;
 use Braintree\Result\Successful;
+use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
 use PayPal\Braintree\Gateway\Request\PaymentDataBuilder;
 use Magento\Checkout\Model\ConfigProviderInterface;
 use PayPal\Braintree\Gateway\Config\Config;
@@ -58,25 +59,33 @@ class ConfigProvider implements ConfigProviderInterface
     private $icons = [];
 
     /**
+     * @var RemoteAddress
+     */
+    private RemoteAddress $remoteAddress;
+
+    /**
      * ConfigProvider constructor.
      * @param Config $config
      * @param PayPalConfig $payPalConfig
      * @param BraintreeAdapter $adapter
      * @param CcConfig $ccConfig
      * @param Source $assetSource
+     * @param RemoteAddress $remoteAddress
      */
     public function __construct(
         Config $config,
         PayPalConfig $payPalConfig,
         BraintreeAdapter $adapter,
         CcConfig $ccConfig,
-        Source $assetSource
+        Source $assetSource,
+        RemoteAddress $remoteAddress
     ) {
         $this->config = $config;
         $this->adapter = $adapter;
         $this->paypalConfig = $payPalConfig;
         $this->ccConfig = $ccConfig;
         $this->assetSource = $assetSource;
+        $this->remoteAddress = $remoteAddress;
     }
 
     /**
@@ -115,8 +124,10 @@ class ConfigProvider implements ConfigProviderInterface
                 ],
                 Config::CODE_3DSECURE => [
                     'enabled' => $this->config->isVerify3DSecure(),
+                    'challengeRequested' => $this->config->is3DSAlwaysRequested(),
                     'thresholdAmount' => $this->config->getThresholdAmount(),
-                    'specificCountries' => $this->config->get3DSecureSpecificCountries()
+                    'specificCountries' => $this->config->get3DSecureSpecificCountries(),
+                    'ipAddress' => $this->remoteAddress->getRemoteAddress()
                 ]
             ]
         ];

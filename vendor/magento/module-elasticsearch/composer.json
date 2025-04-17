@@ -6,7 +6,7 @@
         "OSL-3.0",
         "AFL-3.0"
     ],
-    "version": "101.0.4-p1",
+    "version": "101.0.4-p13",
     "require": {
         "php": "~7.4.0||~8.1.0",
         "magento/module-advanced-search": "100.4.*",

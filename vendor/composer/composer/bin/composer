@@ -10,6 +10,11 @@ if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
     echo 'Warning: Composer should be invoked via the CLI version of PHP, not the '.PHP_SAPI.' SAPI'.PHP_EOL;
 }
 
+if (PHP_VERSION_ID < 70205) {
+    echo 'Composer 2.3.0 dropped support for PHP <7.2.5 and you are running '.PHP_VERSION.', please upgrade PHP or use Composer 2.2 LTS via "composer self-update --2.2". Aborting.'.PHP_EOL;
+    exit(1);
+}
+
 setlocale(LC_ALL, 'C');
 require __DIR__.'/../src/bootstrap.php';
 
@@ -18,9 +23,7 @@ use Composer\XdebugHandler\XdebugHandler;
 use Composer\Util\Platform;
 use Composer\Util\ErrorHandler;
 
-// no E_DEPRECATED for this LTS series, or we get countless deprecation notices related to E_STRICT and explicit nullable types for PHP 8.4+
-// also see ErrorHandler::register()
-error_reporting(E_ALL & ~E_DEPRECATED);
+error_reporting(-1);
 
 // Restart without Xdebug
 $xdebug = new XdebugHandler('Composer');
@@ -39,12 +42,7 @@ if (!extension_loaded('iconv') && !extension_loaded('mbstring')) {
 }
 
 if (function_exists('ini_set')) {
-    // check if error logging is on, but to an empty destination - for the CLI SAPI, that means stderr
-    $logsToSapiDefault = ('' === ini_get('error_log') && (bool) ini_get('log_errors'));
-    // on the CLI SAPI, ensure errors are displayed on stderr, either via display_errors or via error_log
-    if (PHP_SAPI === 'cli') {
-        @ini_set('display_errors', $logsToSapiDefault ? '0' : 'stderr');
-    }
+    @ini_set('display_errors', '1');
 
     // Set user defined memory limit
     if ($memoryLimit = getenv('COMPOSER_MEMORY_LIMIT')) {

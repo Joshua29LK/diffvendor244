@@ -30,6 +30,7 @@ class Config extends \Magento\Payment\Gateway\Config\Config
     const KEY_USE_CVV = 'useccv';
     const KEY_USE_CVV_VAULT = 'useccv_vault';
     const KEY_VERIFY_3DSECURE = 'verify_3dsecure';
+    const KEY_ALWAYS_REQUEST_3DS = 'always_request_3ds';
     const KEY_THRESHOLD_AMOUNT = 'threshold_amount';
     const KEY_VERIFY_ALLOW_SPECIFIC = 'verify_all_countries';
     const KEY_VERIFY_SPECIFIC = 'verify_specific_countries';
@@ -186,6 +187,21 @@ class Config extends \Magento\Payment\Gateway\Config\Config
     {
         return (bool) $this->getValue(
             self::KEY_VERIFY_3DSECURE,
+            $this->storeConfigResolver->getStoreId()
+        );
+    }
+
+    /**
+     * Check if 3DS challenge requested for always
+     *
+     * @return bool
+     * @throws InputException
+     * @throws NoSuchEntityException
+     */
+    public function is3DSAlwaysRequested(): bool
+    {
+        return (bool) $this->getValue(
+            self::KEY_ALWAYS_REQUEST_3DS,
             $this->storeConfigResolver->getStoreId()
         );
     }

@@ -1603,8 +1603,9 @@ QUERY;
      * @return void
      * @dataProvider filterProductsBySingleCategoryIdDataProvider
      */
-    public function testFilterProductsBySingleCategoryId(string $fieldName, string $queryCategoryId)
+    public function testFilterProductsBySingleCategoryId(string $fieldName, string $queryCategoryId): void
     {
+        CacheCleaner::clean(['config']);
         if (is_numeric($queryCategoryId)) {
             $queryCategoryId = (int) $queryCategoryId;
         }
