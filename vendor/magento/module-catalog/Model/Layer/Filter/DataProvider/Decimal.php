@@ -52,7 +52,7 @@ class Decimal
     {
         $range = $this->range;
         if (!$range) {
-            $maxValue = $this->getMaxValue($filter) ?: 0;
+            $maxValue = $this->getMaxValue($filter);
             $index = 1;
             do {
                 $range = pow(10, strlen(floor($maxValue)) - $index);

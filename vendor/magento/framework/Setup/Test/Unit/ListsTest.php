@@ -46,16 +46,6 @@ class ListsTest extends TestCase
         'sr_Latn_RS' => 'Serbian (Latin, Serbia)'
     ];
 
-    private function getExpectedTimezones($timeZone): array
-    {
-        return [
-            'Australia/Darwin',
-            'America/Los_Angeles',
-            $timeZone,
-            'Asia/Jerusalem',
-        ];
-    }
-
     protected function setUp(): void
     {
         $this->mockConfig = $this->getMockBuilder(ConfigInterface::class)
@@ -88,5 +78,15 @@ class ListsTest extends TestCase
     {
         $currencies = array_intersect($this->expectedCurrencies, array_keys($this->lists->getCurrencyList()));
         $this->assertEquals($this->expectedCurrencies, $currencies);
+    }
+
+    private function getExpectedTimezones($timeZone): array
+    {
+        return [
+            'Australia/Darwin',
+            'America/Los_Angeles',
+            $timeZone,
+            'Asia/Jerusalem',
+        ];
     }
 }

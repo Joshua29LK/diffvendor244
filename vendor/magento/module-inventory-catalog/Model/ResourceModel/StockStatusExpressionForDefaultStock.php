@@ -42,7 +42,12 @@ class StockStatusExpressionForDefaultStock implements ExpressionInterface
             Configuration::XML_PATH_MANAGE_STOCK,
             ScopeInterface::SCOPE_STORE
         );
-        $isInStockExpression = $isAggregate ? 'MAX(cisi.is_in_stock)' : 'cisi.is_in_stock';
+        $stockItemInStockField = $isAggregate ? 'MAX(cisi.is_in_stock)' : 'cisi.is_in_stock';
+        $isInStockExpression = $connection->getCheckSql(
+            'cisi.is_in_stock = 0',
+            0,
+            $connection->getCheckSql('css.stock_status IS NOT NULL', 'css.stock_status', $stockItemInStockField)
+        );
 
         if ($isManageStock) {
             $statusExpr = $connection->getCheckSql(

@@ -5,20 +5,17 @@
  */
 namespace Magento\Ui\Component\Form\Element\DataType;
 
-use Exception;
 use Magento\Framework\Locale\ResolverInterface;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Framework\View\Element\UiComponentInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
-use Magento\Framework\Stdlib\DateTime\Intl\DateFormatterFactory;
-use Magento\Framework\App\ObjectManager;
 
 /**
  * UI component date type
  */
 class Date extends AbstractDataType
 {
-    public const NAME = 'date';
+    const NAME = 'date';
 
     /**
      * Current locale
@@ -28,7 +25,7 @@ class Date extends AbstractDataType
     protected $locale;
 
     /**
-     * Wrapped component for date type
+     * Wrapped component
      *
      * @var UiComponentInterface
      */
@@ -40,11 +37,6 @@ class Date extends AbstractDataType
     private $localeDate;
 
     /**
-     * @var DateFormatterFactory
-     */
-    private $dateFormatterFactory;
-
-    /**
      * Constructor
      *
      * @param ContextInterface $context
@@ -52,21 +44,17 @@ class Date extends AbstractDataType
      * @param ResolverInterface $localeResolver
      * @param array $components
      * @param array $data
-     * @param DateFormatterFactory|null $dateFormatterFactory
      */
     public function __construct(
         ContextInterface $context,
         TimezoneInterface $localeDate,
         ResolverInterface $localeResolver,
         array $components = [],
-        array $data = [],
-        ?DateFormatterFactory $dateFormatterFactory = null
+        array $data = []
     ) {
         $this->locale = $localeResolver->getLocale();
         $this->localeDate = $localeDate;
         parent::__construct($context, $components, $data);
-        $objectManager = ObjectManager::getInstance();
-        $this->dateFormatterFactory = $dateFormatterFactory ?? $objectManager->get(DateFormatterFactory::class);
     }
 
     /**
@@ -123,7 +111,6 @@ class Date extends AbstractDataType
     public function convertDate($date, $hour = 0, $minute = 0, $second = 0, $setUtcTimeZone = true)
     {
         try {
-            $date = $this->convertDateFormat($date);
             $dateObj = $this->localeDate->date($date, $this->getLocale(), false, false);
             $dateObj->setTime($hour, $minute, $second);
             //convert store date to default date in UTC timezone without DST
@@ -131,7 +118,7 @@ class Date extends AbstractDataType
                 $dateObj->setTimezone(new \DateTimeZone('UTC'));
             }
             return $dateObj;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return null;
         }
     }
@@ -156,31 +143,5 @@ class Date extends AbstractDataType
         } catch (\Throwable $e) {
             return null;
         }
-    }
-
-    /**
-     * Convert given date to specific date format based on locale
-     *
-     * @param string $date
-     * @return String
-     * @throws Exception
-     */
-    public function convertDateFormat(string $date): String
-    {
-        $formatter = $this->dateFormatterFactory->create(
-            $this->getLocale(),
-            \IntlDateFormatter::SHORT,
-            \IntlDateFormatter::NONE,
-            date_default_timezone_get()
-        );
-
-        $formatter->setLenient(false);
-        if (!$formatter->parse($date)) {
-            $date = $formatter->formatObject(
-                new \DateTime($date),
-                $formatter->getPattern()
-            );
-        }
-        return $date;
     }
 }

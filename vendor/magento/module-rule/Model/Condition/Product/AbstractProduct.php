@@ -553,7 +553,7 @@ abstract class AbstractProduct extends \Magento\Rule\Model\Condition\AbstractCon
 
             if ($attr && $attr->getFrontendInput() == 'multiselect') {
                 $value = $model->getData($attrCode);
-                $value = !empty($value) && is_string($value) ? explode(',', $value) : [];
+                $value = strlen($value) ? explode(',', $value) : [];
                 return $this->validateAttribute($value);
             }
 

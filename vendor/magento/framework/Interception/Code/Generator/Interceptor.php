@@ -72,7 +72,7 @@ class Interceptor extends EntityAbstract
         $reflectionClass = new \ReflectionClass($this->getSourceClassName());
         $publicMethods = $reflectionClass->getMethods(\ReflectionMethod::IS_PUBLIC);
         foreach ($publicMethods as $method) {
-            if (!$method->isInternal() && $this->isInterceptedMethod($method)) {
+            if ($this->isInterceptedMethod($method)) {
                 $methods[] = $this->_getMethodInfo($method);
             }
         }
@@ -122,8 +122,8 @@ $pluginInfo = $this->pluginList->getNext($this->subjectType, '%method%');
 %return%$pluginInfo ? $this->___callPlugins('%method%', func_get_args(), $pluginInfo) : parent::%method%(%parameters%);
 METHOD_BODY
             ),
-            'returnType' => $returnTypeValue,
-            'docblock' => ['shortDescription' => '{@inheritdoc}'],
+                'returnType' => $returnTypeValue,
+                'docblock' => ['shortDescription' => '{@inheritdoc}'],
         ];
 
         return $methodInfo;

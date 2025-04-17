@@ -133,7 +133,7 @@ class AdminSessionInfo extends \Magento\Framework\Model\AbstractModel
         $currentTime = $this->dateTime->gmtTimestamp();
         $lastUpdatedTime = $this->getUpdatedAt();
         if (!is_numeric($lastUpdatedTime)) {
-            $lastUpdatedTime = $lastUpdatedTime === null ? 0 : strtotime($lastUpdatedTime);
+            $lastUpdatedTime = strtotime($lastUpdatedTime);
         }
 
         return $lastUpdatedTime <= ($currentTime - $lifetime) ? true : false;

@@ -8,16 +8,8 @@ namespace Magento\Catalog\Model\ResourceModel\Product\Indexer\Eav;
 use Magento\Catalog\Model\Product\Attribute\Source\Status as ProductStatus;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\Data\ProductAttributeInterface;
-use Magento\Catalog\Model\ResourceModel\Helper;
-use Magento\Eav\Api\AttributeRepositoryInterface;
-use Magento\Eav\Model\Config;
-use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\DB\Select;
 use Magento\Framework\DB\Sql\UnionExpression;
-use Magento\Framework\EntityManager\MetadataPool;
-use Magento\Framework\Event\ManagerInterface;
-use Magento\Framework\Indexer\Table\StrategyInterface;
-use Magento\Framework\Model\ResourceModel\Db\Context;
 
 /**
  * Catalog Product Eav Select and Multiply Select Attributes Indexer resource model
@@ -48,15 +40,14 @@ class Source extends AbstractEav
     /**
      * Construct
      *
-     * @param Context $context
-     * @param StrategyInterface $tableStrategy
-     * @param Config $eavConfig
-     * @param ManagerInterface $eventManager
-     * @param Helper $resourceHelper
+     * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
+     * @param \Magento\Framework\Indexer\Table\StrategyInterface $tableStrategy
+     * @param \Magento\Eav\Model\Config $eavConfig
+     * @param \Magento\Framework\Event\ManagerInterface $eventManager
+     * @param \Magento\Catalog\Model\ResourceModel\Helper $resourceHelper
      * @param null|string $connectionName
-     * @param AttributeRepositoryInterface|null $attributeRepository
-     * @param SearchCriteriaBuilder|null $criteriaBuilder
-     * @param MetadataPool|null $metadataPool
+     * @param \Magento\Eav\Api\AttributeRepositoryInterface|null $attributeRepository
+     * @param \Magento\Framework\Api\SearchCriteriaBuilder|null $criteriaBuilder
      */
     public function __construct(
         \Magento\Framework\Model\ResourceModel\Db\Context $context,
@@ -64,18 +55,16 @@ class Source extends AbstractEav
         \Magento\Eav\Model\Config $eavConfig,
         \Magento\Framework\Event\ManagerInterface $eventManager,
         \Magento\Catalog\Model\ResourceModel\Helper $resourceHelper,
-        ?string $connectionName = null,
+        $connectionName = null,
         \Magento\Eav\Api\AttributeRepositoryInterface $attributeRepository = null,
-        \Magento\Framework\Api\SearchCriteriaBuilder $criteriaBuilder = null,
-        ?\Magento\Framework\EntityManager\MetadataPool $metadataPool = null
+        \Magento\Framework\Api\SearchCriteriaBuilder $criteriaBuilder = null
     ) {
         parent::__construct(
             $context,
             $tableStrategy,
             $eavConfig,
             $eventManager,
-            $connectionName,
-            $metadataPool
+            $connectionName
         );
         $this->_resourceHelper = $resourceHelper;
         $this->attributeRepository = $attributeRepository
@@ -84,19 +73,6 @@ class Source extends AbstractEav
         $this->criteriaBuilder = $criteriaBuilder
             ?: \Magento\Framework\App\ObjectManager::getInstance()
                 ->get(\Magento\Framework\Api\SearchCriteriaBuilder::class);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function reindexEntities($processIds)
-    {
-        $this->clearTemporaryIndexTable();
-
-        $this->_prepareIndex($processIds);
-        $this->_prepareRelationIndex($processIds);
-
-        return $this;
     }
 
     /**
@@ -159,7 +135,6 @@ class Source extends AbstractEav
      * @param int $attributeId the attribute id limitation
      * @return $this
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-     * @throws \Exception
      */
     protected function _prepareSelectIndex($entityIds = null, $attributeId = null)
     {
@@ -174,7 +149,7 @@ class Source extends AbstractEav
         $attrIdsFlat = implode(',', array_map('intval', $attrIds));
         $ifNullSql = $connection->getIfNullSql('pis.value', 'COALESCE(ds.value, dd.value)');
 
-        /**@var $select Select */
+        /**@var $select \Magento\Framework\DB\Select*/
         $select = $connection->select()->distinct(true)->from(
             ['s' => $this->getTable('store')],
             []
@@ -229,17 +204,6 @@ class Source extends AbstractEav
                 'cpe.entity_id AS source_id',
             ]
         );
-        $visibilityCondition = $connection->quoteInto(
-            '>?',
-            \Magento\Catalog\Model\Product\Visibility::VISIBILITY_NOT_VISIBLE
-        );
-        $this->_addAttributeToSelect(
-            $select,
-            'visibility',
-            "cpe.{$productIdField}",
-            's.store_id',
-            $visibilityCondition
-        );
 
         if ($entityIds !== null) {
             $ids = implode(',', array_map('intval', $entityIds));
@@ -275,14 +239,6 @@ class Source extends AbstractEav
                 ->where('wd.store_id != 0')
                 ->where("cpe.entity_id IN({$ids})");
             $select->where("cpe.entity_id IN({$ids})");
-            $this->_addAttributeToSelect(
-                $selectWithoutDefaultStore,
-                'visibility',
-                "cpe.{$productIdField}",
-                'wd.store_id',
-                $visibilityCondition
-            );
-
             $selects = new UnionExpression(
                 [$select, $selectWithoutDefaultStore],
                 Select::SQL_UNION,
@@ -316,7 +272,6 @@ class Source extends AbstractEav
      * @param array $entityIds the entity ids limitation
      * @param int $attributeId the attribute id limitation
      * @return $this
-     * @throws \Exception
      */
     protected function _prepareMultiselectIndex($entityIds = null, $attributeId = null)
     {
@@ -388,7 +343,7 @@ class Source extends AbstractEav
         $this->_addAttributeToSelect($select, 'status', "pvd.{$productIdField}", 'cs.store_id', $statusCond);
 
         if ($entityIds !== null) {
-            $select->where('cpe.entity_id IN(?)', $entityIds, \Zend_Db::INT_TYPE);
+            $select->where('cpe.entity_id IN(?)', $entityIds);
         }
         /**
          * Add additional external limitation
@@ -403,13 +358,6 @@ class Source extends AbstractEav
             ]
         );
 
-        $this->_addAttributeToSelect(
-            $select,
-            'visibility',
-            "cpe.{$productIdField}",
-            'cs.store_id',
-            $connection->quoteInto('>?', \Magento\Catalog\Model\Product\Visibility::VISIBILITY_NOT_VISIBLE)
-        );
         $this->saveDataFromSelect($select, $options);
 
         return $this;
@@ -483,17 +431,17 @@ class Source extends AbstractEav
     /**
      * Save data from select
      *
-     * @param Select $select
+     * @param \Magento\Framework\DB\Select $select
      * @param array $options
      * @return void
      */
-    private function saveDataFromSelect(Select $select, array $options)
+    private function saveDataFromSelect(\Magento\Framework\DB\Select $select, array $options)
     {
         $i = 0;
         $data = [];
         $query = $select->query();
         while ($row = $query->fetch()) {
-            $values = isset($row['value']) ? explode(',', $row['value']) : [];
+            $values = explode(',', $row['value']);
             foreach ($values as $valueId) {
                 if (isset($options[$row['attribute_id']][$valueId])) {
                     $data[] = [$row['entity_id'], $row['attribute_id'], $row['store_id'], $valueId, $row['source_id']];

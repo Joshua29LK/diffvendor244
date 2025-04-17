@@ -22,17 +22,17 @@ class Changelog implements ChangelogInterface
     /**
      * Suffix for changelog table
      */
-    public const NAME_SUFFIX = 'cl';
+    const NAME_SUFFIX = 'cl';
 
     /**
      * Column name of changelog entity
      */
-    public const COLUMN_NAME = 'entity_id';
+    const COLUMN_NAME = 'entity_id';
 
     /**
      * Column name for Version ID
      */
-    public const VERSION_ID_COLUMN_NAME = 'version_id';
+    const VERSION_ID_COLUMN_NAME = 'version_id';
 
     /**
      * Database connection
@@ -303,17 +303,5 @@ class Changelog implements ChangelogInterface
     public function getViewId()
     {
         return $this->viewId;
-    }
-
-    /**
-     * Add list of ids to changelog
-     *
-     * @param array $ids
-     * @return void
-     */
-    public function addList(array $ids): void
-    {
-        $changelogTableName = $this->resource->getTableName($this->getName());
-        $this->connection->insertArray($changelogTableName, ['entity_id'], $ids);
     }
 }

@@ -166,7 +166,6 @@ abstract class AbstractAction
      */
     abstract public function execute($ids);
 
-    // phpcs:disable
     /**
      * Synchronize data between index storage and original storage
      *
@@ -198,7 +197,6 @@ abstract class AbstractAction
         return $this;
     }
 
-    // phpcs:enable
     /**
      * Prepare website current dates table
      *
@@ -434,7 +432,6 @@ abstract class AbstractAction
      */
     private function deleteIndexData(array $entityIds)
     {
-        $entityIds = array_unique(array_map('intval', $entityIds));
         foreach ($this->dimensionCollectionFactory->create() as $dimensions) {
             $select = $this->getConnection()->select()->from(
                 ['index_price' => $this->tableMaintainer->getMainTableByDimensions($dimensions)],
@@ -445,7 +442,6 @@ abstract class AbstractAction
         }
     }
 
-    // phpcs:disable
     /**
      * Copy relations product index from primary index to temporary index table by parent entity
      *
@@ -495,7 +491,6 @@ abstract class AbstractAction
         return $this;
     }
 
-    // phpcs:enable
     /**
      * Retrieve index table by dimension that will be used for write operations.
      *
