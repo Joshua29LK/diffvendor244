@@ -1,0 +1,33 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * @category   BSS
+ * @package    Bss_MultiWishlist
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/* @var $block Bss\MultiWishlist\Block\MultiWishlist */
+?>
+<span class="mess">
+	<span class="not-empty-name"><?php echo __('The wishlist name can\'t be left blank') ?></span>
+</span>
+<script type="text/x-magento-init">
+     {
+        "*": {
+            "Bss_MultiWishlist/js/bss_wishlist": {
+                "is_redirect": "<?php /* @escapeNotVerified */ echo $block->escapeUrl($block->isRedirect()) ?>",
+                "url_redirect": "<?php /* @escapeNotVerified */ echo $block->escapeUrl($block->getUrlWishlist()) ?>",
+                "url_popup":"<?php /* @escapeNotVerified */ echo $block->escapeUrl($block->getUrlPopup()) ?>",
+                "isLoggedIn": "<?php echo $block->isCustomerLoggedIn() ?>"
+            }
+        }
+    }
+</script>

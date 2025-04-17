@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="config">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="campaign" type="campaign" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="campaign">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="description" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="event" type="event" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="event">
+        <xs:sequence>
+            <xs:element name="event_type" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="failed_emails_mode" type="xs:int" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="lifetime_conditions" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="lifetime_value" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="lifetime_from" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="lifetime_to" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="order_statuses" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="email" type="email" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="email">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="email_send_days" type="xs:int" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="email_send_hours" type="xs:int" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="email_send_minutes" type="xs:int" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="subject" type="xs:string" minOccurs="1" maxOccurs="2"/>
+            <xs:element name="content" type="xs:string" minOccurs="1" maxOccurs="2"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

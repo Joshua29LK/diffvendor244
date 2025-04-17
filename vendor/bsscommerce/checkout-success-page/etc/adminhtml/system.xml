@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_CheckoutSuccessPage
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="bss" translate="label" sortOrder="300">
+            <label><![CDATA[Bss Commerce]]></label>
+        </tab>
+        <section id="checkoutsuccesspage" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label> Checkout Success Page </label>
+            <tab>bss</tab>
+            <resource>Bss_CheckoutSuccessPage::checkoutsuccesspage_configuration</resource>
+
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Version 1.1.4]]></comment>
+                </field>
+            </group>
+
+             <group id="thanks" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Thank You Message </label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="mess" translate="label" sortOrder="2" type="editor" showInStore="1" showInDefault="1" >
+                    <label>Message </label>
+                    <frontend_model>Bss\CheckoutSuccessPage\Block\Backend\Editor</frontend_model>
+                </field>
+
+                <field id="background" translate="label" type="image" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Image</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">image</upload_dir>
+                    <base_url type="media" scope_info="1">image</base_url>
+                    <comment><![CDATA[Allowed file types: jpeg, gif, png.]]></comment>
+                </field>
+            </group>
+
+            <group id="infor" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Order Information Section </label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="status" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Order Status</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="thumbnail" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Product Thumbnail</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="reorder" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Reorder Button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="print" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Print Button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+
+            <group id="coupon" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Coupon Code Section </label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="sort" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    <source_model>Bss\CheckoutSuccessPage\Model\Config\Source\Sort</source_model>
+                </field>
+
+                <field id="customer" translate="label" type="multiselect" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable for Customer Groups</label>
+                    <source_model>Magento\Customer\Model\Customer\Source\Group</source_model>
+                </field>
+
+                <field id="description" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Description</label>
+                </field>
+
+                <field id="code" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Coupon Code</label>
+                    <source_model>Bss\CheckoutSuccessPage\Model\Config\Source\Coupon</source_model>
+                    <comment>Select “Custom Coupon Code” option to enter another coupon code.</comment>
+                </field>
+
+                 <field id="customcode" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                     <label>Custom Coupon Code</label>
+                     <depends>
+                        <field id="checkoutsuccesspage/coupon/code" separator=",">0</field>
+                     </depends>
+                </field>
+
+                 <field id="min" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                     <label>Min Subtotal</label>
+                     <validate>validate-number</validate>
+                     <depends>
+                         <field id="checkoutsuccesspage/coupon/code" separator=",">0</field>
+                     </depends>
+                </field>
+
+                <field id="background" translate="label" type="image" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Image</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">image</upload_dir>
+                    <base_url type="media" scope_info="1">image</base_url>
+                    <comment><![CDATA[Allowed file types: jpeg, gif, png.]]></comment>
+                </field>
+            </group>
+
+            <group id="subs" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Subscription Section </label>
+                <field id="news" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Newsletter Subscription</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="sort" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    <source_model>Bss\CheckoutSuccessPage\Model\Config\Source\Sort</source_model>
+                </field>
+            </group>
+
+
+            <group id="cms" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Block Section </label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable CMS Block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="cms1" translate="label" sortOrder="2" type="select" showInStore="1" showInDefault="1" >
+                    <label>CMS Block</label>
+                    <source_model>Bss\CheckoutSuccessPage\Model\Config\Source\Cmslist</source_model>
+                </field>
+
+                <field id="sort1" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order CMS Block</label>
+                    <source_model>Bss\CheckoutSuccessPage\Model\Config\Source\Sort</source_model>
+                </field>
+
+                <field id="enable2" translate="label" type="select" sortOrder="3.5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Custom Block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="cms2" translate="label" sortOrder="4" type="editor" showInStore="1" showInDefault="1" >
+                    <label>Custom Block</label>
+                    <frontend_model>Bss\CheckoutSuccessPage\Block\Backend\Editor</frontend_model>
+                </field>
+
+                <field id="sort2" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order Custom Block</label>
+                    <source_model>Bss\CheckoutSuccessPage\Model\Config\Source\Sort</source_model>
+                </field>
+            </group>
+
+             <group id="social" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Social Network Sharing Section </label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Including Facebook and Twitter by Default</comment>
+                </field>
+
+                <field id="sort" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    <source_model>Bss\CheckoutSuccessPage\Model\Config\Source\Sort</source_model>
+                </field>
+            </group>
+
+            <group id="suggestion" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Suggestion Section </label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                 <field id="type" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Type </label>
+                    <source_model>Bss\CheckoutSuccessPage\Model\Config\Source\Type</source_model>
+                </field>
+
+                <field id="sort" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    <source_model>Bss\CheckoutSuccessPage\Model\Config\Source\Sort</source_model>
+                </field>
+            </group>
+
+            <group id="preview" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Frontend Preview</label>
+
+                <field id="order_id" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order Number</label>
+                </field>
+
+                <field id="preview" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Preview Here</label>
+                    <frontend_model>Bss\CheckoutSuccessPage\Block\Field\Link</frontend_model>
+                </field>
+            </group>
+
+            <group id="style" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Custom Style</label>
+
+                <field id="button" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Text Color</label>
+                    <frontend_model>Bss\CheckoutSuccessPage\Block\Backend\Color</frontend_model>
+                </field>
+                <field id="background" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Background Color</label>
+                    <frontend_model>Bss\CheckoutSuccessPage\Block\Backend\Color</frontend_model>
+                </field>
+                <field id="success_icon" translate="label" type="image" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Success Icon</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">image</upload_dir>
+                    <base_url type="media" scope_info="1">image</base_url>
+                    <comment><![CDATA[Allowed file types: jpeg, gif, png.]]></comment>
+                </field>
+                <field id="success_text" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Success Text</label>
+                </field>
+                <field id="address_method_button_color" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title Background Color</label>
+                    <frontend_model>Bss\CheckoutSuccessPage\Block\Backend\Color</frontend_model>
+                    <comment><![CDATA[Change style of title buttons: Shipping Address, Shipping Method, Billing Address, Payment Method, Order Summary, and Recommended Products.]]></comment>
+                </field>
+                <field id="address_method_text_color" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title Text Color</label>
+                    <frontend_model>Bss\CheckoutSuccessPage\Block\Backend\Color</frontend_model>
+                </field>
+                <field id="address_method_border" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title Border Color</label>
+                    <frontend_model>Bss\CheckoutSuccessPage\Block\Backend\Color</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

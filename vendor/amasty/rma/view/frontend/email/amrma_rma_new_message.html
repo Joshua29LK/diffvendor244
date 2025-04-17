@@ -1,0 +1,15 @@
+<!--@subject RMA you have new message from manager  @-->
+<!--@vars
+{
+"var email_request":"Email Request Object"
+}
+@-->
+
+{{template config_path="design/email/header_template"}}
+
+<div>
+    <p>Dear <strong>{{var email_request.getCustomerName()|escape}}</strong>, manager sent new message.
+        To see new messages <a href="{{var email_request.getUrl()|escape}}">click here</a></p>
+</div>
+
+{{template config_path="design/email/footer_template"}}

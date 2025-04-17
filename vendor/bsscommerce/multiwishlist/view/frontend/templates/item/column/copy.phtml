@@ -1,0 +1,21 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * @category   BSS
+ * @package    Bss_MultiWishlist
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/* @var $block $this Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Remove */
+?>
+<a href="#" class="copy_to_wishlist" data-url="<?php echo $block->getUrl('wishlist/index/add') ?>" data-role="copy" data-post-copy='<?php /* @escapeNotVerified */ echo $block->getItemRemoveParams($block->getItem()); ?>' title="<?php /* @escapeNotVerified */ echo __('Copy Item') ?>" class="btn-copy action copy">
+    <span><?php /* @escapeNotVerified */ echo __('Copy');?></span>
+</a>

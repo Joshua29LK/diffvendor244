@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::marketing">
+                        <resource id="Aheadworks_Followupemail2::home" title="Follow Up Email 2 by Aheadworks" sortOrder="0">
+                            <resource id="Aheadworks_Followupemail2::campaigns" title="Campaigns" sortOrder="10"/>
+                            <resource id="Aheadworks_Followupemail2::campaigns_actions" title="Edit Campaigns" sortOrder="20"/>
+                            <resource id="Aheadworks_Followupemail2::event_queue" title="Scheduled emails" sortOrder="30"/>
+                            <resource id="Aheadworks_Followupemail2::event_queue_actions" title="Send, Cancel, Preview Scheduled Emails" sortOrder="40"/>
+                            <resource id="Aheadworks_Followupemail2::mail_log" title="Mail Log" sortOrder="50"/>
+                            <resource id="Aheadworks_Followupemail2::mail_log_actions" title="Send, Delete, Preview Emails" sortOrder="60"/>
+                        </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Aheadworks_Followupemail2::config_followupemailtwo" title="Follow Up Email 2 by Aheadworks" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,11 @@
+<div class="control-table-text">
+    <a href="#" click="$parent.editEmailForm.bind($parent, value())" data-bind="
+        text: $parent.getEmailName(value()),
+        css: {_disabled: disabled}
+    ">
+    </a>
+    <div class="admin__field-tooltip">
+        <span class="testing-mode-label admin__field-tooltip-action action-help" if="$parent.isTestingEnabled(value())" translate="'A/B'" ></span>
+        <div class="admin__field-tooltip-content" text="tooltip_description"></div>
+    </div>
+</div>

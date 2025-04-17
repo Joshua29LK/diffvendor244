@@ -1,0 +1,48 @@
+//
+//  Amasty Affiliate
+//  ____________________________________________
+
+//
+//  Variables
+//  --------------------------------------------
+
+@amaffiliate-copy-button__background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NzcuODY3IDQ3Ny44NjciPjxwYXRoIGQ9Ik0zNDEuMzMzIDg1LjMzM0g1MS4yYy0yOC4yNzcgMC01MS4yIDIyLjkyMy01MS4yIDUxLjJ2MjkwLjEzM2MwIDI4LjI3NyAyMi45MjMgNTEuMiA1MS4yIDUxLjJoMjkwLjEzM2MyOC4yNzcgMCA1MS4yLTIyLjkyMyA1MS4yLTUxLjJWMTM2LjUzM2MwLTI4LjI3Ny0yMi45MjMtNTEuMi01MS4yLTUxLjJ6TTM1OC40IDQyNi42NjdjMCA5LjQyNi03LjY0MSAxNy4wNjctMTcuMDY3IDE3LjA2N0g1MS4yYy05LjQyNiAwLTE3LjA2Ny03LjY0MS0xNy4wNjctMTcuMDY3VjEzNi41MzNjMC05LjQyNiA3LjY0MS0xNy4wNjcgMTcuMDY3LTE3LjA2N2gyOTAuMTMzYzkuNDI2IDAgMTcuMDY3IDcuNjQxIDE3LjA2NyAxNy4wNjd2MjkwLjEzNHoiLz48cGF0aCBkPSJNNDI2LjY2NyAwaC0zMDcuMmMtMjguMjc3IDAtNTEuMiAyMi45MjMtNTEuMiA1MS4yIDAgOS40MjYgNy42NDEgMTcuMDY3IDE3LjA2NyAxNy4wNjdTMTAyLjQgNjAuNjI2IDEwMi40IDUxLjJzNy42NDEtMTcuMDY3IDE3LjA2Ny0xNy4wNjdoMzA3LjJjOS40MjYgMCAxNy4wNjcgNy42NDEgMTcuMDY3IDE3LjA2N3YzMDcuMmMwIDkuNDI2LTcuNjQxIDE3LjA2Ny0xNy4wNjcgMTcuMDY3cy0xNy4wNjcgNy42NDEtMTcuMDY3IDE3LjA2NyA3LjY0MSAxNy4wNjcgMTcuMDY3IDE3LjA2N2MyOC4yNzcgMCA1MS4yLTIyLjkyMyA1MS4yLTUxLjJWNTEuMmMwLTI4LjI3Ny0yMi45MjMtNTEuMi01MS4yLTUxLjJ6Ii8+PC9zdmc+) no-repeat center;
+@amaffiliate-copy-button__success__background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNjcuODA1IDM2Ny44MDUiPjxwYXRoIGQ9Ik0xODMuOTAzLjAwMWMxMDEuNTY2IDAgMTgzLjkwMiA4Mi4zMzYgMTgzLjkwMiAxODMuOTAycy04Mi4zMzYgMTgzLjkwMi0xODMuOTAyIDE4My45MDJTLjAwMSAyODUuNDY5LjAwMSAxODMuOTAzQy0uMjg4IDgyLjYyNSA4MS41NzkuMjkgMTgyLjg1Ni4wMDFoMS4wNDd6IiBmaWxsPSIjM2JiNTRhIi8+PHBhdGggZmlsbD0iI2Q0ZTFmNCIgZD0iTTI4NS43OCAxMzMuMjI1TDE1NS4xNjggMjYzLjgzN2wtNzMuMTQzLTcyLjYyIDI5Ljc4LTI5LjI1NyA0My4zNjMgNDIuODQxIDEwMC44MzMtMTAwLjgzM3oiLz48L3N2Zz4=) no-repeat center;
+
+//
+//  Common
+//  --------------------------------------------
+
+& when (@media-common = true) {
+    .amaffiliate-coupon-code {
+        .amaffiliate-wrapper {
+            margin-bottom: 15px;
+        }
+    }
+
+    .amaffiliate-copy-button {
+        & {
+            .lib-button-reset();
+
+            margin-left: @indent__s;
+            width: 15px;
+            height: 15px;
+            box-shadow: none;
+        }
+
+        &,
+        &:focus,
+        &:active,
+        &:hover {
+            background: @amaffiliate-copy-button__background;
+        }
+
+        &:not(.primary) {
+            box-shadow: none;
+        }
+
+        &.-copied {
+            background: @amaffiliate-copy-button__success__background;
+        }
+    }
+}

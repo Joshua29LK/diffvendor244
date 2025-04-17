@@ -1,0 +1,8 @@
+<div class="action-select-wrap" collapsible>
+    <button class="action-select" translate="'Select'" toggleCollapsible></button>
+    <ul class="action-menu" css="_active: $collapsible.opened">
+        <li repeat="foreach: $parent.getActions($record()), item: '$action'">
+            <a class="action-menu-item" click="$parent.applyAction.bind($parent, $action(), $record().recordId)" text="$action().label" ></a>
+        </li>
+    </ul>
+</div>

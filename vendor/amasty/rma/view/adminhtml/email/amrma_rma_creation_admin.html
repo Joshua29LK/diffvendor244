@@ -1,0 +1,31 @@
+<!--@subject New RMA Request @-->
+<!--@vars
+{
+"var email_request":"Request Object"
+}
+@-->
+
+<!--Inline styles for admin message-->
+<div class="amrma-email-template" style="padding: 20px;
+                                         border-top: 6px solid rgb(95, 146, 247);
+                                         font-size: 14px">
+    <div class="amrma-email-container" style="margin-bottom: 20px">
+        <p><strong>{{trans "Order ID:"}} </strong>#{{var email_request.getOrderIncrement()|escape}}</p>
+        <p><strong>{{trans "Created At:"}} </strong>{{var email_request.getOrderCreatedAt()|escape}}</p>
+        <p><strong>{{trans "Customer Name:"}} </strong>{{var email_request.getCustomerName()|escape}}</p>
+        <p><strong>{{trans "Customer E-mail:"}} </strong>{{var email_request.getCustomerEmail()|escape}}</p>
+        <p><strong>{{trans "Status:"}} </strong><span class="amrma-status" style="padding: 0 10px 1px;
+                                                                                  border-radius: 4px;
+                                                                                  color: #fff;
+                                                                                  text-transform: uppercase;
+                                                                                  font-size: 12px;
+                                                                                  font-weight: 600;
+                                                                                  background: {{var email_request.getStatusColor()|escape}}">
+            {{var email_request.getStatus()|escape}}</span></p>
+    </div>
+    <div class="amrma-extra-fields" style="margin-bottom: 20px">
+        {{block class='Magento\\Framework\\View\\Element\\Template' area='frontend' template='Amasty_Rma::email/custom_fields.phtml' customFields=$email_request.getCustomFields()}}
+    </div>
+    <p class="_uppercase" style="text-transform: uppercase">{{trans "Requested Items:"}}</p>
+    {{block class='Magento\\Framework\\View\\Element\\Template' area='frontend' template='Amasty_Rma::email/return_items.phtml' returnItems=$email_request.getRequestItems()}}
+</div>

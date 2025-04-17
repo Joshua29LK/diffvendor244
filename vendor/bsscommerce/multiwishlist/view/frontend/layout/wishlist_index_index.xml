@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * @category   BSS
+ * @package    Bss_MultiWishlist
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="Bss_MultiWishlist::js/tabcontent.js"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <referenceBlock name="customer.wishlist">
+                <action method="setTemplate" ifconfig="bss_multiwishlist/general/enable">
+                    <argument name="template" xsi:type="string">Bss_MultiWishlist::view.phtml</argument>
+                </action>
+                <block class="Magento\Framework\View\Element\Template" name="createwishlist"
+                       template="Bss_MultiWishlist::item/create.phtml" ifconfig="bss_multiwishlist/general/enable"/>
+            </referenceBlock>
+            <referenceBlock name="customer.wishlist.items">
+                <action method="setTemplate" ifconfig="bss_multiwishlist/general/enable">
+                    <argument name="template" xsi:type="string">Bss_MultiWishlist::item/list.phtml</argument>
+                </action>
+            </referenceBlock>
+            <referenceBlock name="customer.wishlist.item.price">
+                <action method="setTemplate" ifconfig="bss_multiwishlist/general/enable">
+                    <argument name="template" xsi:type="string">Bss_MultiWishlist::item/column/price.phtml</argument>
+                </action>
+            </referenceBlock>
+            <referenceBlock name="product.price.render.wishlist">
+                <arguments>
+                    <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                    <argument name="price_type_code" xsi:type="string">final_price</argument>
+                    <argument name="price_label" xsi:type="boolean">false</argument>
+                    <argument name="zone" xsi:type="string">item_list</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer.wishlist.item.remove">
+                <action method="setTemplate" ifconfig="bss_multiwishlist/general/enable">
+                    <argument name="template" xsi:type="string">Bss_MultiWishlist::item/column/remove.phtml</argument>
+                </action>
+            </referenceBlock>
+            <referenceBlock name="customer.wishlist.item.actions">
+                <block class="Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Remove"
+                       name="customer.wishlist.item.copy" template="Bss_MultiWishlist::item/column/copy.phtml"
+                       after="customer.wishlist.item.edit" ifconfig="bss_multiwishlist/general/enable"/>
+                <block class="Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Remove"
+                       name="customer.wishlist.item.move" template="Bss_MultiWishlist::item/column/move.phtml"
+                       after="customer.wishlist.item.copy" ifconfig="bss_multiwishlist/general/enable"/>
+            </referenceBlock>
+        </referenceContainer>
+    </body>
+</page>

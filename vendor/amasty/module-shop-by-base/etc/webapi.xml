@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/amasty_shopbyBase/filterSetting" method="POST">
+        <service class="Amasty\ShopbyBase\Api\Data\FilterSettingRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <route url="/V1/amasty_shopbyBase/filterSetting/:id" method="PUT">
+        <service class="Amasty\ShopbyBase\Api\Data\FilterSettingRepositoryInterface" method="update"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <route url="/V1/amasty_shopbyBase/filterSetting/:attributeCode" method="DELETE">
+        <service class="Amasty\ShopbyBase\Api\Data\FilterSettingRepositoryInterface" method="deleteByAttributeCode"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <route url="/V1/amasty_shopbyBase/filterSetting" method="GET">
+        <service class="Amasty\ShopbyBase\Api\Data\FilterSettingRepositoryInterface" method="getFilterSetting"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <route url="/V1/amasty_shopbyBase/filterSetting/all" method="GET">
+        <service class="Amasty\ShopbyBase\Api\Data\FilterSettingRepositoryInterface" method="getList" />
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+</routes>

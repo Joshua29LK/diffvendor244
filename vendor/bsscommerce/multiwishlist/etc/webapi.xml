@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_MultiWishlist
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2021 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route method="GET" url="/V1/bsscommerce/multiwishlist/getconfig/:storeId">
+        <service class="Bss\MultiWishlist\Api\MultiWishlistManagementInterface" method="getConfig"/>
+        <resources>
+            <resource ref="Bss_MultiWishlist::config_section"/>
+        </resources>
+    </route>
+
+    <route url="/V1/bsscommerce/multiwishlist/getlist/:customerId" method="GET">
+        <service class="Bss\MultiWishlist\Api\MultiwishlistRepositoryInterface" method="getListByCustomerId"/>
+        <resources>
+            <resource ref="Bss_MultiWishlist::api"/>
+        </resources>
+    </route>
+
+    <route url="/V1/bsscommerce/multiwishlist/save" method="POST">
+        <service class="Bss\MultiWishlist\Api\MultiwishlistRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Bss_MultiWishlist::api"/>
+        </resources>
+    </route>
+
+    <route url="/V1/bsscommerce/multiwishlist/delete/:multiWishlistId" method="DELETE">
+        <service class="Bss\MultiWishlist\Api\MultiwishlistRepositoryInterface" method="deleteByMultiWishlistId"/>
+        <resources>
+            <resource ref="Bss_MultiWishlist::api"/>
+        </resources>
+    </route>
+</routes>

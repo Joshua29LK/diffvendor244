@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <plugin name="Amasty_Affiliate" type="Amasty\Affiliate\Plugin\View\Element\UiComponent\DataProvider\DataProvider" />
+    </type>
+
+    <!-- Entity Validation Start -->
+    <virtualType name="CommissionSkuExistenceValidator" type="Amasty\Affiliate\Model\ResourceModel\Program\Validation\ExistenceValidation">
+        <arguments>
+            <argument name="config" xsi:type="array">
+                <item name="tableName" xsi:type="string">catalog_product_entity</item>
+                <item name="idField" xsi:type="string">sku</item>
+                <item name="entityField" xsi:type="string">skus</item>
+                <item name="errorText" xsi:type="string">The following SKU\'s are invalid: %1.</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CommissionCategoriesExistenceValidator" type="Amasty\Affiliate\Model\ResourceModel\Program\Validation\ExistenceValidation">
+        <arguments>
+            <argument name="config" xsi:type="array">
+                <item name="tableName" xsi:type="string">catalog_category_entity</item>
+                <item name="idField" xsi:type="string">entity_id</item>
+                <item name="entityField" xsi:type="string">categories</item>
+                <item name="errorText" xsi:type="string">The following Category IDs are invalid: %1.</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Amasty\Affiliate\Model\EntityValidatorsProvider">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="Amasty\Affiliate\Model\ProgramCommissionCalculation" xsi:type="array">
+                    <item name="0" xsi:type="object">CommissionSkuExistenceValidator</item>
+                    <item name="1" xsi:type="object">CommissionCategoriesExistenceValidator</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Entity Validation End -->
+
+    <!-- Decline deleting coupon if he linked in program -->
+    <type name="Magento\SalesRule\Controller\Adminhtml\Promo\Quote\CouponsMassDelete">
+        <plugin name="Amasty_Affiliate::decline_deleting_coupone" type="Amasty\Affiliate\Plugin\SalesRule\Controller\Adminhtml\Promo\Quote\CouponsMassDeletePlugin"/>
+    </type>
+</config>

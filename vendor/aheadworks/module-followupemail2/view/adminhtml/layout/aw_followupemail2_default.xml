@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Aheadworks_Followupemail2::css/style.css"/>
+    </head>
+    <body>
+        <referenceContainer name="page.main.actions">
+            <block class="Aheadworks\Followupemail2\Block\Adminhtml\Page\Menu" name="aw_followupemail2_menu">
+                <block class="Aheadworks\Followupemail2\Block\Adminhtml\Page\Menu\Item" name="aw_followupemail2_menu_item.campaigns">
+                    <arguments>
+                        <argument name="path" xsi:type="string">*/campaign/index</argument>
+                        <argument name="label" xsi:type="string">Campaigns</argument>
+                        <argument name="resource" xsi:type="string">Aheadworks_Followupemail2::campaigns</argument>
+                        <argument name="controller" xsi:type="string">campaign</argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Followupemail2\Block\Adminhtml\Page\Menu\Options" name="aw_followupemail2_menu_item.campaigns.manage_events">
+                    <arguments>
+                        <argument name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Menu\Campaigns</argument>
+                        <argument name="path" xsi:type="string">*/event/index</argument>
+                        <argument name="label" xsi:type="string">Campaigns</argument>
+                        <argument name="param" xsi:type="string">campaign_id</argument>
+                        <argument name="class" xsi:type="string">child</argument>
+                        <argument name="resource" xsi:type="string">Aheadworks_Followupemail2::campaigns</argument>
+                        <argument name="controller" xsi:type="string">event</argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Followupemail2\Block\Adminhtml\Page\Menu\Item" name="aw_followupemail2_menu_item.event_queue">
+                    <arguments>
+                        <argument name="path" xsi:type="string">*/event_queue/index</argument>
+                        <argument name="label" xsi:type="string">Scheduled emails</argument>
+                        <argument name="resource" xsi:type="string">Aheadworks_Followupemail2::event_queue</argument>
+                        <argument name="controller" xsi:type="string">event_queue</argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Followupemail2\Block\Adminhtml\Page\Menu\Item" name="aw_followupemail2_menu_item.mail_log">
+                    <arguments>
+                        <argument name="path" xsi:type="string">*/queue/index</argument>
+                        <argument name="label" xsi:type="string">Mail Log</argument>
+                        <argument name="resource" xsi:type="string">Aheadworks_Followupemail2::mail_log</argument>
+                        <argument name="controller" xsi:type="string">queue</argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Followupemail2\Block\Adminhtml\Page\Menu\Item" name="aw_followupemail2_menu_item.settings">
+                    <arguments>
+                        <argument name="path" xsi:type="string">adminhtml/system_config/edit/section/followupemailtwo</argument>
+                        <argument name="label" xsi:type="string">Settings</argument>
+                        <argument name="resource" xsi:type="string">Aheadworks_Followupemail2::config_followupemailtwo</argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Followupemail2\Block\Adminhtml\Page\Menu\Item" name="aw_followupemail2_menu_item.readme">
+                    <arguments>
+                        <argument name="label" xsi:type="string">Readme</argument>
+                        <argument name="link_attributes" xsi:type="array">
+                            <item name="href" xsi:type="string">https://aheadworks.com/resources/follow-up-email/user-manual-follow-up-email</item>
+                            <item name="target" xsi:type="string">_blank</item>
+                            <item name="class" xsi:type="string">separator</item>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Followupemail2\Block\Adminhtml\Page\Menu\Item" name="aw_followupemail2_menu_item.support">
+                    <arguments>
+                        <argument name="label" xsi:type="string">Get Support</argument>
+                        <argument name="link_attributes" xsi:type="array">
+                            <item name="href" xsi:type="string">https://aheadworks.com/contact/</item>
+                            <item name="target" xsi:type="string">_blank</item>
+                        </argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

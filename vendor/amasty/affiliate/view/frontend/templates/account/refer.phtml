@@ -1,0 +1,27 @@
+<?php
+/** @var \Amasty\Affiliate\Block\Account\Refer $block */
+?>
+
+<div class="block">
+    <?php echo $block->escapeHtml($block->getText()) ?>
+</div>
+
+<?php if ($block->showLinks()) : ?>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script
+        type="text/javascript"
+        src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $block->escapeHtml($block->getProfileId()) ?>">
+    </script>
+    <div class="addthis_inline_share_toolbox"></div>
+    <script>
+        var addthis_share = {
+            url: '<?php echo $block->escapeHtml($block->getSiteUrl()) ?>',
+            url_transforms: {
+                add: {
+                    referring_service: '{{code}}',
+        <?php echo $block->escapeHtml($block->getUrlAccountParameter()) ?>: '<?php echo $block->escapeHtml($block->getReferringCode()) ?>'
+                }
+             }
+        }
+    </script>
+<?php endif; ?>

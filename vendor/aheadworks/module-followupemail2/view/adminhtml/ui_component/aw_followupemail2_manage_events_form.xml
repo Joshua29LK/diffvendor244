@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">aw_followupemail2_manage_events_form.aw_followupemail2_manage_events_form_data_source</item>
+            <item name="deps" xsi:type="string">aw_followupemail2_manage_events_form.aw_followupemail2_manage_events_form_data_source</item>
+            <item name="namespace" xsi:type="string">aw_followupemail2_manage_events_form</item>
+        </item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="array">
+                <item name="name" xsi:type="string">back</item>
+                <item name="label" xsi:type="string" translate="true">Back</item>
+                <item name="class" xsi:type="string">back</item>
+                <item name="url" xsi:type="string">*/campaign/index</item>
+            </item>
+            <item name="create" xsi:type="string">Aheadworks\Followupemail2\Block\Adminhtml\Event\CreateButton</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="config" xsi:type="array">
+            <item name="ajaxSaveType" xsi:type="string">simple</item>
+        </item>
+    </argument>
+    <dataSource name="aw_followupemail2_manage_events_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Aheadworks\Followupemail2\Ui\DataProvider\Event\ManageDataProvider</argument>
+            <argument name="name" xsi:type="string">aw_followupemail2_manage_events_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">campaign_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="aw_followupemail2/event/save"/>
+                    <item name="delete_event_url" xsi:type="url" path="*/event/delete"/>
+                    <item name="move_event_url" xsi:type="url" path="*/event/move"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <modal name="event_edit_modal">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/event/modal-component</item>
+                <item name="options" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Edit Event</item>
+                </item>
+                <item name="imports" xsi:type="array">
+                    <item name="state" xsi:type="string">!index=aw_followupemail2_event_form:responseStatus</item>
+                </item>
+            </item>
+        </argument>
+        <insertForm name="aw_followupemail2_event_form">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/insert-form</item>
+                    <item name="ns" xsi:type="string">aw_followupemail2_event_form</item>
+                    <item name="toolbarContainer" xsi:type="string">${ $.parentName }</item>
+                    <item name="render_url" xsi:type="url" path="mui/index/render_handle">
+                        <param name="handle">aw_followupemail2_event_create</param>
+                        <param name="buttons">1</param>
+                    </item>
+                    <item name="externalProvider" xsi:type="string">${ $.ns }.aw_followupemail2_event_form_data_source</item>
+                    <item name="formSubmitType" xsi:type="string">ajax</item>
+                </item>
+            </argument>
+        </insertForm>
+    </modal>
+    <modal name="event_move_modal">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/event/move-modal</item>
+                <item name="confirmationMessage" xsi:type="string" translate="true">Are you sure you want to move the event to deactivated campaign? All the pending email chains will be canceled. This action cannot be reversed.</item>
+                <item name="options" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Choose the campaign where the event will be moved:</item>
+                    <item name="type" xsi:type="string">popup</item>
+                    <item name="modalClass" xsi:type="string">event-move-modal</item>
+                    <item name="buttons" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="text" xsi:type="string" translate="true">Cancel</item>
+                            <item name="class" xsi:type="string">action-secondary</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="string">actionCancel</item>
+                            </item>
+                        </item>
+                        <item name="1" xsi:type="array">
+                            <item name="text" xsi:type="string" translate="true">Apply</item>
+                            <item name="class" xsi:type="string">action-primary</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="string">actionDone</item>
+                            </item>
+                             </item>
+                        <item name="2" xsi:type="array">
+                            <item name="text" xsi:type="string" translate="true">Apply and go to campaign where moved in</item>
+                            <item name="class" xsi:type="string">action-primary</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="string">actionDoneAndGo</item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+        <field name="campaign_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Event\Move\Campaigns</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/form/element/extended-select</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">data.campaign_id</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="additionalClasses" xsi:type="string">campaign-select</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+    </modal>
+    <modal name="email_edit_modal">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/event/modal-component</item>
+                <item name="options" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Edit Email</item>
+                </item>
+            </item>
+        </argument>
+        <insertForm name="aw_followupemail2_email_form">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/insert-form</item>
+                    <item name="ns" xsi:type="string">aw_followupemail2_email_form</item>
+                    <item name="toolbarContainer" xsi:type="string">${ $.parentName }</item>
+                    <item name="render_url" xsi:type="url" path="mui/index/render_handle">
+                        <param name="handle">aw_followupemail2_email_edit</param>
+                        <param name="buttons">1</param>
+                    </item>
+                    <item name="externalProvider" xsi:type="string">${ $.ns }.aw_followupemail2_email_form_data_source</item>
+                    <item name="formSubmitType" xsi:type="string">ajax</item>
+                </item>
+            </argument>
+        </insertForm>
+    </modal>
+    <fieldset name="data">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string"/>
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+        <container name="campaign" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Aheadworks\Followupemail2\Block\Adminhtml\Event\Campaign</argument>
+            </htmlContent>
+        </container>
+        <dynamicRows name="events">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="componentType" xsi:type="string">dynamicRows</item>
+                    <item name="dataScope" xsi:type="string">data</item>
+                    <item name="addButton" xsi:type="boolean">false</item>
+                    <item name="columnsHeader" xsi:type="boolean">true</item>
+                    <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/event/dynamic-rows</item>
+                    <item name="template" xsi:type="string">Aheadworks_Followupemail2/ui/event/dynamic-rows</item>
+                    <item name="userGuideText" xsi:type="string" translate="true">To learn about the extension and available options read the {UserGuide}.</item>
+                    <item name="userGuideLink" xsi:type="string">https://aheadworks.com/resources/follow-up-email/user-manual-follow-up-email</item>
+                    <item name="dndConfig" xsi:type="array">
+                        <item name="enabled" xsi:type="boolean">false</item>
+                    </item>
+                    <item name="additionalClasses" xsi:type="array">
+                        <item name="admin__field-wide event" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <container name="record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="component" xsi:type="string">Magento_Ui/js/dynamic-rows/record</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                        <item name="positionProvider" xsi:type="string">events.position</item>
+                        <item name="dataScope" xsi:type="string"/>
+                    </item>
+                </argument>
+                <field name="name">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="label" xsi:type="string"/>
+                            <item name="elementTmpl" xsi:type="string">Aheadworks_Followupemail2/ui/event/dynamic-rows/cells/name</item>
+                            <item name="additionalClasses" xsi:type="string">event-name</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="id">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="label" xsi:type="string"/>
+                            <item name="elementTmpl" xsi:type="string">Aheadworks_Followupemail2/ui/event/manage</item>
+                        </item>
+                    </argument>
+                </field>
+                <dynamicRows name="emails">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="componentType" xsi:type="string">dynamicRows</item>
+                            <item name="addButton" xsi:type="boolean">false</item>
+                            <item name="columnsHeader" xsi:type="boolean">true</item>
+                            <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/event/email/dynamic-rows</item>
+                            <item name="template" xsi:type="string">Aheadworks_Followupemail2/ui/event/email/dynamic-rows</item>
+                            <item name="childRows" xsi:type="boolean">true</item>
+                            <item name="dndConfig" xsi:type="array">
+                                <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/event/email/dnd</item>
+                                <item name="enabled" xsi:type="boolean">true</item>
+                            </item>
+                            <item name="additionalClasses" xsi:type="string">admin__field-wide emails</item>
+                            <item name="change_position_url" xsi:type="url" path="*/event_email/changePosition"/>
+                            <item name="reset_statistics_url" xsi:type="url" path="*/event/resetStatistics"/>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="label" xsi:type="string" translate="true">Disable</item>
+                                    <item name="confirm" xsi:type="array">
+                                        <item name="title" xsi:type="string" translate="true">Disable the email?</item>
+                                    </item>
+                                    <item name="condition" xsi:type="array">
+                                        <item name="status" xsi:type="string">Enabled</item>
+                                    </item>
+                                    <item name="callback" xsi:type="array">
+                                        <item name="target" xsi:type="string">changeStatusEmail</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="href" xsi:type="url" path="aw_followupemail2/event_email/changeStatus"/>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="label" xsi:type="string" translate="true">Enable</item>
+                                    <item name="confirm" xsi:type="array">
+                                        <item name="title" xsi:type="string" translate="true">Enable the email?</item>
+                                    </item>
+                                    <item name="condition" xsi:type="array">
+                                        <item name="status" xsi:type="string">Disabled</item>
+                                    </item>
+                                    <item name="callback" xsi:type="array">
+                                        <item name="target" xsi:type="string">changeStatusEmail</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="href" xsi:type="url" path="aw_followupemail2/event_email/changeStatus"/>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="2" xsi:type="array">
+                                    <item name="label" xsi:type="string" translate="true">Duplicate</item>
+                                    <item name="callback" xsi:type="array">
+                                        <item name="target" xsi:type="string">duplicateEmailForm</item>
+                                    </item>
+                                </item>
+                                <item name="3" xsi:type="array">
+                                    <item name="label" xsi:type="string" translate="true">Delete</item>
+                                    <item name="confirm" xsi:type="array">
+                                        <item name="title" xsi:type="string" translate="true">Delete the email?</item>
+                                    </item>
+                                    <item name="callback" xsi:type="array">
+                                        <item name="target" xsi:type="string">deleteEmail</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="href" xsi:type="url" path="aw_followupemail2/event_email/delete"/>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="newEmailTitle" xsi:type="string" translate="true">New Email</item>
+                            <item name="editEmailTitle" xsi:type="string" translate="true">Edit Email</item>
+                        </item>
+                    </argument>
+                    <container name="record">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="isTemplate" xsi:type="boolean">true</item>
+                                <item name="is_collection" xsi:type="boolean">true</item>
+                                <item name="component" xsi:type="string">Magento_Ui/js/dynamic-rows/record</item>
+                                <item name="componentType" xsi:type="string">container</item>
+                                <item name="positionProvider" xsi:type="string">position</item>
+                                <item name="dataScope" xsi:type="string"/>
+                            </item>
+                        </argument>
+                        <field name="id">
+                            <argument name="data" xsi:type="array">
+                                <item name="config" xsi:type="array">
+                                    <item name="dataType" xsi:type="string">text</item>
+                                    <item name="formElement" xsi:type="string">input</item>
+                                    <item name="label" xsi:type="string" translate="true">Name</item>
+                                    <item name="elementTmpl" xsi:type="string">Aheadworks_Followupemail2/ui/event/email/name</item>
+                                    <item name="additionalClasses" xsi:type="string">email-name</item>
+                                    <item name="tooltip_description" xsi:type="string"  translate="true">A/B testing enabled</item>
+                                </item>
+                            </argument>
+                        </field>
+                        <field name="position">
+                            <argument name="data" xsi:type="array">
+                                <item name="config" xsi:type="array">
+                                    <item name="dataType" xsi:type="string">text</item>
+                                    <item name="formElement" xsi:type="string">input</item>
+                                    <item name="dataScope" xsi:type="string">position</item>
+                                    <item name="visible" xsi:type="boolean">false</item>
+                                </item>
+                            </argument>
+                        </field>
+                        <field name="when">
+                            <argument name="data" xsi:type="array">
+                                <item name="config" xsi:type="array">
+                                    <item name="dataType" xsi:type="string">text</item>
+                                    <item name="formElement" xsi:type="string">input</item>
+                                    <item name="label" xsi:type="string" translate="true">When</item>
+                                    <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                    <item name="additionalClasses" xsi:type="string">email-when</item>
+                                </item>
+                            </argument>
+                        </field>
+                        <field name="sent">
+                            <argument name="data" xsi:type="array">
+                                <item name="config" xsi:type="array">
+                                    <item name="dataType" xsi:type="string">text</item>
+                                    <item name="formElement" xsi:type="string">input</item>
+                                    <item name="label" xsi:type="string" translate="true">Sent</item>
+                                    <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                    <item name="additionalClasses" xsi:type="string">email-statistics align-right</item>
+                                    <item name="columnsHeaderClasses" xsi:type="string">align-right</item>
+                                </item>
+                            </argument>
+                        </field>
+                        <field name="opened">
+                            <argument name="data" xsi:type="array">
+                                <item name="config" xsi:type="array">
+                                    <item name="dataType" xsi:type="string">text</item>
+                                    <item name="formElement" xsi:type="string">input</item>
+                                    <item name="label" xsi:type="string" translate="true">Opened</item>
+                                    <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                    <item name="additionalClasses" xsi:type="string">email-statistics align-right</item>
+                                    <item name="columnsHeaderClasses" xsi:type="string">align-right</item>
+                                </item>
+                            </argument>
+                        </field>
+                        <field name="clicks">
+                            <argument name="data" xsi:type="array">
+                                <item name="config" xsi:type="array">
+                                    <item name="dataType" xsi:type="string">text</item>
+                                    <item name="formElement" xsi:type="string">input</item>
+                                    <item name="label" xsi:type="string" translate="true">Clicks</item>
+                                    <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                    <item name="additionalClasses" xsi:type="string">email-statistics align-right</item>
+                                    <item name="columnsHeaderClasses" xsi:type="string">align-right</item>
+                                </item>
+                            </argument>
+                        </field>
+                        <field name="open_rate">
+                            <argument name="data" xsi:type="array">
+                                <item name="config" xsi:type="array">
+                                    <item name="dataType" xsi:type="string">text</item>
+                                    <item name="formElement" xsi:type="string">input</item>
+                                    <item name="label" xsi:type="string" translate="true">Open Rate</item>
+                                    <item name="elementTmpl" xsi:type="string">Aheadworks_Followupemail2/ui/event/email/dynamic-rows/cells/percent</item>
+                                    <item name="additionalClasses" xsi:type="string">email-statistics align-right</item>
+                                    <item name="columnsHeaderClasses" xsi:type="string">align-right</item>
+                                </item>
+                            </argument>
+                        </field>
+                        <field name="click_rate">
+                            <argument name="data" xsi:type="array">
+                                <item name="config" xsi:type="array">
+                                    <item name="dataType" xsi:type="string">text</item>
+                                    <item name="formElement" xsi:type="string">input</item>
+                                    <item name="label" xsi:type="string" translate="true">Click Rate</item>
+                                    <item name="elementTmpl" xsi:type="string">Aheadworks_Followupemail2/ui/event/email/dynamic-rows/cells/percent</item>
+                                    <item name="additionalClasses" xsi:type="string">email-statistics align-right</item>
+                                    <item name="columnsHeaderClasses" xsi:type="string">align-right</item>
+                                </item>
+                            </argument>
+                        </field>
+                        <field name="status">
+                            <argument name="data" xsi:type="array">
+                                <item name="config" xsi:type="array">
+                                    <item name="dataType" xsi:type="string">text</item>
+                                    <item name="formElement" xsi:type="string">input</item>
+                                    <item name="label" xsi:type="string" translate="true">Status</item>
+                                    <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                    <item name="additionalClasses" xsi:type="string">email-statistics-status align-right</item>
+                                    <item name="columnsHeaderClasses" xsi:type="string">align-right</item>
+                                </item>
+                            </argument>
+                        </field>
+                        <actionDelete>
+                            <argument name="data" xsi:type="array">
+                                <item name="config" xsi:type="array">
+                                    <item name="componentType" xsi:type="string">actionDelete</item>
+                                    <item name="dataType" xsi:type="string">text</item>
+                                    <item name="fit" xsi:type="boolean">false</item>
+                                    <item name="label" xsi:type="string" translate="true">Actions</item>
+                                    <item name="sortOrder" xsi:type="string">50</item>
+                                    <item name="additionalClasses" xsi:type="string">data-grid-actions-cell align-right</item>
+                                    <item name="template" xsi:type="string">Aheadworks_Followupemail2/ui/event/email/dynamic-rows/cells/actions</item>
+                                    <item name="columnsHeaderClasses" xsi:type="string">align-right</item>
+                                </item>
+                            </argument>
+                        </actionDelete>
+                    </container>
+                </dynamicRows>
+            </container>
+        </dynamicRows>
+    </fieldset>
+</form>

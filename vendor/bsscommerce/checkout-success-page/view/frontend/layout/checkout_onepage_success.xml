@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_CheckoutSuccessPage
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name='content'>
+            <block class="Bss\CheckoutSuccessPage\Block\Main" ifconfig="checkoutsuccesspage/general/enable" name="checkout.success.bss" as="checkout.success.bss" template="Bss_CheckoutSuccessPage::checkout/main.phtml">
+                <block class="Bss\CheckoutSuccessPage\Block\Main" name="order.totals" template="Bss_CheckoutSuccessPage::checkout/totals.phtml">
+                    <arguments>
+                        <argument name="label_properties" xsi:type="string">class="table-method"</argument>
+                        <argument name="value_properties" xsi:type="string">class="number"</argument>
+                    </arguments>
+                    <block class="Bss\CheckoutSuccessPage\Block\Tax" name="order.tax" template="Bss_CheckoutSuccessPage::checkout/tax.phtml"/>
+                </block>
+                <block class="Magento\Checkout\Block\Registration" name="bss.checkout.registration" as="bss.checkout.registration" template="Magento_Checkout::registration.phtml"/>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

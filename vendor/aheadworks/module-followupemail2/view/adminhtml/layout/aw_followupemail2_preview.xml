@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-empty" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Follow Up Email 2</title>
+        <link src="requirejs/require.js"/>
+        <css src="Aheadworks_Followupemail2::css/preview.css"/>
+    </head>
+    <body>
+        <attribute name="id" value="html-body"/>
+        <attribute name="class" value="preview-window"/>
+        <referenceContainer name="backend.page" remove="true"/>
+        <referenceContainer name="root">
+            <block class="Aheadworks\Followupemail2\Block\Adminhtml\Preview" name="preview" template="Aheadworks_Followupemail2::preview.phtml" />
+            <block class="Magento\RequireJs\Block\Html\Head\Config" name="requirejs-config"/>
+        </referenceContainer>
+    </body>
+</page>

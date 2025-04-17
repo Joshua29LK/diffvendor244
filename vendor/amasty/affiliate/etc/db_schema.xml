@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="amasty_affiliate_account" resource="default" engine="innodb" comment="amasty_affiliate_account">
+    <column xsi:type="int" name="account_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Account_id"/>
+    <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Customer_id"/>
+    <column xsi:type="boolean" name="is_affiliate_active" nullable="false" default="true" comment="Is_affiliate_active"/>
+    <column xsi:type="boolean" name="accepted_terms_conditions" nullable="false" comment="Accepted_terms_conditions"/>
+    <column xsi:type="boolean" name="receive_notifications" nullable="false" comment="Receive_notifications"/>
+    <column xsi:type="varchar" name="paypal_email" nullable="true" length="255" comment="Paypal_email"/>
+    <column xsi:type="varchar" name="referring_code" nullable="true" length="255" comment="Referring_code"/>
+    <column xsi:type="varchar" name="referring_website" nullable="true" length="255" comment="Referring_website"/>
+    <column xsi:type="decimal" name="balance" scale="2" precision="12" unsigned="false" nullable="false" default="0" onCreate="migrateDataFrom(balance)"/>
+    <column xsi:type="decimal" name="on_hold" scale="2" precision="12" unsigned="true" nullable="false" default="0" onCreate="migrateDataFrom(on_hold)"/>
+    <column xsi:type="decimal" name="commission_paid" scale="2" precision="12" unsigned="true" nullable="false" default="0" onCreate="migrateDataFrom(commission_paid)"/>
+    <column xsi:type="decimal" name="lifetime_commission" scale="2" precision="12" unsigned="true" nullable="false" default="0" onCreate="migrateDataFrom(lifetime_commission)"/>
+    <column xsi:type="int" name="widget_width" padding="10" unsigned="true" nullable="false" identity="false" default="350" comment="Widget_width"/>
+    <column xsi:type="int" name="widget_height" padding="10" unsigned="true" nullable="false" identity="false" default="350" comment="Widget_height"/>
+    <column xsi:type="varchar" name="widget_title" nullable="true" length="255" default="Bestsellers" comment="Widget_title"/>
+    <column xsi:type="int" name="widget_products_num" padding="10" unsigned="true" nullable="true" identity="false" default="6" comment="Widget_products_num"/>
+    <column xsi:type="varchar" name="widget_type" nullable="false" length="255" default="new" comment="Widget_type"/>
+    <column xsi:type="boolean" name="widget_show_name" nullable="false" default="true" comment="Widget_show_name"/>
+    <column xsi:type="boolean" name="widget_show_price" nullable="false" default="true" comment="Widget_show_price"/>
+    <column xsi:type="boolean" name="is_custom_referring_code" nullable="false" comment="Is Custom Referring Code"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="account_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="AMASTY_AFFILIATE_ACCOUNT_CSTR_ID_CSTR_ENTT_ENTT_ID" table="amasty_affiliate_account" column="customer_id" referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <index referenceId="AMASTY_AFFILIATE_ACCOUNT_ACCOUNT_ID" indexType="btree">
+      <column name="account_id"/>
+    </index>
+  </table>
+  <table name="amasty_affiliate_transaction" resource="default" engine="innodb" comment="amasty_affiliate_transaction">
+    <column xsi:type="int" name="transaction_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Transaction_id"/>
+    <column xsi:type="int" name="affiliate_account_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Affiliate_account_id"/>
+    <column xsi:type="int" name="program_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Program_id"/>
+    <column xsi:type="varchar" name="order_increment_id" nullable="true" length="32" comment="Order_increment_id"/>
+    <column xsi:type="decimal" name="profit" scale="2" precision="12" unsigned="true" nullable="false" default="0" onCreate="migrateDataFrom(profit)"/>
+    <column xsi:type="decimal" name="balance" scale="2" precision="12" unsigned="false" nullable="false" default="0" onCreate="migrateDataFrom(balance)"/>
+    <column xsi:type="decimal" name="commission" scale="2" precision="12" unsigned="false" nullable="false" default="0" onCreate="migrateDataFrom(commission)"/>
+    <column xsi:type="decimal" name="discount" scale="2" precision="12" unsigned="true" nullable="false" default="0" onCreate="migrateDataFrom(discount)"/>
+    <column xsi:type="timestamp" name="updated_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated_at"/>
+    <column xsi:type="varchar" name="type" nullable="false" length="255" comment="Type"/>
+    <column xsi:type="varchar" name="status" nullable="false" length="255" comment="Status"/>
+    <column xsi:type="smallint" name="balance_change_type" padding="6" unsigned="false" nullable="true" identity="false" default="0" comment="Balance Change Type"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="transaction_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_A6300FFAA7AEE9CC90BC275BB67D7CE4" table="amasty_affiliate_transaction" column="affiliate_account_id" referenceTable="amasty_affiliate_account" referenceColumn="account_id" onDelete="CASCADE"/>
+    <index referenceId="AMASTY_AFFILIATE_TRANSACTION_TRANSACTION_ID" indexType="btree">
+      <column name="transaction_id"/>
+    </index>
+  </table>
+  <table name="amasty_affiliate_banner" resource="default" engine="innodb" comment="amasty_affiliate_banner">
+    <column xsi:type="int" name="banner_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Banner_id"/>
+    <column xsi:type="text" name="title" nullable="true" comment="Title"/>
+    <column xsi:type="varchar" name="type" nullable="false" length="255" comment="Type"/>
+    <column xsi:type="varchar" name="image" nullable="true" length="255" comment="Image"/>
+    <column xsi:type="text" name="text" nullable="true" comment="Text"/>
+    <column xsi:type="varchar" name="link" nullable="true" length="255" comment="Link"/>
+    <column xsi:type="boolean" name="rel_no_follow" nullable="false" comment="Rel_no_follow"/>
+    <column xsi:type="boolean" name="status" nullable="false" comment="Status"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="banner_id"/>
+    </constraint>
+    <index referenceId="AMASTY_AFFILIATE_BANNER_BANNER_ID" indexType="btree">
+      <column name="banner_id"/>
+    </index>
+  </table>
+  <table name="amasty_affiliate_lifetime" resource="default" engine="innodb" comment="amasty_affiliate_lifetime">
+    <column xsi:type="int" name="lifetime_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Lifetime_id"/>
+    <column xsi:type="int" name="affiliate_account_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Affiliate_account_id"/>
+    <column xsi:type="int" name="program_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Program_id"/>
+    <column xsi:type="varchar" name="customer_email" nullable="false" length="255" comment="Customer_email"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="lifetime_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_8B285362C912FF2DA562C7767E0D51A9" table="amasty_affiliate_lifetime" column="affiliate_account_id" referenceTable="amasty_affiliate_account" referenceColumn="account_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="FK_6F96A400B3D44D7C87BBCC0E3CE75F56" table="amasty_affiliate_lifetime" column="program_id" referenceTable="amasty_affiliate_program" referenceColumn="program_id" onDelete="CASCADE"/>
+    <index referenceId="AMASTY_AFFILIATE_LIFETIME_LIFETIME_ID" indexType="btree">
+      <column name="lifetime_id"/>
+    </index>
+  </table>
+  <table name="amasty_affiliate_links" resource="default" engine="innodb" comment="amasty_affiliate_links">
+    <column xsi:type="int" name="link_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Link_id"/>
+    <column xsi:type="int" name="affiliate_account_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Affiliate_account_id"/>
+    <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created_at"/>
+    <column xsi:type="varchar" name="link_type" nullable="true" length="255" comment="Link_type"/>
+    <column xsi:type="int" name="element_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Element_id"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="link_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_3F36B2243B560D7F62BDE4FB5E1E6ADC" table="amasty_affiliate_links" column="affiliate_account_id" referenceTable="amasty_affiliate_account" referenceColumn="account_id" onDelete="CASCADE"/>
+    <index referenceId="AMASTY_AFFILIATE_LINKS_LINK_ID" indexType="btree">
+      <column name="link_id"/>
+    </index>
+  </table>
+  <table name="amasty_affiliate_program" resource="default" engine="innodb" comment="amasty_affiliate_program">
+    <column xsi:type="int" name="program_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Program_id"/>
+    <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Rule_id"/>
+    <column xsi:type="varchar" name="name" nullable="true" length="255" comment="Name"/>
+    <column xsi:type="varchar" name="withdrawal_type" nullable="false" length="255" comment="Withdrawal_type"/>
+    <column xsi:type="boolean" name="is_active" nullable="false" comment="Is_active"/>
+    <column xsi:type="decimal" name="commission_value" scale="2" precision="12" unsigned="true" nullable="false" default="0" onCreate="migrateDataFrom(commission_value)"/>
+    <column xsi:type="decimal" name="commission_per_profit_amount" scale="2" precision="12" unsigned="true" nullable="false" default="0" onCreate="migrateDataFrom(commission_per_profit_amount)"/>
+    <column xsi:type="varchar" name="commission_value_type" nullable="true" length="255" comment="Commission_value_type"/>
+    <column xsi:type="boolean" name="from_second_order" nullable="false" comment="From_second_order"/>
+    <column xsi:type="varchar" name="commission_type_second" nullable="true" length="255" comment="Commission_type_second"/>
+    <column xsi:type="decimal" name="commission_value_second" scale="2" precision="12" unsigned="true" nullable="false" default="0" onCreate="migrateDataFrom(commission_value_second)"/>
+    <column xsi:type="boolean" name="is_lifetime" nullable="false" comment="Is_lifetime"/>
+    <column xsi:type="varchar" name="frequency" nullable="true" length="255" comment="Frequency"/>
+    <column xsi:type="decimal" name="total_sales" scale="2" precision="12" unsigned="true" nullable="false" default="0" onCreate="migrateDataFrom(total_sales)"/>
+    <column xsi:type="text" name="available_customers" nullable="true" comment="Available Customers Ids"/>
+    <column xsi:type="text" name="available_groups" nullable="true" comment="Available users groups"/>
+    <column xsi:type="int" name="restrict_transactions_to_number_orders" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Restrict Transactions To Number Orders"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="program_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="AMASTY_AFFILIATE_PROGRAM_RULE_ID_SALESRULE_RULE_ID" table="amasty_affiliate_program" column="rule_id" referenceTable="salesrule" referenceColumn="rule_id" onDelete="SET NULL"/>
+    <index referenceId="AMASTY_AFFILIATE_PROGRAM_PROGRAM_ID" indexType="btree">
+      <column name="program_id"/>
+    </index>
+  </table>
+  <table name="amasty_affiliate_coupon" resource="default" engine="innodb" comment="amasty_affiliate_coupon">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity_id"/>
+    <column xsi:type="int" name="account_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Account_id"/>
+    <column xsi:type="int" name="program_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Program_id"/>
+    <column xsi:type="int" name="coupon_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Coupon_id"/>
+    <column xsi:type="decimal" name="current_profit" scale="2" precision="12" unsigned="true" nullable="false" default="0" onCreate="migrateDataFrom(current_profit)"/>
+    <column xsi:type="boolean" name="is_system" nullable="false" default="true" comment="Coupon is system"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_732EF8B5BA8FE18D41F234BC3E79FE89" table="amasty_affiliate_coupon" column="account_id" referenceTable="amasty_affiliate_account" referenceColumn="account_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="FK_7BCB96027A85A18AC9CB8496AECE7BB7" table="pamasty_affiliate_coupon" column="program_id" referenceTable="amasty_affiliate_program" referenceColumn="program_id" onDelete="CASCADE"/>
+    <index referenceId="AMASTY_AFFILIATE_COUPON_ACCOUNT_ID" indexType="btree">
+      <column name="entity_id"/>
+    </index>
+  </table>
+  <table name="amasty_affiliate_program_order_counter" resource="default" engine="innodb" comment="Amasty Affiliate Program Order Counter Table">
+    <column xsi:type="int" name="program_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Program Id"/>
+    <column xsi:type="int" name="affiliate_account_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Affiliate Account Id"/>
+    <column xsi:type="int" name="order_counter" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Order Counter"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="program_id"/>
+      <column name="affiliate_account_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_0C5542C8A9FE962C8A307E96CF77B6C3" table="amasty_affiliate_program_order_counter" column="program_id" referenceTable="amasty_affiliate_program" referenceColumn="program_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="FK_9C5B3275953F5FC08AA9336D1AD1285D" table="amasty_affiliate_program_order_counter" column="affiliate_account_id" referenceTable="amasty_affiliate_account" referenceColumn="account_id" onDelete="CASCADE"/>
+  </table>
+  <table name="amasty_affiliate_commission_calculation" resource="default" engine="innodb" comment="Amasty Affiliate Program Commission Calculation Table">
+    <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+    <column xsi:type="int" name="program_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Program ID"/>
+    <column xsi:type="boolean" name="is_enabled" nullable="false" comment="Is Enabled"/>
+    <column xsi:type="smallint" name="action_strategy" padding="5" unsigned="true" nullable="true" identity="false" comment="Action Strategy Type"/>
+    <column xsi:type="text" name="skus" nullable="true" comment="List of Selected SKU's"/>
+    <column xsi:type="text" name="categories" nullable="true" comment="List of Selected Categories"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_ADA1D9245BB85327B7A1FF2B73010746" table="amasty_affiliate_commission_calculation" column="program_id" referenceTable="amasty_affiliate_program" referenceColumn="program_id" onDelete="CASCADE"/>
+  </table>
+</schema>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">amasty_affiliate_account_coupon_listing.amasty_affiliate_account_coupon_listing_data_source</item>
+            <item name="deps" xsi:type="string">amasty_affiliate_account_coupon_listing.amasty_affiliate_account_coupon_listing_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">amasty_affiliate_account_coupon_columns</item>
+    </argument>
+    <dataSource name="amasty_affiliate_account_coupon_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Amasty\Affiliate\Ui\Component\DataProvider\AccountCouponsDataProvider</argument>
+            <argument name="name" xsi:type="string">amasty_affiliate_account_coupon_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="component" xsi:type="string">Amasty_Affiliate/js/grid/account/data-storage</item>
+                        <item name="indexField" xsi:type="string">entity_id</item>
+                    </item>
+                    <item name="filter_url_params" xsi:type="array">
+                        <item name="account_id" xsi:type="string">*</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="template" xsi:type="string">ui/grid/toolbar</item>
+            </item>
+        </argument>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="amasty_affiliate_account_coupon_columns">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="childDefaults" xsi:type="array">
+                    <item name="fieldAction" xsi:type="array">
+                        <item name="provider" xsi:type="string">amasty_affiliate_account_coupon_listing.amasty_affiliate_account_coupon_columns_editor</item>
+                        <item name="target" xsi:type="string">startEdit</item>
+                        <item name="params" xsi:type="array">
+                            <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                            <item name="1" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+        <column name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Program Name</item>
+                </item>
+            </argument>
+        </column>
+        <column name="code">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Coupon</item>
+                </item>
+            </argument>
+        </column>
+        <column name="custom_coupons" class="Amasty\Affiliate\Ui\Component\Listing\Columns\CustomCoupons">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Custom Coupons</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="actions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                    <item name="templates" xsi:type="array">
+                        <item name="actions" xsi:type="array">
+                            <item name="0" xsi:type="array">
+                                <item name="label" xsi:type="string" translate="false">Edit</item>
+                                <item name="callback" xsi:type="array">
+                                    <item name="provider" xsi:type="string">amasty_affiliate_account_coupon_listing.amasty_affiliate_account_coupon_listing.modal</item>
+                                    <item name="target" xsi:type="string">showModalCustomCoupons</item>
+                                </item>
+                                <item name="index" xsi:type="string">0</item>
+                                <item name="href" xsi:type="string">#</item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </actionsColumn>
+    </columns>
+    <container name="modal">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="componentType" xsi:type="string">modal</item>
+                <item name="targetField" xsi:type="string">amasty_affiliate_modal_coupon_form_loader</item>
+                <item name="component" xsi:type="string">Amasty_Affiliate/js/modal/modal-custom-coupons</item>
+                <item name="options" xsi:type="array">
+                    <item name="type" xsi:type="string">slide</item>
+                    <item name="title" xsi:type="string" translate="true">Add Custom Coupons</item>
+                    <item name="renderElement" xsi:type="string">amasty_affiliate_account_coupon_listing.amasty_affiliate_account_coupon_listing.modal.amasty_affiliate_modal_coupon_form_loader</item>
+                    <item name="dynamicRows" xsi:type="string">amasty_affiliate_modal_coupon_form.amasty_affiliate_modal_coupon_form.dynamic_rows_container</item>
+                    <item name="ajaxUrl" xsi:type="url" path="amasty_affiliate/account/saveCustomCoupons"/>
+                    <item name="buttons" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="text" xsi:type="string" translate="true">Cancel</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="string">closeModalCustomCoupons</item>
+                            </item>
+                        </item>
+                        <item name="1" xsi:type="array">
+                            <item name="text" xsi:type="string" translate="true">Save</item>
+                            <item name="class" xsi:type="string">action-primary</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">${ $.name }</item>
+                                    <item name="actionName" xsi:type="string">setAddedCoupons</item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+        <insertForm name="amasty_affiliate_modal_coupon_form_loader">
+            <settings>
+                <formSubmitType>ajax</formSubmitType>
+                <renderUrl path="mui/index/render">
+                    <param name="handle">amasty_affiliate_modal_coupon_form</param>
+                </renderUrl>
+                <loading>false</loading>
+                <autoRender>false</autoRender>
+                <ns>amasty_affiliate_modal_coupon_form</ns>
+                <externalProvider>amasty_affiliate_modal_coupon_form.dynamic_rows_data_source</externalProvider>
+                <imports>
+                    <link name="params.affiliateCouponId">amasty_affiliate_account_coupon_listing.amasty_affiliate_account_coupon_listing.modal:affiliateCouponId</link>
+                </imports>
+            </settings>
+        </insertForm>
+    </container>
+</listing>

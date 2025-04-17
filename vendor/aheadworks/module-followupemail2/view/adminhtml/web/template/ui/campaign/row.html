@@ -1,0 +1,82 @@
+<div class="campaign" css="'inactive': isInactive($row())">
+    <div class="left">
+        <div class="campaign-name" >
+            <span ko-scope="requestChild('name')">
+                <text args="getLabel($row())"></text>
+            </span>
+            <if args="isInactive($row())">
+                <span class="inactive-tag" translate="'Inactive'"></span>
+            </if>
+        </div>
+        <if args="hasDateSelected($row())">
+            <div class="campaign-period">
+                <span class="label" translate="'Period'"></span>
+                <if args="getStartDate($row())">
+                    <span translate="'from'"></span>
+                    <text args="getStartDate($row())"></text>
+                </if>
+                <if args="getEndDate($row())">
+                    <span translate="'to'"></span>
+                    <text args="getEndDate($row())"></text>
+                </if>
+            </div>
+        </if>
+        <div class="campaign-description" ko-scope="requestChild('description')">
+            <text args="getLabel($row())"></text>
+        </div>
+        <div class="campaign-content">
+            <span class="item">
+                <span id="campaign-events-count" css="'highlighted': !isInactive($row())" ko-scope="requestChild('events_count')">
+                    <text args="getLabel($row())"></text>
+                </span>
+                <span translate="'Events'"></span>
+            </span>
+            <span class="item">
+                <span id="campaign-emails-count" css="'highlighted': !isInactive($row())" ko-scope="requestChild('emails_count')">
+                    <text args="getLabel($row())"></text>
+                </span>
+                <span translate="'Emails'"></span>
+            </span>
+        </div>
+    </div>
+    <div class="right">
+        <div class="campaign-manage">
+            <a href="#" click="editCampaignForm.bind($data, $row())">
+                <text args="$t('Edit Campaign')"></text>
+            </a>
+            <a href="#" click="duplicateCampaign.bind($data, $row())">
+                <text args="$t('Duplicate')"></text>
+            </a>
+            <a href="#" click="deleteCampaign.bind($data, $row())">
+                <text args="$t('Delete')"></text>
+            </a>
+            <button type="button"
+                    attr="title: $t('Manage Events')"
+                    class="campaign-event action-secondary"
+                    click="openEventsManagement.bind($data, $row())">
+                <span translate="'Manage Events'"></span>
+            </button>
+        </div>
+        <div class="left-border">
+            <table class="campaign-statistics" css="'inactive': isInactive($row())">
+                <tr>
+                    <th><text args="$t('Sent')"></text></th>
+                    <th><text args="$t('Opened')"></text></th>
+                    <th><text args="$t('Clicked')"></text></th>
+                    <th><text args="$t('Open Rate')"></text></th>
+                    <th><text args="$t('Click Rate')"></text></th>
+                </tr>
+                <tr>
+                    <td ko-scope="requestChild('sent')"><text args="getLabel($row())"></text></td>
+                    <td ko-scope="requestChild('opened')"><text args="getLabel($row())"></text></td>
+                    <td ko-scope="requestChild('clicked')"><text args="getLabel($row())"></text></td>
+                    <td ko-scope="requestChild('open_rate')" css="'highlighted': !isInactive($row())"><text args="getLabel($row())"></text></td>
+                    <td ko-scope="requestChild('click_rate')" css="'highlighted': !isInactive($row())"><text args="getLabel($row())"></text></td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="statistics-reset"><a href="#" click="resetStatistics.bind($data, $row())"><text args="$t('Reset Statistics')"></text></a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

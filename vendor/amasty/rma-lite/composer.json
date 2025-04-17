@@ -1,0 +1,22 @@
+{
+    "name": "amasty/rma-lite",
+    "description": "RMA Lite by Amasty",
+    "require": {
+        "php": ">=7.3.0",
+        "amasty/rma": "*",
+        "amasty/base": ">=1.13.4"
+    },
+    "type": "magento2-module",
+    "version": "2.6.8",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\RMALite\\": ""
+        }
+    }
+}

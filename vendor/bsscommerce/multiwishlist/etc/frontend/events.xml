@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * @category   BSS
+ * @package    Bss_MultiWishlist
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="wishlist_product_add_after">
+        <observer name="bss_wishlist_add_item" instance="Bss\MultiWishlist\Observer\Wishlist" />
+    </event>
+    <event name="controller_action_predispatch_wishlist_index_updateItemOptions">
+        <observer name="bss_wishlist_update_item" instance="Bss\MultiWishlist\Observer\UpdateItemOptions" />
+    </event>
+</config>

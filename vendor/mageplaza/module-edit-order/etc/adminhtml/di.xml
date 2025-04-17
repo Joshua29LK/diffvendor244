@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_EditOrder
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Magento\Sales\Block\Adminhtml\Order\View">
+		<plugin name="mpeditorder_add_quick_edit_button" type="Mageplaza\EditOrder\Plugin\Order\AddQuickEditButton"/>
+	</type>
+	<type name="Magento\SalesRule\Model\Validator">
+		<plugin name="mpeditorder_calculation_custom_discount" type="Mageplaza\EditOrder\Plugin\Model\Quote\Item\CustomDiscount"/>
+	</type>
+	<type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
+		<plugin name="mpeditorder_convert_quote_item_to_order_item" type="Mageplaza\EditOrder\Plugin\Model\Quote\Item\ToOrderItem"/>
+	</type>
+	<type name="Magento\Tax\Model\Sales\Total\Quote\CommonTaxCollector">
+		<plugin name="mpeditorder_custom_tax_quote_item" type="Mageplaza\EditOrder\Plugin\Model\Quote\Item\CustomTax"/>
+	</type>
+	<type name="Magento\Sales\Block\Adminhtml\Order\Create\Items\Grid">
+		<plugin name="mpeditorder_custom_tax_quote_item_subtotal" type="Mageplaza\EditOrder\Plugin\Block\Adminhtml\Order\Create\Item\CustomTax"/>
+	</type>
+	<type name="Magento\Quote\Model\Quote">
+		<plugin name="mpeditorder_edit_inventory_product" type="Mageplaza\EditOrder\Plugin\Model\Quote\Quote"/>
+	</type>
+	<type name="Magento\Sales\Controller\Adminhtml\Order\Invoice\Save">
+		<plugin name="mpeditorder_invoice_save" type="Mageplaza\EditOrder\Plugin\Invoice\Save"/>
+	</type>
+	<type name="Magento\Sales\Model\Order\Invoice\Item">
+		<plugin name="mpeditorder_invoice_item" type="Mageplaza\EditOrder\Plugin\Invoice\Item"/>
+	</type>
+	<type name="Magento\Sales\Model\Order\Creditmemo\Item">
+		<plugin name="mpeditorder_creditmemo_item" type="Mageplaza\EditOrder\Plugin\Creditmemo\Item"/>
+	</type>
+	<type name="Magento\Sales\Model\Order\Shipment\Item">
+		<plugin name="mpeditorder_shipment_item" type="Mageplaza\EditOrder\Plugin\Shipment\Item"/>
+	</type>
+    <type name="Magento\Sales\Model\Order\CreditmemoFactory">
+		<plugin name="mpeditorder_creditmemo_create_by_order" type="Mageplaza\EditOrder\Plugin\Creditmemo\CreateByOrder"/>
+	</type>
+    <type name="Magento\Sales\Model\Service\InvoiceService">
+		<plugin name="mpeditorder_invoice_service" type="Mageplaza\EditOrder\Plugin\Invoice\InvoiceService"/>
+	</type>
+    <type name="Magento\Sales\Model\Order\Item">
+		<plugin name="mpeditorder_shipment_check" type="Mageplaza\EditOrder\Plugin\Order\Shipment"/>
+	</type>
+    <type name="Magento\Bundle\Block\Adminhtml\Sales\Order\Items\Renderer">
+		<plugin name="mpeditorder_bundle_item" type="Mageplaza\EditOrder\Plugin\Order\BundleItem"/>
+	</type>
+    <type name="Magento\Ui\Model\Export\MetadataProvider">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="mpeditorder_logs_listing" xsi:type="array">
+                    <item name="created_at" xsi:type="string">created_at</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+	<preference for="Magento\InventorySales\Model\IsProductSalableForRequestedQtyCondition\IsSalableWithReservationsCondition" type="Mageplaza\EditOrder\Model\Quote\IsSalableWithReservationsCondition"/>
+</config>
+

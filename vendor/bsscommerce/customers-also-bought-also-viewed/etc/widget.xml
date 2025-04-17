@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_CABAV
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+	<widget class="Bss\CABAV\Block\Widget\AlsoBought" id="bss_cabav_alsobought">
+		<label>Bss Also Bought</label>
+		<description>Bss Also Bought</description>
+		<parameters>
+			<parameter name="title" sort_order="10" visible="true" xsi:type="text">
+				<label>Title</label>
+			</parameter>
+			<parameter name="product_id" xsi:type="conditions" visible="true" sort_order="15"
+					   class="Bss\CABAV\Block\Widget\Element\ValidateNumber">
+				<label translate="true">Product Id</label>
+			</parameter>
+			<parameter name="show_category" sort_order="20" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Only Show Products from Same Category</label>
+			</parameter>
+			<parameter name="limit_product" xsi:type="conditions" visible="true" sort_order="25"
+					   class="Bss\CABAV\Block\Widget\Element\ValidateNumber">
+				<label>Limit Number of Products to Be Shown</label>
+				<description translate="true">If the field is left as blank then its default value is 10.</description>
+			</parameter>
+			<parameter name="display" sort_order="30" source_model="Bss\CABAV\Model\Config\Source\WidgetDisplay" visible="true" xsi:type="select">
+				<label>Display as</label>
+			</parameter>
+			<parameter name="number_product" xsi:type="conditions" visible="true" sort_order="35"
+					   class="Bss\CABAV\Block\Widget\Element\ValidateNumber">
+				<label>Number of Products per Slider</label>
+				<description translate="true">If the field is left as blank then its default value is 5.</description>
+			</parameter>
+			<parameter name="sort_by" sort_order="40" source_model="Bss\CABAV\Model\Config\Source\WidgetSortBought" visible="true" xsi:type="select">
+				<label>Sort By</label>
+			</parameter>
+			<parameter name="show_instock" sort_order="45" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Show In Stock Products Only</label>
+			</parameter>
+			<parameter name="add_to_cart" sort_order="50" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Enable Add to Cart Button</label>
+			</parameter>
+			<parameter name="add_to_wishlist" sort_order="55" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Enable Add to Wishlist</label>
+			</parameter>
+			<parameter name="add_to_compare" sort_order="60" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Enable Add to Compare</label>
+			</parameter>
+			<parameter name="review_link" sort_order="65" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Enable Reviews Link</label>
+			</parameter>
+			<parameter name="widget_id" sort_order="70" visible="false" xsi:type="text">
+				<label>Widget Id</label>
+			</parameter>
+		</parameters>
+	</widget>
+	<widget class="Bss\CABAV\Block\Widget\AlsoViewed" id="bss_cabav_alsoviewed">
+		<label>Bss Also Viewed</label>
+		<description>Bss Also Viewed</description>
+		<parameters>
+			<parameter name="title" sort_order="10" visible="true" xsi:type="text">
+				<label>Title</label>
+			</parameter>
+			<parameter name="product_id" xsi:type="conditions" visible="true" sort_order="15"
+					   class="Bss\CABAV\Block\Widget\Element\ValidateNumber">
+				<label translate="true">Product Id</label>
+			</parameter>
+			<parameter name="show_category" sort_order="20" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Only Show Products from Same Category</label>
+			</parameter>
+			<parameter name="limit_product" xsi:type="conditions" visible="true" sort_order="25"
+					   class="Bss\CABAV\Block\Widget\Element\ValidateNumber">
+				<label>Limit Number of Products to Be Shown</label>
+				<description translate="true">If the field is left as blank then its default value is 10.</description>
+			</parameter>
+			<parameter name="display" sort_order="30" source_model="Bss\CABAV\Model\Config\Source\WidgetDisplay" visible="true" xsi:type="select">
+				<label>Display as</label>
+			</parameter>
+			<parameter name="number_product" xsi:type="conditions" visible="true" sort_order="35"
+					   class="Bss\CABAV\Block\Widget\Element\ValidateNumber">
+				<label>Number of Products per Slider</label>
+				<description translate="true">If the field is left as blank then its default value is 5.</description>
+			</parameter>
+			<parameter name="sort_by" sort_order="40" source_model="Bss\CABAV\Model\Config\Source\WidgetSortViewed" visible="true" xsi:type="select">
+				<label>Sort By</label>
+			</parameter>
+			<parameter name="show_instock" sort_order="45" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Show In Stock Products Only</label>
+			</parameter>
+			<parameter name="add_to_cart" sort_order="50" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Enable Add to Cart Button</label>
+			</parameter>
+			<parameter name="add_to_wishlist" sort_order="55" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Enable Add to Wishlist</label>
+			</parameter>
+			<parameter name="add_to_compare" sort_order="60" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Enable Add to Compare</label>
+			</parameter>
+			<parameter name="review_link" sort_order="65" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Enable Reviews Link</label>
+			</parameter>
+		</parameters>
+	</widget>
+</widgets>

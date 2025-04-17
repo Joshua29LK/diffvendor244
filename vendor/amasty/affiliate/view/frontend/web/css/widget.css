@@ -1,0 +1,31 @@
+div#affiliate-widget {
+    margin: 15px;
+}
+
+#form-validate {
+    float: left;
+    margin-bottom: 50px;
+    margin-right: 30px;
+}
+
+h1.page-title {
+    width: 100%;
+}
+
+div#show-type {
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+}
+
+.actions-toolbar {
+    float: right;
+}
+
+div#copy-button {
+    float: right;
+}
+
+.fieldset {
+    overflow: auto;
+    height: 500px;
+}

@@ -1,0 +1,124 @@
+.campaign {
+    display: table;
+    width: 100%;
+    border-top: 1px solid #e3e3e3;
+    padding-top: 2rem;
+    margin-bottom: 3rem;
+
+    .campaign-name {
+        font-size: 2.2rem;
+        font-weight: 600;
+    }
+
+    .campaign-period {
+        font-weight: bold;
+        margin-top: 1.5rem;
+
+        span {
+            font-weight: normal;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .label:after {
+          content: ":";
+        }
+    }
+
+    .campaign-description {
+        margin-top: 1rem;
+    }
+
+    .campaign-content {
+        margin-top: 2rem;
+
+        .item {
+            margin-right: 2rem;
+        }
+    }
+
+    .campaign-manage {
+        margin-left: 3rem;
+        margin-right: 1.5rem;
+
+        a {
+            padding-right: 3rem;
+            color: #007bdb !important;
+        }
+    }
+
+    .campaign-statistics {
+        margin: 2rem 1.5rem 0rem 3rem;
+
+        th {
+            width: 10rem;
+            text-align: left;
+        }
+
+        td {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        td {
+            font-size: 2.2rem;
+            font-weight: 400;
+        }
+
+        .statistics-reset {
+            padding-top: 1.5rem;
+            font-size: 1.4rem !important;
+
+            a {
+                color: #007bdb !important;
+            }
+        }
+    }
+
+    .highlighted {
+        color: #FF6600;
+    }
+
+    .right, .left {
+        display: table-cell;
+    }
+
+    .right {
+        width: 50rem;
+    }
+
+    .right .left-border {
+        border-left: 1px solid #cccccc;
+    }
+}
+
+.inactive, .inactive a {
+    color: #999999 !important;
+}
+
+.inactive .inactive-tag {
+    margin-left: 2rem;
+    color: red;
+    font-size: 1.3rem;
+    font-weight: normal;
+}
+
+.aw-followupemail2-startdate ._has-datepicker.admin__control-text,
+.aw-followupemail2-enddate ._has-datepicker.admin__control-text {
+    width: 20rem;
+}
+
+.aw-followupemail2-campaign-index {
+    .data-row-no-data {
+        color: #999999;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .data-row-read-manual {
+        text-align: center;
+        margin-top: 3rem;
+    }
+}

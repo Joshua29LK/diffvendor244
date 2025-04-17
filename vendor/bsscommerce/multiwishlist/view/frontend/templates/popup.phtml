@@ -1,0 +1,102 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * @category   BSS
+ * @package    Bss_MultiWishlist
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/* @var $block Bss\MultiWishlist\Block\Popup */
+?>
+<?php $labels = $block->getMyWishlist(); ?>
+<div id="wishlist_container">
+    <a id="fancybox_div" href="#output_wishlist_div"></a>
+    <div id="output_wishlist_div">
+        <span id="no-choose-wishlist"><?php echo __('Please select wishlist !') ?></span>
+        <span id="max-length-wl-name"><?php echo __('Wishlist name must less than %1 character.', 255) ?></span>
+        <div id="outputerror_div"></div>
+        <div id="outputsuccess_div"></div>
+        <input type="hidden" name="forceNew" value="0" id="forceNew"/>
+        <div style="font-weight:bold;"><?php echo __('Please choose a Wish List for the selected product:') ?></div>
+        <form action="<?php echo $block->escapeUrl($block->getUrlAction()) ?>" method="post" id="add-to-multiwishlist">
+            <ul id="list-wishlist">
+                <?php if (($block->getUnwishlist() && $block->getUnwishlist() != 0 || $block->getActionWl() == 'add') || $block->getActionWl() == false || $block->getActionWl() == 'movefromcart'): ?>
+                    <li>
+                        <label>
+                            <input type="checkbox" name="wishlist_id[]" id="wishlist_id_0" value="0" />
+                            <?php echo __('Main') ?>
+                        </label>
+                    </li>
+                <?php endif ?>
+                <?php foreach ($labels as $label): ?>
+                    <?php
+                    if ($block->getUnwishlist() && $block->getUnwishlist() == $label->getId()) {
+                        continue;
+                    }
+                    ?>
+                    <li>
+                        <label>
+                            <input type="checkbox" name="wishlist_id[]" id="wishlist_id_<?php echo $label->getId() ?>" class="wishlist_id" value="<?php echo $label->getId() ?>"/>
+                            <span class="wishlist_label_<?php echo $label->getId() ?>"><?php echo $block->escapeHtml($label->getWishlistName()) ?></span>
+                        </label>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <div class="data-form" style="display: none;">
+
+            </div>
+        </form>
+        <div class="create-wishlist">
+            <form action="<?php echo $block->getUrlCreateWishList() ?>"
+                  id="create_wishlist"
+                  class="clearfix"
+                  name="create-wishlist"
+                  method="post"
+                  data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>"
+                  data-mage-init='{"validation":{}}'
+                  enctype="multipart/form-data">
+                <button class="action primary" title="<?php echo __('Create Wish List') ?>" id="wishlist_create" type="button">
+                    <span>
+                        <span><?php echo __('Create Wish List') ?></span>
+                    </span>
+                </button>
+                <div class="content">
+                    <input id="new_wlname" class="input-text" required maxlength="255" type="text" placeholder="<?php echo __('Enter Wish List Name') ?>" name="new_wlname"/>
+                </div>
+            </form>
+            <span class="clearfix"></span>
+        </div>
+        <div id="loadingmask">
+            <img id="loading"
+                 src="<?php echo $block->getViewFileUrl('Bss_MultiWishlist::images/opc-ajax-loader.gif') ?>"
+                 alt="<?php echo __('Loading...') ?>"/>
+            <?php echo __('Loading...') ?>
+        </div>
+        <br/>
+        <div class="wishlist_btns">
+            <?php if ($block->getActionWl() == 'add'): ?>
+                <button class="action primary" title="<?php echo __('Add To WishList') ?>" id="wishlist_add" type="button">
+                    <span><span><?php echo __('Add To WishList') ?></span></span>
+                </button>
+            <?php endif ?>
+            <?php if ($block->getActionWl() == 'move' || $block->getActionWl() == 'movefromcart'): ?>
+                <button class="action primary" title="<?php echo __('Move Item') ?>" id="wishlist_move" type="button">
+                    <span><span><?php echo __('Move Item') ?></span></span>
+                </button>
+            <?php endif ?>
+            <?php if ($block->getActionWl() == 'copy'): ?>
+                <button class="action primary" title="<?php echo __('Copy Item') ?>" id="wishlist_copy" type="button">
+                    <span><span><?php echo __('Copy Item') ?></span></span>
+                </button>
+            <?php endif ?>
+        </div>
+    </div>
+</div>

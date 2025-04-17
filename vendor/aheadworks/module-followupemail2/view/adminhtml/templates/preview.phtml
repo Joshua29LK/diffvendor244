@@ -1,0 +1,34 @@
+<?php
+/* @var $block \Aheadworks\Followupemail2\Block\Adminhtml\Preview */
+
+// @codingStandardsIgnoreFile
+?>
+<div id="aw-followupemail2-preview">
+    <div class="toolbar"></div>
+    <table cellspacing="0" width="100%">
+        <col width="5%"/>
+        <col />
+        <tbody>
+        <tr>
+            <th><?php echo $block->escapeHtml(__('From')) ?>:</th>
+            <td>
+                <?php echo $block->escapeHtml($block->getSenderName()) ?> <a href="mailto:<?php /* @noEscape */ echo $block->getSenderEmail() ?>"><?php /* @noEscape */ echo $block->getSenderEmail() ?></a>
+            </td>
+        </tr>
+        <tr>
+            <th><?php echo $block->escapeHtml(__('To')) ?>:</th>
+            <td>
+                <?php echo $block->escapeHtml($block->getRecipientName()) ?> <a href="mailto:<?php /* @noEscape */ echo $block->getRecipientEmail() ?>"><?php /* @noEscape */ echo $block->getRecipientEmail() ?></a>
+            </td>
+        </tr>
+        <tr>
+            <th><?php echo $block->escapeHtml(__('Subject')) ?>:</th>
+            <td><?php echo $block->escapeHtml($block->getMessageSubject()) ?></td>
+        </tr>
+        <tr>
+            <th><?php echo $block->escapeHtml(__('Content')) ?>:</th>
+            <td><?php /* @noEscape */ echo $block->getMessageContent() ?></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

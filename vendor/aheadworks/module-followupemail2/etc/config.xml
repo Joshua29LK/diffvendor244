@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <followupemailtwo>
+            <general>
+                <sender>general</sender>
+                <enabletestmode>0</enabletestmode>
+            </general>
+            <maillog>
+                <keepfor>60</keepfor>
+            </maillog>
+            <header_and_footer>
+                <email_header_template>design_email_header_template</email_header_template>
+                <email_footer_template>design_email_footer_template</email_footer_template>
+            </header_and_footer>
+        </followupemailtwo>
+    </default>
+</config>

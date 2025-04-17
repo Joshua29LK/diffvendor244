@@ -1,0 +1,422 @@
+"Affiliate Programs","Affiliate Programs"
+"Refer Friends","Refer Friends"
+"Affiliate Settings","Affiliate Settings"
+"My Balance","My Balance"
+"Subtraction after refund per Order #%1","Subtraction after refund per Order #%1"
+"Commission per oder #%1","Commission per oder #%1"
+Withdrawal,Withdrawal
+"Per Profit","Per Profit"
+Reset,Reset
+"Save and Continue Edit","Save and Continue Edit"
+Save,Save
+Delete,Delete
+"Are you sure you want to delete this?","Are you sure you want to delete this?"
+"Affiliate Account","Affiliate Account"
+Enabled,Enabled
+"Receive Notifications","Receive Notifications"
+"Allow Setting Custom Affiliate Code","Allow Setting Custom Affiliate Code"
+"Select ‘Yes’ if you’d like to set a custom affiliate code that will be used in the referral links. Important! Referral links with the old affiliate code will become invalid.","Select ‘Yes’ if you’d like to set a custom affiliate code that will be used in the referral links. Important! Referral links with the old affiliate code will become invalid."
+"Custom Affiliate Code","Custom Affiliate Code"
+"Please update the default affiliate code with the custom value.","Please update the default affiliate code with the custom value."
+"Please create shopping cart price rule with 'Auto generated coupons'","Please create shopping cart price rule with 'Auto generated coupons'"
+"Please update Amasty Base module. Re-upload it and replace all the files.","Please update Amasty Base module. Re-upload it and replace all the files."
+"Referring Code","Referring Code"
+Status,Status
+Cancel,Cancel
+Pay,Pay
+"You should accept ""Accept Terms and Conditions","You should accept ""Accept Terms and Conditions"
+"Affiliate Account has successfully saved","Affiliate Account has successfully saved"
+"Promo Data","Promo Data"
+Settings,Settings
+"Traffic Sources","Traffic Sources"
+"Promo Widget","Promo Widget"
+"Affiliate Widget has successfully saved","Affiliate Widget has successfully saved"
+"My Withdrawals","My Withdrawals"
+"Please enter an amount more than zero","Please enter an amount more than zero"
+"You have no enough funds available for the withdrawal","You have no enough funds available for the withdrawal"
+"The minimum payout amount is %1. Please enter an amount more than %1","The minimum payout amount is %1. Please enter an amount more than %1"
+"Withdrawal was successfully canceled.","Withdrawal was successfully canceled."
+"Withdrawal was successfully created.","Withdrawal was successfully created."
+"Manage Affiliate Accounts","Manage Affiliate Accounts"
+"This account no longer exists.","This account no longer exists."
+"Manage Affiliate Account","Manage Affiliate Account"
+"New Affiliate Account","New Affiliate Account"
+"Affiliate Accounts","Affiliate Accounts"
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"The account is saved.","The account is saved."
+"One of the fields is empty.","One of the fields is empty."
+"Manage Affiliate Banners","Manage Affiliate Banners"
+"The banner has been deleted.","The banner has been deleted."
+"We can't find a page to delete.","We can't find a page to delete."
+"This banner no longer exists.","This banner no longer exists."
+"Manage Banner","Manage Banner"
+"New Banner","New Banner"
+"Affiliate Banners","Affiliate Banners"
+"Please use valid url","Please use valid url"
+"The banner is saved.","The banner is saved."
+"Manage Affiliate Program","Manage Affiliate Program"
+"Status for Program with ID %1 has been changed.","Status for Program with ID %1 has been changed."
+"The program has been deleted.","The program has been deleted."
+"This program no longer exists.","This program no longer exists."
+"New Affiliate Program","New Affiliate Program"
+"The program is saved.","The program is saved."
+"Manage Affiliate Transactions","Manage Affiliate Transactions"
+"This transaction no longer exists.","This transaction no longer exists."
+"Manage Affiliate Transaction","Manage Affiliate Transaction"
+"Affiliate Transactions","Affiliate Transactions"
+"Manage Affiliate Withdrawals","Manage Affiliate Withdrawals"
+"The withdrawal was canceled.","The withdrawal was canceled."
+"This withdrawal no longer exists.","This withdrawal no longer exists."
+"Manage Affiliate Withdrawal","Manage Affiliate Withdrawal"
+"New Affiliate Withdrawal","New Affiliate Withdrawal"
+"Affiliate Withdrawals","Affiliate Withdrawals"
+"The withdrawal was already processed","The withdrawal was already processed"
+"The account has not enough funds to this withdrawal","The account has not enough funds to this withdrawal"
+"The withdrawal was payed.","The withdrawal was payed."
+"Something went wrong while getting the image url.","Something went wrong while getting the image url."
+Disabled,Disabled
+Image,Image
+Text,Text
+Active,Active
+Inactive,Inactive
+Percent,Percent
+Fixed,Fixed
+"Per Sale","Per Sale"
+Exclude,Exclude
+Include,Include
+"Percent of product price discount","Percent of product price discount"
+"Fixed amount discount","Fixed amount discount"
+"Fixed amount discount for whole cart","Fixed amount discount for whole cart"
+"Buy X get Y free (discount amount is Y)","Buy X get Y free (discount amount is Y)"
+"Unable to save account with ID %1. Error: %2","Unable to save account with ID %1. Error: %2"
+"Unable to save new account. Error: %1","Unable to save new account. Error: %1"
+"Account with specified ID ""%1"" not found.","Account with specified ID ""%1"" not found."
+"Unable to remove account with ID %1. Error: %2","Unable to remove account with ID %1. Error: %2"
+"Unable to remove account. Error: %1","Unable to remove account. Error: %1"
+"No such entity with %fieldName = %fieldValue","No such entity with %fieldName = %fieldValue"
+"Unable to save banner with ID %1. Error: %2","Unable to save banner with ID %1. Error: %2"
+"Unable to save new banner. Error: %1","Unable to save new banner. Error: %1"
+"Banner with specified ID ""%1"" not found.","Banner with specified ID ""%1"" not found."
+"Unable to remove banner with ID %1. Error: %2","Unable to remove banner with ID %1. Error: %2"
+"Unable to remove banner. Error: %1","Unable to remove banner. Error: %1"
+"Unable to save coupon with ID %1. Error: %2","Unable to save coupon with ID %1. Error: %2"
+"Unable to save new coupon. Error: %1","Unable to save new coupon. Error: %1"
+"Coupon with specified ID ""%1"" not found.","Coupon with specified ID ""%1"" not found."
+"Unable to remove coupon with ID %1. Error: %2","Unable to remove coupon with ID %1. Error: %2"
+"Unable to remove coupon. Error: %1","Unable to remove coupon. Error: %1"
+"Unable to save lifetime with ID %1. Error: %2","Unable to save lifetime with ID %1. Error: %2"
+"Unable to save new lifetime. Error: %1","Unable to save new lifetime. Error: %1"
+"Lifetime with specified ID ""%1"" not found.","Lifetime with specified ID ""%1"" not found."
+"Unable to remove lifetime with ID %1. Error: %2","Unable to remove lifetime with ID %1. Error: %2"
+"Unable to remove lifetime. Error: %1","Unable to remove lifetime. Error: %1"
+"Unable to save links with ID %1. Error: %2","Unable to save links with ID %1. Error: %2"
+"Unable to save new links. Error: %1","Unable to save new links. Error: %1"
+"Links with specified ID ""%1"" not found.","Links with specified ID ""%1"" not found."
+"Unable to remove links with ID %1. Error: %2","Unable to remove links with ID %1. Error: %2"
+"Unable to remove links. Error: %1","Unable to remove links. Error: %1"
+"Unable to save program with ID %1. Error: %2","Unable to save program with ID %1. Error: %2"
+"Unable to save new program. Error: %1","Unable to save new program. Error: %1"
+"Program with specified ID ""%1"" not found.","Program with specified ID ""%1"" not found."
+"Unable to remove program with ID %1. Error: %2","Unable to remove program with ID %1. Error: %2"
+"Unable to remove program. Error: %1","Unable to remove program. Error: %1"
+"Unable to save transaction with ID %1. Error: %2","Unable to save transaction with ID %1. Error: %2"
+"Unable to save new transaction. Error: %1","Unable to save new transaction. Error: %1"
+"Transaction with specified ID ""%1"" not found.","Transaction with specified ID ""%1"" not found."
+"Unable to remove transaction with ID %1. Error: %2","Unable to remove transaction with ID %1. Error: %2"
+"Unable to remove transaction. Error: %1","Unable to remove transaction. Error: %1"
+"Withdrawal with specified ID ""%1"" not found.","Withdrawal with specified ID ""%1"" not found."
+"Used Custom Affiliate Code","Used Custom Affiliate Code"
+is,is
+"is not","is not"
+"is one of","is one of"
+contains,contains
+"does not contain","does not contain"
+"Open Chooser","Open Chooser"
+"Undefined rule operator ""%1"" passed in. Valid operators are: %2","Undefined rule operator ""%1"" passed in. Valid operators are: %2"
+"Balance Addition","Balance Addition"
+"Balance Subtraction","Balance Subtraction"
+"Top Menu","Top Menu"
+"Bottom Menu","Bottom Menu"
+"Affiliate Code","Affiliate Code"
+"Affiliate ID","Affiliate ID"
+Pending,Pending
+Completed,Completed
+Canceled,Canceled
+"On Hold","On Hold"
+"The coupon code ""%1"" is not valid.","The coupon code ""%1"" is not valid."
+"The coupon code isn't valid. Verify the code and try again.","The coupon code isn't valid. Verify the code and try again."
+"This shopping cart price rule is assigned to the Affiliate Program. 
+                The affiliate program discount will not apply without a rule assigned.","This shopping cart price rule is assigned to the Affiliate Program. 
+                The affiliate program discount will not apply without a rule assigned."
+"Coupon delete cancelled: coupons (%1) are assigned to Affiliate programs (%2).
+                Please unassign this Cart Price Rule from these Affiliate programs and try again.","Coupon delete cancelled: coupons (%1) are assigned to Affiliate programs (%2).
+                Please unassign this Cart Price Rule from these Affiliate programs and try again."
+"Can't delete rule with id (%1). Please remove association with affiliate program.","Can't delete rule with id (%1). Please remove association with affiliate program."
+"Affiliate Account changes were not saved: customer have to accept Affiliate Program's first in Customer Account.","Affiliate Account changes were not saved: customer have to accept Affiliate Program's first in Customer Account."
+Edit,Edit
+Enable,Enable
+Disable,Disable
+"Delete ${ $.$data.name }","Delete ${ $.$data.name }"
+"Are you sure you wan't to delete a ${ $.$data.name } record?","Are you sure you wan't to delete a ${ $.$data.name } record?"
+View,View
+"Commission for order #","Commission for order #"
+Orders,Orders
+Program,Program
+Type,Type
+Commission,Commission
+"Commission from 2nd order","Commission from 2nd order"
+"Discount Type","Discount Type"
+Discount,Discount
+"Commission(from 2nd order)","Commission(from 2nd order)"
+"You have no programs.","You have no programs."
+"Coupon Codes","Coupon Codes"
+"Affiliate Program","Affiliate Program"
+"Coupon Code","Coupon Code"
+"Custom Coupon Codes","Custom Coupon Codes"
+"Program Name","Program Name"
+"Copy Coupon Code","Copy Coupon Code"
+"Share the coupon and receive a commission for the purchase using this code.","Share the coupon and receive a commission for the purchase using this code."
+"You have no coupons.","You have no coupons."
+"Referral Link","Referral Link"
+"Enter any URL from this store in the form below to generate a new referral link","Enter any URL from this store in the form below to generate a new referral link"
+"Enter any URL from this store
+                    in the form below to generate a new referral link","Enter any URL from this store
+                    in the form below to generate a new referral link"
+Copy,Copy
+Banners,Banners
+Name,Name
+Clicks,Clicks
+Link,Link
+Preview,Preview
+"You have no banners.","You have no banners."
+Copied,Copied
+"Your account has been disabled by store administrator. Please contact us for details.","Your account has been disabled by store administrator. Please contact us for details."
+"* Required Fields","* Required Fields"
+"My Affiliate Code","My Affiliate Code"
+"This affiliate code will be used in the referral links.","This affiliate code will be used in the referral links."
+"Referring Website","Referring Website"
+"Paypal Email","Paypal Email"
+"Subscribe to Email Notifications","Subscribe to Email Notifications"
+"Accept Terms and Conditions","Accept Terms and Conditions"
+Source,Source
+Count,Count
+"You have no traffic.","You have no traffic."
+Balance:,Balance:
+Available:,Available:
+"On Hold:","On Hold:"
+Lifetime:,Lifetime:
+Paid:,Paid:
+Date,Date
+Balance,Balance
+Amount,Amount
+Details,Details
+"You have no transactions.","You have no transactions."
+Title,Title
+"Products Qty","Products Qty"
+"Width, px","Width, px"
+"Height, px","Height, px"
+Bestsellers,Bestsellers
+"New Products","New Products"
+"Product Name","Product Name"
+Price,Price
+"Minimum Payout:","Minimum Payout:"
+"Submit Request","Submit Request"
+"Send Request","Send Request"
+"The minimum ""Available"" balance to request a withdrawal is ","The minimum ""Available"" balance to request a withdrawal is "
+#,#
+Action,Action
+Actions,Actions
+Repeat,Repeat
+"You have no withdrawals.","You have no withdrawals."
+Error,Error
+Affiliate,Affiliate
+"Manage Programs","Manage Programs"
+"Manage Accounts","Manage Accounts"
+"Manage Banners","Manage Banners"
+"Manage Transactions","Manage Transactions"
+"Manage Withdrawals","Manage Withdrawals"
+Information,Information
+"General Settings","General Settings"
+"Add Affiliate Link to Footer","Add Affiliate Link to Footer"
+"Cookie Expiration (Days)","Cookie Expiration (Days)"
+"The number of days the system stores cookies for the affiliate program. Default: 365 (Days). If a referred visitor comes to
+                        your site using an affiliate link and completes any order within 365 days, he (she) will receive a discount and the affiliate will get a commission. After this period the affiliate won't earn
+                        any commission, a referred customer won't get a discount.","The number of days the system stores cookies for the affiliate program. Default: 365 (Days). If a referred visitor comes to
+                        your site using an affiliate link and completes any order within 365 days, he (she) will receive a discount and the affiliate will get a commission. After this period the affiliate won't earn
+                        any commission, a referred customer won't get a discount."
+Account,Account
+"Checked ""Email Notifications"" by Default","Checked ""Email Notifications"" by Default"
+"If ""Yes"", the ""Email notifications"" subscription will be auto checked in the affiliate account.","If ""Yes"", the ""Email notifications"" subscription will be auto checked in the affiliate account."
+"Affiliate URL","Affiliate URL"
+"Affiliate General URL","Affiliate General URL"
+"This text replace amasty_affiliate in next url: {donmain}/amasty_affiliate/account/setting.","This text replace amasty_affiliate in next url: {donmain}/amasty_affiliate/account/setting."
+"Customer Parameter","Customer Parameter"
+"It will be used in URLs such as: ?c=123","It will be used in URLs such as: ?c=123"
+"Affiliate code length","Affiliate code length"
+"The code should contain from 4 to 31 symbols. '10' is set by default.","The code should contain from 4 to 31 symbols. '10' is set by default."
+"Commission Workflow","Commission Workflow"
+"Add Commission When Order Obtained Status","Add Commission When Order Obtained Status"
+"Subtract Commission When Order Obtained Status","Subtract Commission When Order Obtained Status"
+"It works for the Pay per Sale programs only.","It works for the Pay per Sale programs only."
+"Subtract Commission When Creditmemo is Created","Subtract Commission When Creditmemo is Created"
+"Commission Holding Period (Days)","Commission Holding Period (Days)"
+"Commission Configuration","Commission Configuration"
+"Include Shipping","Include Shipping"
+"Enable this setting if you’d like the system to take into account shipping price during commission calculation.","Enable this setting if you’d like the system to take into account shipping price during commission calculation."
+"Include Tax","Include Tax"
+"Enable this setting if you’d like the system to take into account tax amount during commission calculation.","Enable this setting if you’d like the system to take into account tax amount during commission calculation."
+"Withdrawal Configuration","Withdrawal Configuration"
+"Minimum Withdrawal Amount","Minimum Withdrawal Amount"
+"The Minimum ""Available"" Balance to Request Withdrawal","The Minimum ""Available"" Balance to Request Withdrawal"
+"Email Notifications","Email Notifications"
+General,General
+"Send Emails To","Send Emails To"
+"Email Sender","Email Sender"
+"To Affiliate","To Affiliate"
+"Welcome Email After Sign Up","Welcome Email After Sign Up"
+Template,Template
+"Account Status Change","Account Status Change"
+"New Transaction is Created","New Transaction is Created"
+"Transaction Status is Changed","Transaction Status is Changed"
+"Withdrawal Status is Changed","Withdrawal Status is Changed"
+"To Admin","To Admin"
+"New Withdrawal Request","New Withdrawal Request"
+"New Affiliate Sing Up","New Affiliate Sing Up"
+"AddThis Account ID","AddThis Account ID"
+"Public AddThis Account ID ra-5968d339b0751a2f is used for testing purpose. Please click <a href=""https://www.addthis.com"" target=""_blank"">here</a> to get your own AddThis Account ID.","Public AddThis Account ID ra-5968d339b0751a2f is used for testing purpose. Please click <a href=""https://www.addthis.com"" target=""_blank"">here</a> to get your own AddThis Account ID."
+"Refer Friends Page Content","Refer Friends Page Content"
+"Traffic Sources Page Content","Traffic Sources Page Content"
+"Enable on Product Listing Page","Enable on Product Listing Page"
+"Enable on Product Details Page","Enable on Product Details Page"
+"Enable on My Account / Affiliate menu","Enable on My Account / Affiliate menu"
+"Terms and Conditions","Terms and Conditions"
+"Checkbox Text","Checkbox Text"
+"Checkbox is Checked by Default","Checkbox is Checked by Default"
+"Amasty Affiliate *","Amasty Affiliate *"
+Coupon,Coupon
+"Custom Coupons","Custom Coupons"
+"Add Custom Coupons","Add Custom Coupons"
+Back,Back
+"General Information","General Information"
+"First Name","First Name"
+"Last Name","Last Name"
+"Email Address","Email Address"
+"Receive Notification Emails","Receive Notification Emails"
+Yes,Yes
+No,No
+"Payment Information","Payment Information"
+"PayPal Email Address","PayPal Email Address"
+"Total Commission","Total Commission"
+"Commission Paid","Commission Paid"
+Coupons,Coupons
+Transactions,Transactions
+Withdrawals,Withdrawals
+"Add Account","Add Account"
+"Delete items","Delete items"
+"Are you sure to delete selected accounts?","Are you sure to delete selected accounts?"
+ID,ID
+Email,Email
+"Total Paid","Total Paid"
+"Date Updated","Date Updated"
+Message,Message
+"Affiliate Banner","Affiliate Banner"
+"Rel Nofollow","Rel Nofollow"
+"Add Banner","Add Banner"
+"Are you sure to delete selected banners?","Are you sure to delete selected banners?"
+Group,Group
+Phone,Phone
+ZIP,ZIP
+Country,Country
+State/Province,State/Province
+"Customer Since","Customer Since"
+"Web Site","Web Site"
+"Confirmed email","Confirmed email"
+"Account Created in","Account Created in"
+"Billing Address","Billing Address"
+"Shipping Address","Shipping Address"
+"Date of Birth","Date of Birth"
+"Tax VAT Number","Tax VAT Number"
+Gender,Gender
+"Street Address","Street Address"
+City,City
+Fax,Fax
+"VAT Number","VAT Number"
+Company,Company
+"Billing Firstname","Billing Firstname"
+"Billing Lastname","Billing Lastname"
+"Account Lock","Account Lock"
+"Dynamic Rows","Dynamic Rows"
+Magento_Ui/js/dynamic-rows/record,Magento_Ui/js/dynamic-rows/record
+Code,Code
+Position,Position
+"Shopping Cart Price Rule","Shopping Cart Price Rule"
+"
+If the commission type is percent, its value is dynamic and based on the store profit margin (order total after discount, before taxes).</br>
+If the commission type is fixed, its value is always static.
+                    ","
+If the commission type is percent, its value is dynamic and based on the store profit margin (order total after discount, before taxes).</br>
+If the commission type is fixed, its value is always static.
+                    "
+"Pay Commission","Pay Commission"
+"Pay per Sale","Pay per Sale"
+"Pay Per Profit","Pay Per Profit"
+"Amount to Pay Commission","Amount to Pay Commission"
+"Commission Type","Commission Type"
+"Commission Value","Commission Value"
+"Restrict Transactions to N Orders","Restrict Transactions to N Orders"
+"Specify the number of orders the affiliate will earn the commission for with one shared coupon code or referral link. Enter the value more than 0 to use this feature.","Specify the number of orders the affiliate will earn the commission for with one shared coupon code or referral link. Enter the value more than 0 to use this feature."
+"Use different commission from 2nd order of a Customer.","Use different commission from 2nd order of a Customer."
+"Select ""No"" to apply the above commission to all orders.","Select ""No"" to apply the above commission to all orders."
+"Commission Type (from 2nd order)","Commission Type (from 2nd order)"
+"Commission Value (from 2nd order)","Commission Value (from 2nd order)"
+"Keep paying commissions to the first affiliate","Keep paying commissions to the first affiliate"
+"If 'Yes': When a customer first buys products through the affiliate A's link, but later makes purchases using B's links, the transaction will still be counted for the affiliate A.","If 'Yes': When a customer first buys products through the affiliate A's link, but later makes purchases using B's links, the transaction will still be counted for the affiliate A."
+"Commission Calculation","Commission Calculation"
+"
+This configuration is applicable to the Percent Commission Type only.
+                    ","
+This configuration is applicable to the Percent Commission Type only.
+                    "
+"Calculate Commission for Specific Products.","Calculate Commission for Specific Products."
+"Select 'Yes' if you'd like to calculate commission for specific products.","Select 'Yes' if you'd like to calculate commission for specific products."
+SKU,SKU
+"Specify a comma-separated list of SKUs affiliates can’t earn the commission for.","Specify a comma-separated list of SKUs affiliates can’t earn the commission for."
+"Specify a comma-separated list of SKUs affiliates can earn the commission for.","Specify a comma-separated list of SKUs affiliates can earn the commission for."
+"Enter the details in either SKU or Category field to make this feature work. Otherwise, it’ll be ignored and commission will be calculated for all products.","Enter the details in either SKU or Category field to make this feature work. Otherwise, it’ll be ignored and commission will be calculated for all products."
+Category,Category
+"Specify categories of products affiliates can't earn the commission for.","Specify categories of products affiliates can't earn the commission for."
+"Specify categories of products affiliates can earn the commission for.","Specify categories of products affiliates can earn the commission for."
+"Customers and Customer Groups","Customers and Customer Groups"
+"
+Unless a particular Group (or Customer) is selected here, any Customer who is allowed to be an Affiliate may issue Coupons and Affiliate links related to this Program.</br>
+Customers selected in Customers list will be allowed regardless of this program's Customer Groups configuration.</br>
+Does not affect which Customers may use Affiliate links and Coupons.
+                    ","
+Unless a particular Group (or Customer) is selected here, any Customer who is allowed to be an Affiliate may issue Coupons and Affiliate links related to this Program.</br>
+Customers selected in Customers list will be allowed regardless of this program's Customer Groups configuration.</br>
+Does not affect which Customers may use Affiliate links and Coupons.
+                    "
+"Customer Groups","Customer Groups"
+"Customer IDs","Customer IDs"
+Comma-separated.,Comma-separated.
+"Select Customers","Select Customers"
+"Add Selected Customers","Add Selected Customers"
+"List your customers:","List your customers:"
+"Add Customers","Add Customers"
+"Add New Program","Add New Program"
+"Are you sure to delete selected programs?","Are you sure to delete selected programs?"
+"Discount Amount","Discount Amount"
+"Total Sales Amount","Total Sales Amount"
+"Affiliate Transaction","Affiliate Transaction"
+"Order Subtotal","Order Subtotal"
+"Tax Amount","Tax Amount"
+"G.T. Excluding Tax","G.T. Excluding Tax"
+"Grand Total","Grand Total"
+"Total Item Qty","Total Item Qty"
+"Affiliate Email","Affiliate Email"
+"Customer Email","Customer Email"
+"Order ID","Order ID"
+Subtracted,Subtracted
+"Store View","Store View"
+"Affiliate Withdrawal","Affiliate Withdrawal"
+"Withdrawal Information","Withdrawal Information"

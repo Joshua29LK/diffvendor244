@@ -1,0 +1,523 @@
+.event {
+    border-top: 1px solid #e3e3e3;
+
+    .admin__control-table td, .admin__control-table th {
+        background-color: white;
+
+        .admin__field-label {
+            display:none;
+        }
+    }
+
+    .admin__dynamic-rows thead {
+        display: none;
+    }
+
+    .admin__control-table tbody {
+        font-size: 1.3rem;
+    }
+
+    .admin__control-table tbody.data-row > tr:first-child td {
+        background: #fcf9f7;
+    }
+
+    .admin__control-table tfoot {
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+
+    .admin__control-table tfoot a {
+        font-weight: normal;
+    }
+
+    .admin__control-table tfoot td {
+        text-align: right;
+    }
+
+    .admin__control-table tfoot .footer-pagination {
+        padding-bottom: 3rem;
+    }
+
+    .admin__control-table td.admin__field-wide.emails {
+        padding-left: 0 !important;
+    }
+
+    .admin__control-table th:first-child {
+        padding-left: 1.5rem !important;
+    }
+
+    .emails-no-data {
+        color: #999999;
+        font-weight: 700;
+        text-align: center;
+        padding-top: 2.8rem;
+    }
+
+    .emails-read-manual {
+        text-align: center;
+        margin-top: 3rem;
+    }
+
+    .emails {
+        .admin__dynamic-rows thead {
+            display: table-header-group;
+        }
+
+        td {
+            .admin__field-label {
+                display:none;
+            }
+        }
+
+        td.email-disabled {
+            background: #f7f7f7;
+        }
+
+        td.email-disabled.email-statistics-status {
+            .admin__field-control {
+                .control-table-text span {
+                    background-color: #f7f7f7;
+                }
+            }
+        }
+
+        td.email-name {
+            width: 25%;
+            padding-left: 1.5rem !important;
+
+            .testing-mode-label {
+                padding: 1px 6px;
+                background-color: #007bdb;
+                border-radius: 3px;
+                color: white;
+                font-size: 1.1rem;
+            }
+
+            .admin__field-tooltip {
+                margin-left: 2rem;
+                max-width: none;
+                width: auto;
+                vertical-align: baseline;
+                margin-top: 0;
+
+                .admin__field-tooltip-action {
+                    margin-left: 0;
+
+                    &:before {
+                        display: none;
+                    }
+                }
+
+                .admin__field-tooltip-content {
+                    bottom: -5rem;
+                    top: auto;
+                    right: -10rem;
+
+                    padding: 0.5rem 1.5rem;
+                    width: 16rem;
+
+                    &:before {
+                        display: none;
+                    }
+
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        td.email-when {
+            width: 35%;
+        }
+
+        td.email-statistics {
+            width: 5%;
+        }
+
+        td.email-statistics-status {
+            .admin__field-control {
+                .control-table-text span {
+                    background-color: #edf9ea;
+                    border-radius: 5px;
+                    padding: 0.75rem;
+                }
+            }
+        }
+
+        .action-select-wrap {
+            display: inline-block;
+            position: absolute;
+        }
+
+        .admin__control-table td,
+        .admin__control-table th {
+            border-bottom: 1px solid #e3e3e3;
+        }
+
+        .admin__control-table tfoot td {
+            border-bottom: none;
+        }
+    }
+
+    .event-name {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #FF6600;
+        padding-left: 0 !important;
+        margin-left: 1.5rem !important;
+
+        .event-name-text {
+            font-size: 2.2rem;
+            font-weight: 600;
+        }
+
+        .event-type {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #303030;
+            line-height: 1.4;
+
+            .bold {
+                font-weight: 700;
+            }
+        }
+    }
+
+    .event-manage {
+        text-align: right;
+
+        a {
+            padding-right: 3rem;
+        }
+
+        button {
+            margin-right: 2rem;
+        }
+    }
+}
+
+.first {
+    border-top: 1px solid #FF6600;
+}
+
+.campaign {
+    .campaign-label {
+        display: table-row;
+        font-weight: bold;
+    }
+
+    .campaign-label:after {
+      content: ":";
+    }
+}
+
+.aw-followupemail2-failed-emails-mode {
+    legend.admin__field-label {
+        opacity: 1;
+    }
+
+    .admin__field-control > .admin__field-option:nth-child(1):nth-last-child(2) + .admin__field-option {
+        display: block;
+        margin-left: 0;
+    }
+
+    .admin__field-control > .admin__field-option:nth-child(1):nth-last-child(2) + .admin__field-option:before {
+        background: none;
+    }
+
+    .admin__field-note {
+        margin-left: 2rem;
+    }
+}
+
+#event_cart_conditions_fieldset {
+    padding: 0;
+
+    .legend {
+        border-bottom: none;
+        margin: 0;
+        height: 0;
+    }
+}
+
+#event_order_conditions_fieldset {
+    padding: 0;
+
+    .legend {
+        border-bottom: none;
+        margin: 0;
+        height: 0;
+    }
+}
+
+.aw-followupemail2-lifetime_conditions {
+    .admin__field-control {
+        margin-left: 1rem;
+    }
+}
+
+.aw-followupemail2-lifetime_from {
+    width: 23rem !important;
+
+    .admin__field-label {
+        display: inline-block;
+        position: relative !important;
+        overflow: inherit !important;
+        width: auto !important;
+    }
+
+    .admin__field-control {
+        display: inline-block;
+    }
+}
+
+.aw-followupemail2-lifetime_to {
+
+    .admin__field-label {
+        display: inline-block;
+        position: relative !important;
+        overflow: inherit !important;
+        width: auto !important;
+    }
+
+    .admin__field-control {
+        display: inline-block;
+    }
+}
+
+.aw-followupemail2-event_type._disabled {
+    .admin__field-label {
+        color: #303030;
+    }
+}
+
+.aw-followupemail2-email-send-days.admin__field-small {
+    .admin__field-control {
+        width: 10rem !important;
+    }
+
+    .admin__control-text {
+        width: 3rem;
+    }
+
+    .admin__additional-info {
+        display: inline-block;
+        padding-top: 0;
+    }
+}
+
+.aw-followupemail2-email-send-hours.admin__field-small {
+    padding: 0 0.4rem 0 0 !important;
+
+    .admin__field-control {
+        width: 12rem !important;
+    }
+}
+
+.aw-followupemail2-email-send-minutes.admin__field-small,
+.aw-followupemail2-email_send_when.admin__field-small {
+    .admin__field-control {
+        width: 40rem !important;
+    }
+
+    .admin__additional-info {
+        display: inline-block;
+        padding-top: 0;
+        padding-left: 1rem;
+    }
+}
+
+.aw-followupemail2-email-send-days .admin__field-error {
+    display: none;
+}
+
+.aw-followupemail2-email-send {
+    margin-left: 1rem;
+}
+
+.aw-followupemail2-event-index,
+.aw_followupemail2-event-index {
+    .campaign {
+        border-bottom: 2px solid #ff6600;
+        padding-bottom: 2rem;
+    }
+
+    .aw-followupemail2-sender_name,
+    .aw-followupemail2-sender_email,
+    .aw-followupemail2-header_template,
+    .aw-followupemail2-footer_template {
+        width: 35rem;
+        display: inline-block;
+        margin-left: 1rem;
+    }
+
+    .aw-followupemail2-header_template select,
+    .aw-followupemail2-footer_template select {
+        width: 100%;
+    }
+
+    .aw-followupemail2-default_sender_name,
+    .aw-followupemail2-default_sender_email,
+    .aw-followupemail2-default_header_template,
+    .aw-followupemail2-default_footer_template {
+        display: inline-block;
+        margin-left: 1rem;
+        margin-top: 0;
+    }
+
+    .aw-followupemail2-insert-variable-button {
+        margin-left: calc(~'(100%) * .25 - 23px');
+        margin-bottom: 0;
+    }
+
+    .aw-followupemail2-email-content {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+
+        textarea {
+            height: 20rem;
+        }
+    }
+
+    .aw-followupemail2-preview-button {
+        margin-top: 0;
+        margin-left: calc(~'(100%) * .25 - 23px');
+        display: inline-block;
+    }
+
+    .aw-followupemail2-test-email-button {
+        margin-top: 0;
+        margin-left: 1rem;
+        display: inline-block;
+    }
+
+    .email-content-statistics {
+        margin-left: calc(~'100% * 0.25 - 175px');
+
+        .statistics-label {
+            text-align: right;
+        }
+
+        td, th {
+            padding-left: 3rem;
+            padding-right: 3rem;
+        }
+
+        .highlighted {
+            color: #FF6600;
+        }
+    }
+
+    .modal-popup .email-content-statistics {
+        margin-left: 0;
+
+        .statistics-value {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+    }
+
+    .events-no-data {
+        color: #999999;
+        font-weight: 700;
+        text-align: center;
+        padding-top: 2rem;
+    }
+
+    .events-read-manual {
+        text-align: center;
+        margin-top: 3rem;
+        border-bottom: 1px solid #e3e3e3;
+        padding-bottom: 3rem;
+        margin-bottom: 7rem;
+    }
+
+    .aw_followupemail2_manage_events_form_aw_followupemail2_manage_events_form_event_edit_modal #event_order_conditions_fieldset  br {
+        display: none;
+    }
+
+    td.data-grid-actions-cell {
+        .action-select-wrap {
+            line-height: 3.2rem;
+        }
+
+        .action-select {
+            color: #007bdb;
+            text-decoration: none;
+            background-color: transparent;
+            border: none;
+            padding: 0 3rem 0 0;
+            position: relative;
+        }
+
+        .action-select:hover {
+            color: #007bdb;
+            text-decoration: underline;
+        }
+
+        .action-select:hover:after  {
+            border-color: #007bdb transparent transparent transparent;
+        }
+
+        .action-select:after {
+            border-color: #007bdb transparent transparent transparent;
+            margin: .6rem 0 0 .7rem;
+            right: auto;
+            top: auto;
+        }
+
+        .action-select:before {
+            display: none;
+        }
+
+        .action-menu {
+            min-width: 10rem;
+        }
+    }
+
+    .modal-popup.confirm .modal-inner-wrap {
+        max-width: 70rem;
+    }
+}
+
+.aw-followupemail2-event-index,
+.aw_followupemail2-event-index,
+.aw_followupemail2-event_queue-index,
+.aw-followupemail2-event-queue-index {
+    #aw-followupemail2-preview {
+        th {
+            text-align: right;
+            vertical-align: top;
+            padding-right: 1rem;
+        }
+    }
+
+    .email-preview-modal {
+        .modal-inner-wrap {
+            max-width: 900px;
+        }
+    }
+
+    .event-move-modal {
+        .modal-inner-wrap {
+            max-width: 900px;
+        }
+
+        .campaign-select .admin__control-select {
+            background-image: none;
+        }
+
+        .campaign-select .admin__control-select:focus {
+            background-image: none;
+        }
+    }
+}
+
+.align-right {
+    text-align: right !important;
+}
+
+td.data-grid-actions-cell.align-right .action-select-wrap {
+    right: 0;
+}

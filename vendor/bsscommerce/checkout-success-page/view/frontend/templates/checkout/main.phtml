@@ -1,0 +1,322 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_CheckoutSuccessPage
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+// @codingStandardsIgnoreFile
+?>
+<?php /** @var $block Bss\CheckoutSuccessPage\Block\Main */ ?>
+<?php
+$order = $block->getOrder();
+$orderId = $order->getIncrementId();
+$payment = $order->getPayment();
+$tax = $order->getTaxAmount();
+$discount = $order->getDiscountAmount();
+$method = $payment->getMethodInstance();
+$reorderUrl = $block->getReorder($order);
+$date = $order->getCreatedAt();
+$formatDate = $block->formatOrderDate($date);
+$orderText = $block->getSuccessText();
+$successIcon = $block->getSuccessIcon();
+$addressTextColor = $block->getAddressTextColor();
+$addressBorderColor = $block->getAddressBorderColor();
+$addressButtonColor = $block->getAddressButtonColor();
+$buttonHoverColor = $block->getButtonHoverColor();
+$orderUrl = $block->getOrderUrl($order->getId());
+?>
+<div class="container-main bss-checkout-success-page">
+    <div class="order-success">
+        <p><span><?php echo __($orderText) ?> </span></p>
+
+    </div>
+    <?php if ($block->getThanksEnable()) {
+        if ($block->hasBackground()) { ?>
+            <div class="messdiv">
+                <div class="thanksmess">
+                    <?php echo $block->getThanksMess(); ?>
+                </div>
+                <?php echo $block->printBackground(); ?>
+            </div>
+        <?php } else { ?>
+            <div class="mess-paragraph">
+                <?php echo $block->getThanksMess(); ?>
+            </div>
+        <?php }
+    } ?>
+
+    <?php if ($block->isInforEnable()) { ?>
+
+        <div class="order-id">
+            <?php
+            if (is_numeric($orderId)) : ?>
+                <p>
+                    <?= $block->escapeHtml(__('Your order is #%1', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeUrl($orderUrl), $block->escapeHtml($orderId))), ['a', 'strong']) ?>
+                    <span class="order-stt">
+                        <?php
+                        if ($block->isInforStatus()) {
+                            echo " - " . $order->getStatusLabel();
+                        } ?>
+                    </span>
+                </p>
+            <?php else: ?>
+                <p>
+                    <?= $block->escapeHtml(__('Your order is # : <span>%1</span>.', $block->escapeHtml($orderId)), ['span']) ?>
+                    <span class="order-stt">
+                        <?php
+                        if ($block->isInforStatus()) {
+                            echo " - " . $order->getStatusLabel();
+                        } ?>
+                    </span>
+                </p>
+            <?php endif; ?>
+        </div>
+        <div class="order-date">
+            <?php echo __('<span class="label">Order Date:</span> %1', '<date>' . $formatDate . '</date>') ?>
+        </div>
+        <div class="info">
+            <div class="infor-left">
+                <div class="small-infor">
+                    <?php $formatShip = $order->getShippingAddress(); ?>
+                    <div class="shipping-address">
+                        <strong class="box-title">
+                            <span class="box-des"><?php echo __('Shipping Address') ?></span>
+                        </strong>
+                        <div class="box-content">
+                            <?php if ($order->getShippingAddress()) : ?>
+                                <address class="adr-main">
+                                    <p class="text-wrap"><b>
+                                            <?php echo $formatShip->getFirstName() . ' ' . $formatShip->getLastName(); ?>
+                                        </b></p>
+                                    <p class="text-wrap"><?php echo $formatShip->getData("street"); ?></p>
+                                    <p class="text-wrap">
+                                        <?php echo $formatShip->getData("city") . ', ' . $formatShip->getData("region")
+                                            . ', ' . $formatShip->getData("postcode"); ?></p>
+                                    <p class="text-wrap">
+                                        <?php echo $block->getCountryName($formatShip->getData("country_id")); ?>
+                                    </p>
+                                    <p class="text-wrap"><b>T: </b><?php echo $formatShip->getTelephone() ?> </p>
+                                </address>
+                            <?php else : ?>
+                                <span class="line-info"><?php echo __('No shipping Address available') ?></span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="small-infor">
+                    <?php $shippingMethod = $order->getShippingDescription(); ?>
+                    <div class="shipping-method">
+                        <strong class="box-title">
+                            <span class="box-des"><?php echo __('Shipping Method') ?></span>
+                        </strong>
+                        <div class="box-content">
+                            <?php if ($order->getShippingDescription()) : ?>
+                                <span class="line-info"><?php echo $shippingMethod; ?></span>
+                            <?php else : ?>
+                                <span class="line-info"><?php echo __('No shipping information available') ?></span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="small-infor bottom-infor">
+
+                    <?php $formatBill = $order->getBillingAddress(); ?>
+                    <div class="Billing-address">
+                        <strong class="box-title">
+                            <span class="box-des"><?php echo __('Billing Address') ?></span>
+                        </strong>
+                        <div class="box-content">
+                            <?php if ($order->getBillingAddress()) : ?>
+                                <address class="adr-main">
+                                    <p class="text-wrap"><b>
+                                            <?php echo $formatBill->getFirstName() . ' ' . $formatBill->getLastName(); ?></b>
+                                    </p>
+                                    <p class="text-wrap">
+                                        <?php echo $formatBill->getData("street"); ?></p>
+                                    <p class="text-wrap">
+                                        <?php echo $formatBill->getData("city") . ', ' . $formatBill->getData("region")
+                                            . ', ' . $formatBill->getData("postcode"); ?></p>
+                                    <p class="text-wrap">
+                                        <?php echo $block->getCountryName($formatBill->getData("country_id")); ?></p>
+                                    <p class="text-wrap"><b>T: </b>
+                                        <?php echo $formatBill->getTelephone() ?> </p>
+                                </address>
+                            <?php else : ?>
+                                <span class="line-info"><?php echo __('No Billing Address available') ?></span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="small-infor bottom-infor">
+
+                    <?php $methodTitle = $method->getTitle(); ?>
+                    <div class="billing-method">
+                        <strong class="box-title">
+                            <span class="box-des"><?php echo __('Payment Method') ?></span>
+                        </strong>
+                        <div class="box-content">
+                            <span class="line-info"><?php echo $methodTitle ?></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="infor-right">
+                <span class="box-des"><?php echo __('Order Summary') ?></span>
+                <div class="show-order">
+                    <?php
+                    $items = $order->getAllVisibleItems();
+                    foreach ($items as $item) {
+                        $product = $block->getItemById($item); ?>
+                        <div class="product-image">
+                            <?php if ($block->isInforThumbnail()) { ?>
+                                <div class="inner-image">
+                                    <img src="<?php echo $block->getImageThumb($product); ?>"/>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <div class="product-info">
+                            <div class="inner-product">
+                                <p>
+                                    <?php
+                                    $productType = $item->getProductType();
+                                    if ($productType != 'grouped') {
+                                        $productUrl = $product->getProductUrl();
+                                    } else {
+                                        $productOption = $item->getProductOptions();
+                                        $productUrl = $block->getParentProductUrl($productOption);
+                                        if (!$productUrl) {
+                                            $productUrl = '#';
+                                        }
+                                    } ?>
+                                    <a class="pname text-wrap" href="<?php echo $productUrl; ?>">
+                                        <?php echo $item->getName(); ?></a>
+                                </p>
+                                <?php
+                                if (isset($item->getProductOptions()["attributes_info"])) {
+                                    $conf = $item->getProductOptions()["attributes_info"];
+                                    foreach ($conf as $key => $value) {
+                                        ?>
+                                        <p><?php echo $value['label'] . ' : ' . $value['value']; ?> </p>
+                                        <?php
+                                    }
+                                } ?>
+                                <p><?php echo __('SKU: ') ?><?php echo $item->getSku(); ?></p>
+                                <p><?php echo __('Qty: ') ?><?php echo $item->getQtyOrdered() * 1; ?>
+                                    <span class="product-total">
+                                        <?php if ($block->displayPriceInclTax() || $block->displayBothPrices()): ?>
+                                            <span class="price" data-label="<?= $block->escapeHtml(__('Incl. Tax')) ?>">
+                                                <?= $block->escapeHtml(__('Incl. Tax')) ?>
+                                                <?= /* @escapeNotVerified */
+                                                $order->formatPrice($item->getPriceInclTax()) ?>
+                                            </span>
+                                        <?php endif; ?>
+                                        <?php if ($block->displayPriceExclTax() || $block->displayBothPrices()): ?>
+                                            <span class="price" data-label="<?= $block->escapeHtml(__('Excl. Tax')) ?>">
+                                                <?= $block->escapeHtml(__('Excl. Tax')) ?>
+                                                <?= /* @escapeNotVerified */
+                                                $order->formatPrice($item->getPrice()) ?>
+                                            </span>
+                                        <?php endif; ?>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <?php
+                    } ?>
+                </div>
+                <table class="table-main">
+                    <?php echo $block->getChildHtml('order.totals') ?>
+                </table>
+                <div class="button-main">
+                    <div class="button-right">
+                        <?php if ($block->isInforReorder() && $order->getCustomerIsGuest() == 0) { ?>
+                            <div class="actions-toolbar reorder">
+                                <div class="primary inner">
+                                    <a href="#" class="action primary continue color-changing reod"
+                                       data-post='<?php /* @escapeNotVerified */
+                                       echo
+                                       $this->helper(\Magento\Framework\Data\Helper\PostHelper::class)
+                                           ->getPostData($reorderUrl)
+                                       ?>' class="action order">
+                                        <span class="button-label"><?php echo __('Re-Order') ?></span>
+                                    </a>
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <?php if ($block->isInforPrint($order)) { ?>
+                            <div class="actions-toolbar printorder">
+                                <div class="primary inner">
+                                    <?php if ($order->getCustomerIsGuest() == 0): ?>
+                                        <a class="action primary continue color-changing prt"
+                                           href="<?php echo $block->getPrint($order) ?>"
+                                           onclick="this.target='_blank';">
+                                            <span class="button-label"><?php echo __('Print Order') ?></span></a>
+                                    <?php else: ?>
+                                        <a class="action primary continue color-changing prt"
+                                           href="<?php echo $block->getPrintAsGuest($order, $formatBill->getLastName()) ?>"
+                                           onclick="this.target='_blank';">
+                                            <span class="button-label"><?php echo __('Print Order') ?></span></a>
+                                        <!--<a class="action primary continue color-changing prt" href="#" target="_blank" data-post='<?php /* echo $block->getPrintAsGuest($order, $formatBill->getLastName()) */ ?>' data-action="print-order">
+                                            <span class="button-label"><?php /*echo __('Print Order') */ ?></span></a>-->
+                                    <?php endif; ?>
+
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <div class="actions-toolbar continue-shop">
+                            <div class="primary inner">
+                                <a class="action primary continue color-changing" href="<?php echo $block->getUrl() ?>">
+                                    <span class="button-label"><?php echo __('Continue Shopping') ?></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
+    <div class="sort-order-block">
+        <br>
+        <?php echo $block->lineUp(); ?>
+    </div>
+    <?php echo $block->getChildHtml('bss.checkout.registration') ?>
+
+
+    <div id="color-buttons"><?php echo $block->getStyleButton(); ?></div>
+    <div id="background-buttons"><?php echo $block->getStyleBackground(); ?></div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Bss_CheckoutSuccessPage/js/main": {}
+        }
+    }
+
+</script>
+<?php if ($successIcon): ?>
+    <style type="text/css">
+        .order-success p::before {
+            content: url(<?= $successIcon ?>);
+        }
+    </style>
+<?php endif; ?>
+<style type="text/css">
+    .container-main.bss-checkout-success-page .box-des {
+        background-color: <?= $addressButtonColor ?>;
+        border: 1px solid<?= $addressBorderColor ?>;
+        color: <?= $addressTextColor ?>;
+    }
+</style>

@@ -1,0 +1,38 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_CheckoutSuccessPage
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+// @codingStandardsIgnoreFile
+?>
+<?php /** @var $block Bss\CheckoutSuccessPage\Block\Coupon */ ?>
+<hr>
+<div class="coupon-part">
+	<div class="background-coupon">
+		<div class="coupon-words"> 
+			<p> <?php echo $block->getCouponDescription(); ?> </p>
+            <p><span class="coupon-code">
+                <?php
+                if ($block->getCouponCode()=="0") {
+                    echo $block->getCouponCustom();
+                } else {
+                    echo $block->getCouponCode();
+                }
+                ?>
+            </span> </p>
+        </div>
+        <?php echo $block->getCouponBg();?>
+    </div>
+</div>

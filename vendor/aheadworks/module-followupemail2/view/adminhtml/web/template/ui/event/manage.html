@@ -1,0 +1,20 @@
+<div class="event-manage">
+    <a href="#" click="$parent.editEventForm.bind($parent, value())">
+        <text args="$t('Edit Event')"></text>
+    </a>
+    <a href="#" click="$parent.duplicateEvent.bind($parent, value())">
+        <text args="$t('Duplicate')"></text>
+    </a>
+    <a href="#" click="$parent.moveEvent.bind($parent, value())">
+        <text args="$t('Move to')"></text>
+    </a>
+    <a href="#" click="$parent.deleteEvent.bind($parent, value())">
+        <text args="$t('Delete')"></text>
+    </a>
+    <button type="button"
+            attr="title: $t('Add Email')"
+            click="$parent.createEmailForm.bind($parent, value())"
+            class="event-email action-secondary">
+        <span translate="'Add Email'"></span>
+    </button>
+</div>

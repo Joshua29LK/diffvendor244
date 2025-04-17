@@ -1,0 +1,32 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * @category   BSS
+ * @package    Bss_MultiWishlist
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/* @var $block $this Magento\Wishlist\Block\Customer\Wishlist */
+?>
+<form data-mage-init='{"validation": {}}' action="<?php echo $block->getUrl('multiwishlist/index/create') ?>" method="post" id="wishlist-form-validation">
+    <?php echo $block->getBlockHtml('formkey')?>
+    <table class="clean-table linearize-table">
+        <tr>
+            <td>
+                <div class="content-create-wl">
+                    <input required id="new_wlname" class="input-text" type="text" data-validate="{required:true,maxlength:255}" placeholder="<?php echo __('Enter Wish List Name') ?>"  name="new_wlname"/>
+                </div>
+                <button class="action primary create-wl" title="<?php echo __('Create Wish List') ?>"  type="submit" ><span><span><?php echo __('Create Wish List') ?></span></span></button>
+                <span class="clearfix"></span>
+            </td>
+        </tr>
+    </table>
+</form>

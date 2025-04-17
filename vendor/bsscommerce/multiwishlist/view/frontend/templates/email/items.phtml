@@ -1,0 +1,69 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * @category   BSS
+ * @package    Bss_MultiWishlist
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+// @codingStandardsIgnoreFile
+
+/* @var $block \Magento\Wishlist\Block\Share\Email\Items */
+?>
+<?php
+$helper = $this->helper('Bss\MultiWishlist\Helper\Data');
+$multiWishlistId = $helper->getParamUrl('mwishlist_id');
+$itemCollection = $helper->getWishlistItemsCollection($multiWishlistId);
+?>
+<?php $l = count($itemCollection) ?>
+<div>
+    <table>
+        <tr>
+            <?php $i = 0;
+            foreach ($itemCollection as $item): $i++ ?>
+            <?php /* @var $item \Magento\Wishlist\Model\Item */ ?>
+            <?php /* @var $product \Magento\Catalog\Model\Product */ ?>
+            <?php $product = $item->getProduct(); ?>
+            <td class="col product">
+                <p>
+                    <a href="<?= /* @escapeNotVerified */  $block->escapeUrl($block->getProductUrl($product)) ?>">
+                        <?php echo $block->getImage($product, 'product_small_image')->toHtml(); ?>
+                    </a>
+                </p>
+
+                <p>
+                    <a href="<?= /* @escapeNotVerified */  $block->escapeUrl($block->getProductUrl($product)) ?>">
+                        <strong><?= $block->escapeHtml($product->getName()) ?></strong>
+                    </a>
+                </p>
+                <?php if ($block->hasDescription($item)): ?>
+                    <p>
+                        <strong><?= /* @escapeNotVerified */  __('Comment') ?>:</strong>
+                        <br/><?= /* @escapeNotVerified */  $block->getEscapedDescription($item) ?>
+                    </p>
+                <?php endif; ?>
+                <p>
+                    <a href="<?= /* @escapeNotVerified */  $block->escapeUrl($block->getProductUrl($product)) ?>">
+                        <?= /* @escapeNotVerified */  __('View Product') ?>
+                    </a>
+                </p>
+            </td>
+            <?php if ($i % 3 != 0): ?>
+                <td></td>
+            <?php else: ?>
+        </tr>
+        <tr>
+            <td colspan="5">&nbsp;</td>
+        </tr>
+        <?php if ($i < $l): ?>
+        <tr>
+            <?php endif ?>
+            <?php endif ?>
+            <?php endforeach ?>
+    </table>
+</div>

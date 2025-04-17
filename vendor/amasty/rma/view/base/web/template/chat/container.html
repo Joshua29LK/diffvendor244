@@ -1,0 +1,45 @@
+<div class="amrma-chat-container">
+    <div class="amrma-chat-block" data-amrma-js="chat-block">
+        <!-- ko if: $data.elems().length -->
+            <!-- ko foreach: $data.elems() -->
+                <!--ko template: getTemplate()--><!-- /ko -->
+            <!-- /ko -->
+        <!-- /ko -->
+        <!-- ko ifnot: $data.elems().length -->
+            <!--ko template: getEmptyChatTemplate()--><!-- /ko -->
+        <!-- /ko -->
+    </div>
+    <div class="amrma-chat-control" data-bind="css:{'with-quick-reply': $data.quick_replies.length}">
+        <div class="amrma-quick-reply">
+            <select class="amrma-select" data-bind="event:{ change: setQuickMessage}">
+                <option value="" selected data-bind="i18n: 'Quick reply'"></option>
+                <!-- ko foreach: $data.quick_replies -->
+                    <option data-bind="value:$index, text: $data.label"></option>
+                <!-- /ko -->
+            </select>
+        </div>
+        <div class="amrma-chat-send">
+            <div class="amrma-attach-file">
+                <label for="amrma-attach" class="amrma-label"></label>
+                <input type="file"
+                       id="amrma-attach"
+                       multiple
+                       class="amrma-attach"
+                       accept=".pdf,.png,.jpg,.gif"
+                       data-bind="event:{change: uploadFiles}"
+                />
+            </div>
+            <textarea class="amrma-textarea" data-bind="value: value, attr:{placeholder: $t('Message')}, event: {keyup: changeTextareaSize}" rows="1"></textarea>
+            <p class="amrma-hiddentext"></p>
+            <button class="amrma-send" data-bind="i18n:'Send', click: sendMessage"></button>
+        </div>
+    </div>
+    <!-- ko if: $data.files().length -->
+        <!-- ko foreach: $data.files() -->
+            <div class="amrma-chat-file -preview">
+                <span class="amrma-file" data-bind="text: $data.filename"></span>
+                <span class="amrma-file amrma-delete" data-bind="click: $parent.deleteFile.bind($parent, $index)"></span>
+            </div>
+        <!-- /ko -->
+    <!-- /ko -->
+</div>

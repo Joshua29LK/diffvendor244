@@ -1,0 +1,34 @@
+.copied, .copied-preview, .copied:hover, .copied-preview:hover {
+    background-color: #e8f7ed;
+    border: 1px solid #30b661;
+    color: #1BA84E;
+    display: none;
+    border-radius: 3px;
+    position: relative;
+}
+
+.affiliate_button {
+    width: 90px !important;
+}
+
+button#copy-button-link, button#copied-link-message {
+    margin-top: 10px;
+    float: right;
+}
+
+span#affiliate-link {
+    position: relative;
+    top: 10px;
+}
+
+button#copy-button {
+    float: right;
+}
+
+td.float-right {
+    padding-right: 0;
+}
+
+.with_right_margin {
+    margin-right: 15px;
+}

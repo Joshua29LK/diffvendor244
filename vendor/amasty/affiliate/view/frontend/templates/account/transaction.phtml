@@ -1,0 +1,133 @@
+<?php
+/** @var Magento\Framework\Escaper $escaper */
+/** @var \Amasty\Affiliate\Block\Account\Transaction $block */
+/** @var \Amasty\Affiliate\Model\Account $_account */
+$_account = $block->getAccount();
+?>
+
+<div class="affiliate-balance-info">
+    <div class="affiliate-price-field">
+        <?= $escaper->escapeHtml(__('Balance:')) ?> <?= $escaper->escapeHtml($_account->getData('balance_with_currency')) ?>
+    </div>
+    <div class="affiliate-price-field">
+        <?= $escaper->escapeHtml(__('Available:')) ?> <?= $escaper->escapeHtml($_account->getData('available_with_currency')) ?>
+    </div>
+    <div class="affiliate-price-field">
+        <?= $escaper->escapeHtml(__('On Hold:')) ?> <?= $escaper->escapeHtml($_account->getData('on_hold_with_currency')) ?>
+    </div>
+    <div class="affiliate-price-field">
+        <?= $escaper->escapeHtml(__('Lifetime:')) ?>
+        <?= $escaper->escapeHtml($_account->getData('lifetime_commission_with_currency')) ?>
+    </div>
+    <div class="affiliate-price-field">
+        <?= $escaper->escapeHtml(__('Paid:')) ?> <?= $escaper->escapeHtml($_account->getData('commission_paid_with_currency')) ?>
+    </div>
+</div>
+
+<?= /** @noEscape */$block->getChildHtml('info');?>
+<?php if ($block->getDescTransactions() && count($block->getDescTransactions())): ?>
+    <div class="table-wrapper">
+        <table class="data table">
+            <thead>
+            <tr>
+                <th scope="col" class="col"><?= $escaper->escapeHtml(__('Date')) ?></th>
+                <th scope="col" class="col"><?= $escaper->escapeHtml(__('Balance')) ?></th>
+                <th scope="col" class="col"><?= $escaper->escapeHtml(__('Amount')) ?></th>
+                <th scope="col" class="col"><?= $escaper->escapeHtml(__('Details')) ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php /** @var \Amasty\Affiliate\Model\Transaction $transaction */
+            foreach ($block->getDescTransactions() as $transaction):
+            ?>
+                <tr>
+                    <td
+                            data-th="<?= $escaper->escapeHtml(__('Date')) ?>"
+                            class="col">
+                            <?= $escaper->escapeHtml($block->formatDate(
+                                $transaction->getUpdatedAt(),
+                                \IntlDateFormatter::SHORT,
+                                true
+                            ))
+                            ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Balance')) ?>" class="col">
+                        <?= $escaper->escapeHtml($block->convertToPrice($transaction->getBalance())) ?>
+                    </td>
+                    <td
+                            data-th="<?= $escaper->escapeHtml(__('Amount')) ?>"
+                            class="col
+                            <?= $escaper->escapeHtml($block->getPriceClass($transaction)) ?>">
+                        <?= $escaper->escapeHtml($block->showCharacter($transaction));
+                        echo $escaper->escapeHtml($block->convertToPrice($transaction->getCommission())) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Details')) ?>" class="col">
+                        <?= $escaper->escapeHtml($block->prepareDetails($transaction)) ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="toolbar bottom"><?=  /** @noEscape */$block->getPagerHtml(); ?></div>
+    <?php endif ?>
+    <div class="chart">
+        <?php $currency = $block->getCurrentCurrency(); ?>
+        <script type="text/javascript">
+            AmCharts.makeChart("chartdiv",
+                {
+                    "type": "serial",
+                    "categoryField": "date",
+                    "categoryAxis": {
+                        "parseDates": true
+                    },
+                    "chartCursor": {
+                        "enabled": true
+                    },
+                    "chartScrollbar": {
+                        "enabled": true
+                    },
+                    "trendLines": [],
+                    "graphs": [
+                        {
+                            "bullet": "square",
+                            "id": "Balance",
+                            "title": "Balance (<?= $escaper->escapeHtml($currency) ?>)",
+                            "valueField": "balance"
+                        }
+                    ],
+                    "guides": [],
+                    "valueAxes": [
+                        {
+                            "id": "Balance",
+                            "title": "Balance (<?= $escaper->escapeHtml($currency) ?>)"
+                        }
+                    ],
+                    "allLabels": [],
+                    "balloon": {},
+                    "legend": {
+                        "enabled": true,
+                        "useGraphSettings": true
+                    },
+                    "dataProvider": [
+                        <?php /** @var \Amasty\Affiliate\Model\Transaction $transaction */
+                        foreach ($block->getAscTransactions() as $transaction):
+                        ?>
+                        {
+                            "date": "<?= $escaper->escapeHtml($transaction->getUpdatedAt()) ?>",
+                            "balance": <?= $escaper->escapeHtml($block->convertPriceToCurrentCurrency($transaction->getBalance())) ?>
+                        },
+                        <?php
+                        endforeach;
+                        ?>
+                    ]
+                }
+            );
+        </script>
+
+        <div id="chartdiv" style="width: 100%; height: 400px;"></div>
+    </div>
+<?php else: ?>
+    <div class="message info empty"><span><?= $escaper->escapeHtml(__('You have no transactions.')) ?></span></div>
+<?php endif ?>

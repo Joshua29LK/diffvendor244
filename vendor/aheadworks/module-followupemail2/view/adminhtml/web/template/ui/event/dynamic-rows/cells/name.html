@@ -1,0 +1,14 @@
+<div class="control-table-text" css="'inactive': $parent.isInactive($record())">
+    <span class="event-name-text" attr="'data-index': index" data-bind="
+        text: value,
+        css: {_disabled: disabled}
+    ">
+    </span>
+    <!-- ko if: $parent.isInactive($record()) -->
+    <span class="inactive-tag" translate="'Inactive'"></span>
+    <!-- /ko -->
+    <div class="event-type" css="'inactive': $parent.isInactive($record())">
+        <span translate="'Event type'"></span>:
+        <span class="bold" text="$parent.getEventTypeLabel($record())"></span>
+    </div>
+</div>

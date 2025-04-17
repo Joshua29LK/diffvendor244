@@ -1,0 +1,89 @@
+<?php /** @var \ParadoxLabs\Authnetcim\Block\Adminhtml\Config\AcceptjsTest $block */ ?>
+
+<div id="authnetcim-accept-test"><?= $block->escapeHtml(__('Testing Accept.js...')) ?></div>
+<?php $library = $block->getMethodInstance()->getConfigData('test') ? 'authorizeNetAcceptjsSandbox' : 'authorizeNetAcceptjs'; ?>
+<?php $inlineScript = <<<JS
+    var acceptJsTest = {
+        errorMap: {
+            'E_WC_10': 'API credentials invalid. Please confirm and re-enter your API Login ID.',
+            'E_WC_19': 'API credentials invalid. Please confirm and re-enter your API Login ID and Client Key.',
+            'E_WC_21': 'API credentials invalid. Please confirm and re-enter your API Login ID and Client Key.'
+        },
+
+        _create: function() {
+            require(
+                [
+                    'jquery',
+                    'mage/translate',
+                    'domReady!',
+                    '{$library}'
+                ],
+                function() {
+                    setTimeout(this.runTest.bind(this), 2000);
+                }.bind(this)
+            );
+        },
+
+        runTest: function () {
+            window['authnetcim_acceptJs_callback'] = this.handlePaymentResponse.bind(this);
+            window.isReady = true;
+
+            Accept.dispatchData(
+                {
+                    cardData: {
+                        cardNumber: '4111111111111111',
+                        month: "{$block->escapeJsQuote(date('m'), '"')}",
+                        year: "{$block->escapeJsQuote(date('Y'), '"')}",
+                        cardCode: '900'
+                    },
+                    authData: {
+                        clientKey: "{$block->escapeJsQuote($block->getMethodInstance()->getConfigData('client_key'), '"')}",
+                        apiLoginID: "{$block->escapeJsQuote($block->getMethodInstance()->getConfigData('login'), '"')}"
+                    }
+                },
+                'authnetcim_acceptJs_callback'
+            );
+        },
+
+        handlePaymentResponse: function (response) {
+            var element = document.getElementById('authnetcim-accept-test');
+
+            if (response.messages.resultCode === 'Ok') {
+                element.innerHTML = '<strong class="testSuccess">{$block->escapeHtmlAttr(__("Accept.js connected successfully"))}.</strong>';
+            } else {
+                var messages = [];
+                for (var i = 0; i < response.messages.message.length; i++) {
+                    var errorText = response.messages.message[i].text;
+                    if (typeof this.errorMap[response.messages.message[i].code] !== 'undefined') {
+                        errorText = this.errorMap[response.messages.message[i].code];
+                    }
+
+                    messages.push(
+                        "{$block->escapeJsQuote(__('Accept.js Error: %1 (%2)'), '"')}"
+                            .replace('{$block->escapeJsQuote('%1', '"')}', jQuery.mage.__(errorText))
+                            .replace('{$block->escapeJsQuote('%2', '"')}', response.messages.message[i].code)
+                    );
+                }
+
+                element.innerHTML = '<strong class="testFailure">' + messages.join("<br />") + '</strong>';
+            }
+        },
+    };
+    acceptJsTest._create();
+JS; ?>
+<?php $inlineStyle = <<<CSS
+    .testSuccess {
+        color: #0a0;
+    }
+    .testFailure {
+        color: #D40707;
+    }
+CSS; ?>
+
+<?php if (isset($secureRenderer) && $secureRenderer instanceof \Magento\Framework\View\Helper\SecureHtmlRenderer): ?>
+    <?= /* @noEscape */ $secureRenderer->renderTag('script', [], $inlineScript, false) ?>
+    <?= /* @noEscape */ $secureRenderer->renderTag('style', [], $inlineStyle, false) ?>
+<?php else: ?>
+    <script><?= $inlineScript ?></script>
+    <style><?= $inlineStyle ?></style>
+<?php endif; ?>

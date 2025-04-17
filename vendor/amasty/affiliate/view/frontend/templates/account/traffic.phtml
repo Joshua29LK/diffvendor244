@@ -1,0 +1,38 @@
+<?php
+/** @var \Amasty\Affiliate\Block\Account\Traffic $block */
+?>
+<div class="block">
+    <?php echo $block->escapeHtml($block->getText()) ?>
+</div>
+<div class="block">
+    <?php if ($block->getLinkTypes()) : ?>
+        <div class="block-title">
+            <strong><?php echo __('Traffic Sources') ?></strong>
+        </div>
+        <div class="table-wrapper">
+            <table class="data table">
+                <caption class="table-caption"><?php echo __('Traffic Sources') ?></caption>
+                <thead>
+                <tr>
+                    <th scope="col" class="col id"><?php echo __('Source') ?></th>
+                    <th scope="col" class="col date"><?php echo __('Count') ?></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($block->getLinkTypes() as $linkType) : ?>
+                        <tr>
+                            <td data-th="<?php echo $block->escapeHtml(__('Source')) ?>" class="col">
+                                <?php echo $block->escapeHtml($linkType) ?>
+                            </td>
+                            <td data-th="<?php echo $block->escapeHtml(__('Count')) ?>" class="col">
+                                <?php echo $block->escapeHtml($block->getCountByType($linkType)) ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php else : ?>
+        <div class="message info empty"><span><?php echo __('You have no traffic.'); ?></span></div>
+    <?php endif; ?>
+</div>

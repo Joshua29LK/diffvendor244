@@ -1,0 +1,25 @@
+<!--@subject New RMA Request @-->
+<!--@vars
+{
+"var email_request":"Request Object"
+}
+@-->
+
+{{template config_path="design/email/header_template"}}
+
+<div class="amrma-email-template">
+    <div class="amrma-email-container">
+        <p class="amrma-title">{{trans "Dear"}} <strong>{{var email_request.getCustomerName()|escape}}</strong>, your <a href="{{var email_request.getUrl()|escape}}">{{trans "RMA Request"}}</a> {{trans "has been created"}}</p>
+        <p><strong>{{trans "RMA ID:"}} </strong><span>{{var email_request.getRequestId()|escape}}</span></p>
+        <p><strong>{{trans "Status:"}} </strong><span class="amrma-status" style="background: {{var email_request.getStatusColor()|escape}}">{{var email_request.getStatus()|escape}}</span></p>
+        <p><strong>{{trans "Order ID:"}} </strong><span>#{{var email_request.getOrderIncrement()|escape}}</span></p>
+        <p><strong>{{trans "Created At:"}} </strong>{{var email_request.getOrderCreatedAt()|escape}}</p>
+    </div>
+    <div class="amrma-extra-fields">
+        {{block class='Magento\\Framework\\View\\Element\\Template' area='frontend' template='Amasty_Rma::email/custom_fields.phtml' customFields=$email_request.getCustomFields()}}
+    </div>
+    <span class="_uppercase">{{trans "items to return"}}</span>
+    {{block class='Magento\\Framework\\View\\Element\\Template' area='frontend' template='Amasty_Rma::email/return_items.phtml' returnItems=$email_request.getRequestItems()}}
+</div>
+
+{{template config_path="design/email/footer_template"}}

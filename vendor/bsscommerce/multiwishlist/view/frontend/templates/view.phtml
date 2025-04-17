@@ -1,0 +1,85 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * @category   BSS
+ * @package    Bss_MultiWishlist
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/* @var $block Magento\Wishlist\Block\Customer\Wishlist */
+?>
+<?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()) : ?>
+
+    <?php echo($block->getChildHtml('wishlist.rss.link'));?>
+    <?php echo $block->getChildHtml('createwishlist');?>
+    <form class="form-wishlist-items" id="wishlist-view-form"
+          data-mage-init='{"wishlist":{
+          "addToCartUrl":<?php /* @escapeNotVerified */ echo $block->escapeUrl($block->getItemAddToCartParams("%item%"));?>,
+          "addAllToCartUrl":<?php /* @escapeNotVerified */ echo $block->escapeUrl($block->getAddAllToCartParams()); ?>,
+          "commentString":""},
+          "validation": {}}' action="<?php /* @escapeNotVerified */ echo $block->escapeUrl($block->getUrl('wishlist/index/update', ['wishlist_id' => $block->getWishlistInstance()->getId()])) ?>" method="post">
+        <?php echo $block->getChildHtml('top'); ?>
+        <?php if ($block->hasWishlistItems()): ?>
+            <input type="hidden" name="multi_wishlist_id" value="0" />
+            <?php echo $block->getBlockHtml('formkey');?>
+        <?php endif ?>
+        <ul class="tabs" data-persist="true">
+            <div id="result_output"></div>
+            <li><a href="#view1"><?php /* @escapeNotVerified */ echo __('Main'); ?></a></li>
+            <?php
+            $helper = $this->helper('Bss\MultiWishlist\Helper\Data');
+            $labels = $helper->getWishlistLabels();
+            $i = 1;
+            ?>
+            <?php foreach($labels as $label): $i++; ?>
+                <li><a href="#view<?php echo $i;?>"><?php echo $block->escapeHtml($label->getWishlistName());?></a></li>
+            <?php endforeach;?>
+        </ul>
+        <div class="tabcontents">
+            <?php $block->getChildBlock('items')->setItems($block->getWishlistItems()); ?>
+            <div id="tabcontents">  
+                <?php echo $block->getChildHtml('items');?>
+                <script type="text/javascript">
+                    require([
+                        'jquery',
+                        'mage/mage'
+                    ], function($){
+                        decorateTable = $('#wishlist-table');
+                    });
+                </script>
+            </div>
+        </div>
+        <?php echo $block->getChildHtml('bottom'); ?>
+        <div class="actions-toolbar">
+            <div class="secondary">
+                <a href="<?php echo $block->escapeUrl($block->getBackUrl()) ?>" class="action back">
+                    <span><?php /* @escapeNotVerified */ echo __('Back') ?></span>
+                </a>
+            </div>
+        </div>
+    </form>
+    <script id="form-tmpl" type="text/x-magento-template">
+        <form id="wishlist-hidden-form" method="post" action="<%- data.url %>" class="no-display">
+            <% if (data.qty) { %>
+            <input name="qty" value="<%- data.qty %>">
+            <% } %>
+
+            <% if (data.item) { %>
+            <input name="item" value="<%- data.item %>">
+            <% } %>
+
+            <% if (data.entity) { %>
+            <input name="entity" value="<%- data.entity %>">
+            <% } %>
+        </form>
+    </script>
+
+<?php endif ?>

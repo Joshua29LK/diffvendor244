@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron/etc/crontab.xsd">
+    <group id="default">
+        <job name="aw_fue2_process_event_history" instance="Aheadworks\Followupemail2\Cron\EventHistoryProcessor" method="execute">
+            <schedule>*/5 * * * *</schedule>
+        </job>
+        <job name="aw_fue2_process_event_queue" instance="Aheadworks\Followupemail2\Cron\EventQueueProcessor" method="execute">
+            <schedule>*/5 * * * *</schedule>
+        </job>
+        <job name="aw_fue2_send_emails" instance="Aheadworks\Followupemail2\Cron\EmailSender" method="execute">
+            <schedule>*/5 * * * *</schedule>
+        </job>
+        <job name="aw_fue2_clear_log" instance="Aheadworks\Followupemail2\Cron\MailLogCleaner" method="execute">
+            <schedule>0 0 * * *</schedule>
+        </job>
+        <job name="aw_fue2_process_birthdays" instance="Aheadworks\Followupemail2\Cron\BirthdaysProcessor" method="execute">
+            <schedule>0 2 * * *</schedule>
+        </job>
+    </group>
+</config>

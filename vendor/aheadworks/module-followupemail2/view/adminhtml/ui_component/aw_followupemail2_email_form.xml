@@ -1,0 +1,892 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form_data_source</item>
+            <item name="deps" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form_data_source</item>
+            <item name="namespace" xsi:type="string">aw_followupemail2_email_form</item>
+            <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/event/email/form</item>
+        </item>
+        <item name="buttons" xsi:type="array">
+            <item name="save" xsi:type="string">Aheadworks\Followupemail2\Block\Adminhtml\Event\Email\SaveButton</item>
+            <item name="save_and_continue" xsi:type="string">Aheadworks\Followupemail2\Block\Adminhtml\Event\Email\SaveAndContinueButton</item>
+            <item name="reset" xsi:type="string">Aheadworks\Followupemail2\Block\Adminhtml\Event\Email\ResetButton</item>
+            <item name="cancel" xsi:type="string">Aheadworks\Followupemail2\Block\Adminhtml\Event\Email\CancelButton</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="config" xsi:type="array">
+            <item name="ajaxSaveType" xsi:type="string">simple</item>
+        </item>
+    </argument>
+    <dataSource name="aw_followupemail2_email_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Aheadworks\Followupemail2\Ui\DataProvider\Event\EmailFormDataProvider</argument>
+            <argument name="name" xsi:type="string">aw_followupemail2_email_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="aw_followupemail2/event_email/save"/>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">event_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="data">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">General Settings</item>
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+        <field name="event_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">hidden</item>
+                    <item name="dataScope" xsi:type="string">data.event_id</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </field>
+        <field name="position">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">hidden</item>
+                    <item name="dataScope" xsi:type="string">data.position</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+        </field>
+        <field name="status">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Enable Email</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="dataScope" xsi:type="string">data.status</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>
+        </field>
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Name</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">data.name</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                </item>
+            </argument>
+        </field>
+        <container name="email_send" class="Aheadworks\Followupemail2\Ui\Component\Form\Email\EmailSend">
+            <argument name="data" xsi:type="array">
+                <item name="type" xsi:type="string">group</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/group</item>
+                    <item name="template" xsi:type="string">Aheadworks_Followupemail2/ui/group/group</item>
+                    <item name="label" xsi:type="string" translate="true">Send Email</item>
+                    <item name="required" xsi:type="boolean">true</item>
+                    <item name="sortOrder"  xsi:type="number">50</item>
+                    <item name="validateWholeGroup" xsi:type="boolean">true</item>
+                    <item name="breakLine" xsi:type="boolean">false</item>
+                    <item name="additionalClasses" xsi:type="string">aw-followupemail2-email-send</item>
+                    <item name="notice" xsi:type="string" translate="true">Specify when email should be sent</item>
+                </item>
+            </argument>
+            <field name="email_send_days">
+                <argument xsi:type="array" name="data">
+                    <item xsi:type="array" name="config">
+                        <item name="label" xsi:type="string" translate="true">Send Email</item>
+                        <item name="dataScope" xsi:type="string">data.email_send_days</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="default" xsi:type="string">0</item>
+                        <item name="additionalInfo" xsi:type="string" translate="true">day(s)</item>
+                        <item name="additionalClasses" xsi:type="string">admin__field-small aw-followupemail2-email-send-days</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="validate-number" xsi:type="boolean">true</item>
+                            <item name="validate-zero-or-greater" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="email_send_hours">
+                <argument name="data" xsi:type="array">
+                    <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Email\Hours</item>
+                    <item name="config" xsi:type="array">
+                        <item name="dataScope" xsi:type="string">data.email_send_hours</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="default" xsi:type="string">0</item>
+                        <item name="additionalInfo" xsi:type="string" translate="true"> </item>
+                        <item name="additionalClasses" xsi:type="string">admin__field-small aw-followupemail2-email-send-hours</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="email_send_minutes" class="Aheadworks\Followupemail2\Ui\Component\Form\Email\EmailSendMinutes">
+                <argument name="data" xsi:type="array">
+                    <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Email\Minutes</item>
+                    <item name="config" xsi:type="array">
+                        <item name="dataScope" xsi:type="string">data.email_send_minutes</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="default" xsi:type="string">0</item>
+                        <item name="additionalInfo" xsi:type="string" translate="true">after previous email sent</item>
+                        <item name="additionalClasses" xsi:type="string">admin__field-small aw-followupemail2-email-send-minutes</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="when">
+                <argument name="data" xsi:type="array">
+                    <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Email\When</item>
+                    <item name="config" xsi:type="array">
+                        <item name="dataScope" xsi:type="string">data.when</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="default" xsi:type="string">0</item>
+                        <item name="additionalInfo" xsi:type="string" translate="true">event triggered</item>
+                        <item name="additionalClasses" xsi:type="string">admin__field-small aw-followupemail2-email_send_when</item>
+                     </item>
+                </argument>
+            </field>
+        </container>
+    </fieldset>
+    <fieldset name="testing_mode">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">A/B Testing Mode</item>
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="ab_testing_mode">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Enable A/B Testing</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/event/email/testmode-switcher</item>
+                    <item name="dataScope" xsi:type="string">data.ab_testing_mode</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="exports" xsi:type="array">
+                        <item name="version" xsi:type="string">ns = ${ $.ns }, index = primary_email_content :value</item>
+                    </item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="switcherConfig" xsi:type="array">
+                        <item name="enabled" xsi:type="boolean">false</item>
+                        <item name="rules" xsi:type="array">
+                            <item name="0" xsi:type="array">
+                                <item name="value" xsi:type="string">0</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.testing_mode.primary_email_content</item>
+                                        <item name="callback" xsi:type="string">show</item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">1</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.testing_mode.primary_email_content</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.email_details_a</item>
+                                        <item name="callback" xsi:type="string">open</item>
+                                    </item>
+                                    <item name="2" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.email_details_a</item>
+                                        <item name="callback" xsi:type="string">enable</item>
+                                    </item>
+                                    <item name="3" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.email_details_b</item>
+                                        <item name="callback" xsi:type="string">open</item>
+                                    </item>
+                                    <item name="4" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.email_details_b</item>
+                                        <item name="callback" xsi:type="string">enable</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="primary_email_content">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Email\Version</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">data.primary_email_content</item>
+                    <item name="label" xsi:type="string" translate="true">Primary Email</item>
+                    <item name="component" xsi:type="string">Aheadworks_Followupemail2\js\ui\event\email\primary-email-select</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="notice" xsi:type="string" translate="true">Is sent when A/B testing disabled</item>
+                    <item name="switcherConfig" xsi:type="array">
+                        <item name="enabled" xsi:type="boolean">false</item>
+                        <item name="rules" xsi:type="array">
+                            <item name="0" xsi:type="array">
+                                <item name="value" xsi:type="string">0</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.email_details_a</item>
+                                        <item name="callback" xsi:type="string">open</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.email_details_a</item>
+                                        <item name="callback" xsi:type="string">enable</item>
+                                    </item>
+                                    <item name="2" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.email_details_b</item>
+                                        <item name="callback" xsi:type="string">open</item>
+                                    </item>
+                                    <item name="3" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.email_details_b</item>
+                                        <item name="callback" xsi:type="string">enable</item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">1</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.email_details_a</item>
+                                        <item name="callback" xsi:type="string">open</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.email_details_a</item>
+                                        <item name="callback" xsi:type="string">enable</item>
+                                    </item>
+                                    <item name="2" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.email_details_b</item>
+                                        <item name="callback" xsi:type="string">close</item>
+                                    </item>
+                                    <item name="3" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.email_details_b</item>
+                                        <item name="callback" xsi:type="string">disable</item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="2" xsi:type="array">
+                                <item name="value" xsi:type="string">2</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.email_details_a</item>
+                                        <item name="callback" xsi:type="string">close</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.email_details_a</item>
+                                        <item name="callback" xsi:type="string">disable</item>
+                                    </item>
+                                    <item name="2" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.email_details_b</item>
+                                        <item name="callback" xsi:type="string">open</item>
+                                    </item>
+                                    <item name="3" xsi:type="array">
+                                        <item name="target" xsi:type="string">aw_followupemail2_email_form.aw_followupemail2_email_form.email_details_b</item>
+                                        <item name="callback" xsi:type="string">enable</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <container name="statistics" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Aheadworks\Followupemail2\Block\Adminhtml\Event\Email\Statistics</argument>
+            </htmlContent>
+        </container>
+    </fieldset>
+    <fieldset name="email_details_a">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Email Details (version A)</item>
+                <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/event/email/version-fieldset</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">30</item>
+            </item>
+        </argument>
+        <container name="sender_name_group_a">
+            <argument name="data" xsi:type="array">
+                <item name="type" xsi:type="string">group</item>
+                <item name="config" xsi:type="array">
+                    <item name="breakLine" xsi:type="boolean">true</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/group</item>
+                    <item name="label" xsi:type="string" translate="true"></item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+            <field name="sender_name_a">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataScope" xsi:type="string">data.content.0.sender_name</item>
+                        <item name="label" xsi:type="string" translate="true">Sender Name</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="additionalClasses" xsi:type="string">aw-followupemail2-sender_name</item>
+                        <item name="sortOrder" xsi:type="number">10</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="use_config.sender_name_a" class="Aheadworks\Followupemail2\Ui\Component\Form\ConfigField">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">Use Sender Details from extension</item>
+                        <item name="dataScope" xsi:type="string">data.content.0.use_config.sender_name</item>
+                        <item name="dataType" xsi:type="string">boolean</item>
+                        <item name="formElement" xsi:type="string">checkbox</item>
+                        <item name="valueMap" xsi:type="array">
+                            <item name="true" xsi:type="number">1</item>
+                            <item name="false" xsi:type="number">0</item>
+                        </item>
+                        <item name="default" xsi:type="number">1</item>
+                        <item name="exports" xsi:type="array">
+                            <item name="checked" xsi:type="string">ns = ${ $.ns }, index = sender_name_a :disabled</item>
+                        </item>
+                        <item name="additionalClasses" xsi:type="string">aw-followupemail2-default_sender_name</item>
+                        <item name="elementTmpl" xsi:type="string">Aheadworks_Followupemail2/ui/form/element/single-checkbox-use-config</item>
+                        <item name="configSettingsUrl" xsi:type="string">adminhtml/system_config/edit/section/followupemailtwo</item>
+                    </item>
+                </argument>
+            </field>
+        </container>
+        <container name="sender_email_group_a">
+            <argument name="data" xsi:type="array">
+                <item name="type" xsi:type="string">group</item>
+                <item name="config" xsi:type="array">
+                    <item name="breakLine" xsi:type="boolean">true</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/group</item>
+                    <item name="label" xsi:type="string" translate="true"></item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+            <field name="sender_email_a">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataScope" xsi:type="string">data.content.0.sender_email</item>
+                        <item name="label" xsi:type="string" translate="true">Sender Email</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="additionalClasses" xsi:type="string">aw-followupemail2-sender_email</item>
+                        <item name="sortOrder" xsi:type="number">10</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="validate-email" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="use_config.sender_email_a" class="Aheadworks\Followupemail2\Ui\Component\Form\ConfigField">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">Use Sender Details from extension</item>
+                        <item name="dataScope" xsi:type="string">data.content.0.use_config.sender_email</item>
+                        <item name="dataType" xsi:type="string">boolean</item>
+                        <item name="formElement" xsi:type="string">checkbox</item>
+                        <item name="valueMap" xsi:type="array">
+                            <item name="true" xsi:type="number">1</item>
+                            <item name="false" xsi:type="number">0</item>
+                        </item>
+                        <item name="default" xsi:type="number">1</item>
+                        <item name="exports" xsi:type="array">
+                            <item name="checked" xsi:type="string">ns = ${ $.ns }, index = sender_email_a :disabled</item>
+                        </item>
+                        <item name="additionalClasses" xsi:type="string">aw-followupemail2-default_sender_email</item>
+                        <item name="elementTmpl" xsi:type="string">Aheadworks_Followupemail2/ui/form/element/single-checkbox-use-config</item>
+                        <item name="configSettingsUrl" xsi:type="string">adminhtml/system_config/edit/section/followupemailtwo</item>
+                    </item>
+                </argument>
+            </field>
+        </container>
+        <field name="subject_a">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">data.content.0.subject</item>
+                    <item name="label" xsi:type="string" translate="true">Subject</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="insert_variable_a" class="Aheadworks\Followupemail2\Ui\Component\Form\Email\InsertVariable">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Insert Variable...</item>
+                    <item name="formElement" xsi:type="string">button</item>
+                    <item name="additionalClasses" xsi:type="string">admin__field-small aw-followupemail2-insert-variable-button</item>
+                    <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/event/email/insert-variable-button</item>
+                    <item name="template" xsi:type="string">ui/form/components/button/container</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.ns }.${ $.ns }.email_details_a.insert_variable_a</item>
+                            <item name="actionName" xsi:type="string">insertVariable</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="content_a">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">data.content.0.content</item>
+                    <item name="label" xsi:type="string" translate="true">Content</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                    <item name="additionalClasses" xsi:type="string">aw-followupemail2-email-content</item>
+                    <item name="exports" xsi:type="array">
+                        <item name="uid" xsi:type="string">ns = ${ $.ns }, index = insert_variable_a :contentSelector</item>
+                    </item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="preview_a">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Preview Email</item>
+                    <item name="formElement" xsi:type="string">button</item>
+                    <item name="additionalClasses" xsi:type="string">admin__field-small aw-followupemail2-preview-button</item>
+                    <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/event/email/preview-button</item>
+                    <item name="template" xsi:type="string">ui/form/components/button/container</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="url" xsi:type="url" path="aw_followupemail2/event_email/preview"/>
+                            <item name="params" xsi:type="array">
+                                <item name="content" xsi:type="number">1</item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="test_email_a">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Send Test Email</item>
+                    <item name="formElement" xsi:type="string">button</item>
+                    <item name="additionalClasses" xsi:type="string">admin__field-small aw-followupemail2-test-email-button</item>
+                    <item name="template" xsi:type="string">ui/form/components/button/container</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.ns }.${ $.ns }</item>
+                            <item name="actionName" xsi:type="string">sendtestA</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <container name="header_template_group_a">
+            <argument name="data" xsi:type="array">
+                <item name="type" xsi:type="string">group</item>
+                <item name="config" xsi:type="array">
+                    <item name="breakLine" xsi:type="boolean">true</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/group</item>
+                    <item name="label" xsi:type="string" translate="true"></item>
+                    <item name="sortOrder" xsi:type="number">80</item>
+                </item>
+            </argument>
+            <field name="header_template_a">
+                <argument name="data" xsi:type="array">
+                    <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Email\Header</item>
+                    <item name="config" xsi:type="array">
+                        <item name="dataScope" xsi:type="string">data.content.0.header_template</item>
+                        <item name="label" xsi:type="string" translate="true">Header Template</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="additionalClasses" xsi:type="string">aw-followupemail2-header_template</item>
+                        <item name="sortOrder" xsi:type="number">10</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="use_config.header_template_a" class="Aheadworks\Followupemail2\Ui\Component\Form\ConfigField">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">Use Template from extension</item>
+                        <item name="dataScope" xsi:type="string">data.content.0.use_config.header_template</item>
+                        <item name="dataType" xsi:type="string">boolean</item>
+                        <item name="formElement" xsi:type="string">checkbox</item>
+                        <item name="valueMap" xsi:type="array">
+                            <item name="true" xsi:type="number">1</item>
+                            <item name="false" xsi:type="number">0</item>
+                        </item>
+                        <item name="default" xsi:type="number">1</item>
+                        <item name="exports" xsi:type="array">
+                            <item name="checked" xsi:type="string">ns = ${ $.ns }, index = header_template_a :disabled</item>
+                        </item>
+                        <item name="additionalClasses" xsi:type="string">aw-followupemail2-default_header_template</item>
+                        <item name="elementTmpl" xsi:type="string">Aheadworks_Followupemail2/ui/form/element/single-checkbox-use-config</item>
+                        <item name="configSettingsUrl" xsi:type="string">adminhtml/system_config/edit/section/followupemailtwo</item>
+                    </item>
+                </argument>
+            </field>
+        </container>
+        <container name="footer_template_group_a">
+            <argument name="data" xsi:type="array">
+                <item name="type" xsi:type="string">group</item>
+                <item name="config" xsi:type="array">
+                    <item name="breakLine" xsi:type="boolean">true</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/group</item>
+                    <item name="label" xsi:type="string" translate="true"></item>
+                    <item name="sortOrder" xsi:type="number">90</item>
+                </item>
+            </argument>
+            <field name="footer_template_a">
+                <argument name="data" xsi:type="array">
+                    <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Email\Footer</item>
+                    <item name="config" xsi:type="array">
+                        <item name="dataScope" xsi:type="string">data.content.0.footer_template</item>
+                        <item name="label" xsi:type="string" translate="true">Footer Template</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="additionalClasses" xsi:type="string">aw-followupemail2-footer_template</item>
+                        <item name="sortOrder" xsi:type="number">10</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="use_config.footer_template_a" class="Aheadworks\Followupemail2\Ui\Component\Form\ConfigField">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">Use Template from extension</item>
+                        <item name="dataScope" xsi:type="string">data.content.0.use_config.footer_template</item>
+                        <item name="dataType" xsi:type="string">boolean</item>
+                        <item name="formElement" xsi:type="string">checkbox</item>
+                        <item name="valueMap" xsi:type="array">
+                            <item name="true" xsi:type="number">1</item>
+                            <item name="false" xsi:type="number">0</item>
+                        </item>
+                        <item name="default" xsi:type="number">1</item>
+                        <item name="exports" xsi:type="array">
+                            <item name="checked" xsi:type="string">ns = ${ $.ns }, index = footer_template_a :disabled</item>
+                        </item>
+                        <item name="additionalClasses" xsi:type="string">aw-followupemail2-default_footer_template</item>
+                        <item name="elementTmpl" xsi:type="string">Aheadworks_Followupemail2/ui/form/element/single-checkbox-use-config</item>
+                        <item name="configSettingsUrl" xsi:type="string">adminhtml/system_config/edit/section/followupemailtwo</item>
+                    </item>
+                </argument>
+            </field>
+        </container>
+    </fieldset>
+    <fieldset name="email_details_b">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Email Details (version B)</item>
+                <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/event/email/version-fieldset</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">40</item>
+            </item>
+        </argument>
+        <container name="sender_name_group_b">
+            <argument name="data" xsi:type="array">
+                <item name="type" xsi:type="string">group</item>
+                <item name="config" xsi:type="array">
+                    <item name="breakLine" xsi:type="boolean">true</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/group</item>
+                    <item name="label" xsi:type="string" translate="true"></item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+            <field name="sender_name_b">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataScope" xsi:type="string">data.content.1.sender_name</item>
+                        <item name="label" xsi:type="string" translate="true">Sender Name</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="additionalClasses" xsi:type="string">aw-followupemail2-sender_name</item>
+                        <item name="sortOrder" xsi:type="number">10</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="use_config.sender_name_b" class="Aheadworks\Followupemail2\Ui\Component\Form\ConfigField">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">Use Sender Details from extension</item>
+                        <item name="dataScope" xsi:type="string">data.content.1.use_config.sender_name</item>
+                        <item name="dataType" xsi:type="string">boolean</item>
+                        <item name="formElement" xsi:type="string">checkbox</item>
+                        <item name="valueMap" xsi:type="array">
+                            <item name="true" xsi:type="number">1</item>
+                            <item name="false" xsi:type="number">0</item>
+                        </item>
+                        <item name="default" xsi:type="number">1</item>
+                        <item name="exports" xsi:type="array">
+                            <item name="checked" xsi:type="string">ns = ${ $.ns }, index = sender_name_b :disabled</item>
+                        </item>
+                        <item name="additionalClasses" xsi:type="string">aw-followupemail2-default_sender_name</item>
+                        <item name="elementTmpl" xsi:type="string">Aheadworks_Followupemail2/ui/form/element/single-checkbox-use-config</item>
+                        <item name="configSettingsUrl" xsi:type="string">adminhtml/system_config/edit/section/followupemailtwo</item>
+                    </item>
+                </argument>
+            </field>
+        </container>
+        <container name="sender_email_group_b">
+            <argument name="data" xsi:type="array">
+                <item name="type" xsi:type="string">group</item>
+                <item name="config" xsi:type="array">
+                    <item name="breakLine" xsi:type="boolean">true</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/group</item>
+                    <item name="label" xsi:type="string" translate="true"></item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+            <field name="sender_email_b">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataScope" xsi:type="string">data.content.1.sender_email</item>
+                        <item name="label" xsi:type="string" translate="true">Sender Email</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="additionalClasses" xsi:type="string">aw-followupemail2-sender_email</item>
+                        <item name="sortOrder" xsi:type="number">10</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="validate-email" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="use_config.sender_email_b" class="Aheadworks\Followupemail2\Ui\Component\Form\ConfigField">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">Use Sender Details from extension</item>
+                        <item name="dataScope" xsi:type="string">data.content.1.use_config.sender_email</item>
+                        <item name="dataType" xsi:type="string">boolean</item>
+                        <item name="formElement" xsi:type="string">checkbox</item>
+                        <item name="valueMap" xsi:type="array">
+                            <item name="true" xsi:type="number">1</item>
+                            <item name="false" xsi:type="number">0</item>
+                        </item>
+                        <item name="default" xsi:type="number">1</item>
+                        <item name="exports" xsi:type="array">
+                            <item name="checked" xsi:type="string">ns = ${ $.ns }, index = sender_email_b :disabled</item>
+                        </item>
+                        <item name="additionalClasses" xsi:type="string">aw-followupemail2-default_sender_email</item>
+                        <item name="elementTmpl" xsi:type="string">Aheadworks_Followupemail2/ui/form/element/single-checkbox-use-config</item>
+                        <item name="configSettingsUrl" xsi:type="string">adminhtml/system_config/edit/section/followupemailtwo</item>
+                    </item>
+                </argument>
+            </field>
+        </container>
+        <field name="subject_b">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">data.content.1.subject</item>
+                    <item name="label" xsi:type="string" translate="true">Subject</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="insert_variable_b" class="Aheadworks\Followupemail2\Ui\Component\Form\Email\InsertVariable">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Insert Variable...</item>
+                    <item name="formElement" xsi:type="string">button</item>
+                    <item name="additionalClasses" xsi:type="string">admin__field-small aw-followupemail2-insert-variable-button</item>
+                    <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/event/email/insert-variable-button</item>
+                    <item name="template" xsi:type="string">ui/form/components/button/container</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.ns }.${ $.ns }.email_details_b.insert_variable_b</item>
+                            <item name="actionName" xsi:type="string">insertVariable</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="content_b">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">data.content.1.content</item>
+                    <item name="label" xsi:type="string" translate="true">Content</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                    <item name="additionalClasses" xsi:type="string">aw-followupemail2-email-content</item>
+                    <item name="exports" xsi:type="array">
+                        <item name="uid" xsi:type="string">ns = ${ $.ns }, index = insert_variable_b :contentSelector</item>
+                    </item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="preview_b">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Preview Email</item>
+                    <item name="formElement" xsi:type="string">button</item>
+                    <item name="additionalClasses" xsi:type="string">admin__field-small aw-followupemail2-preview-button</item>
+                    <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/event/email/preview-button</item>
+                    <item name="template" xsi:type="string">ui/form/components/button/container</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="url" xsi:type="url" path="aw_followupemail2/event_email/preview"/>
+                            <item name="params" xsi:type="array">
+                                <item name="content" xsi:type="number">2</item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="test_email_b">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Send Test Email</item>
+                    <item name="formElement" xsi:type="string">button</item>
+                    <item name="additionalClasses" xsi:type="string">admin__field-small aw-followupemail2-test-email-button</item>
+                    <item name="template" xsi:type="string">ui/form/components/button/container</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.ns }.${ $.ns }</item>
+                            <item name="actionName" xsi:type="string">sendtestB</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <container name="header_template_group_b">
+            <argument name="data" xsi:type="array">
+                <item name="type" xsi:type="string">group</item>
+                <item name="config" xsi:type="array">
+                    <item name="breakLine" xsi:type="boolean">true</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/group</item>
+                    <item name="label" xsi:type="string" translate="true"></item>
+                    <item name="sortOrder" xsi:type="number">80</item>
+                </item>
+            </argument>
+            <field name="header_template_b">
+                <argument name="data" xsi:type="array">
+                    <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Email\Header</item>
+                    <item name="config" xsi:type="array">
+                        <item name="dataScope" xsi:type="string">data.content.1.header_template</item>
+                        <item name="label" xsi:type="string" translate="true">Header Template</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="additionalClasses" xsi:type="string">aw-followupemail2-header_template</item>
+                        <item name="sortOrder" xsi:type="number">10</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="use_config.header_template_b" class="Aheadworks\Followupemail2\Ui\Component\Form\ConfigField">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">Use Template from extension</item>
+                        <item name="dataScope" xsi:type="string">data.content.1.use_config.header_template</item>
+                        <item name="dataType" xsi:type="string">boolean</item>
+                        <item name="formElement" xsi:type="string">checkbox</item>
+                        <item name="valueMap" xsi:type="array">
+                            <item name="true" xsi:type="number">1</item>
+                            <item name="false" xsi:type="number">0</item>
+                        </item>
+                        <item name="default" xsi:type="number">1</item>
+                        <item name="exports" xsi:type="array">
+                            <item name="checked" xsi:type="string">ns = ${ $.ns }, index = header_template_b :disabled</item>
+                        </item>
+                        <item name="additionalClasses" xsi:type="string">aw-followupemail2-default_header_template</item>
+                        <item name="elementTmpl" xsi:type="string">Aheadworks_Followupemail2/ui/form/element/single-checkbox-use-config</item>
+                        <item name="configSettingsUrl" xsi:type="string">adminhtml/system_config/edit/section/followupemailtwo</item>
+                    </item>
+                </argument>
+            </field>
+        </container>
+        <container name="footer_template_group_b">
+            <argument name="data" xsi:type="array">
+                <item name="type" xsi:type="string">group</item>
+                <item name="config" xsi:type="array">
+                    <item name="breakLine" xsi:type="boolean">true</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/group</item>
+                    <item name="label" xsi:type="string" translate="true"></item>
+                    <item name="sortOrder" xsi:type="number">90</item>
+                </item>
+            </argument>
+            <field name="footer_template_b">
+                <argument name="data" xsi:type="array">
+                    <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Email\Footer</item>
+                    <item name="config" xsi:type="array">
+                        <item name="dataScope" xsi:type="string">data.content.1.footer_template</item>
+                        <item name="label" xsi:type="string" translate="true">Footer Template</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="additionalClasses" xsi:type="string">aw-followupemail2-footer_template</item>
+                        <item name="sortOrder" xsi:type="number">10</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="use_config.footer_template_b" class="Aheadworks\Followupemail2\Ui\Component\Form\ConfigField">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">Use Template from extension</item>
+                        <item name="dataScope" xsi:type="string">data.content.1.use_config.footer_template</item>
+                        <item name="dataType" xsi:type="string">boolean</item>
+                        <item name="formElement" xsi:type="string">checkbox</item>
+                        <item name="valueMap" xsi:type="array">
+                            <item name="true" xsi:type="number">1</item>
+                            <item name="false" xsi:type="number">0</item>
+                        </item>
+                        <item name="default" xsi:type="number">1</item>
+                        <item name="exports" xsi:type="array">
+                            <item name="checked" xsi:type="string">ns = ${ $.ns }, index = footer_template_b :disabled</item>
+                        </item>
+                        <item name="additionalClasses" xsi:type="string">aw-followupemail2-default_footer_template</item>
+                        <item name="elementTmpl" xsi:type="string">Aheadworks_Followupemail2/ui/form/element/single-checkbox-use-config</item>
+                        <item name="configSettingsUrl" xsi:type="string">adminhtml/system_config/edit/section/followupemailtwo</item>
+                    </item>
+                </argument>
+            </field>
+        </container>
+    </fieldset>
+</form>

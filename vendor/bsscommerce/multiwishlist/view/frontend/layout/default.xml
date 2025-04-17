@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * @category   BSS
+ * @package    Bss_MultiWishlist
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- multiwishlist popup -->
+        <referenceContainer name="after.body.start">
+            <block class="Bss\MultiWishlist\Block\MultiWishlist"
+                   name="bss.multiwishlist.popup" as="bss.multiwishlist.popup"
+                   template="Bss_MultiWishlist::multiwishlist.phtml" ifconfig="bss_multiwishlist/general/enable"/>
+        </referenceContainer>
+        <!-- end multiwishlist popup -->
+    </body>
+</page>

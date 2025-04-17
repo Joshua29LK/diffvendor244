@@ -1,0 +1,82 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_CheckoutSuccessPage
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+// @codingStandardsIgnoreFile
+?>
+<?php /** @var $block Bss\CheckoutSuccessPage\Block\Suggestion */ ?>
+<hr>
+<div class="suggestion">
+    <?php
+    $order = $block->getOrder();
+    $items = $order->getAllVisibleItems();
+    $suggests1 = [];
+    foreach ($items as $item) {
+        $product = $block->getItemById($item->getProductId());
+        if ($block->getSuggestType() == "related") {
+            $suggests1[] = $product->getRelatedProducts();
+        } elseif ($block->getSuggestType() == "up") {
+            $suggests1[] = $product->getUpSellProducts();
+        } else {
+            $suggests1[] = $product->getCrossSellProducts();
+        }
+    }
+
+    if (!empty($suggests1)) {
+        ?> 
+        <span class="title-suggest box-des suggest-header"><?php echo __('Recommended Products') ?></span>
+        <div class="slideshow-container">
+        <?php
+        $i=0;
+        foreach ($suggests1 as $suggests) {
+            foreach ($suggests as $suggest) {
+                $_product = $block->getItemById($suggest->getId());
+                if ($i==0) { ?>
+                  <div class="mySlides fade"> 
+                    <?php
+                }
+                $i++;
+                ?>
+                <div class="img-suggest">
+                    <div class="suggest-image">
+                        <img  src="<?php echo $block->getImageThumb($_product); ?>" >
+                    </div>
+                    <a href="<?php echo $_product->getProductUrl(); ?>">
+                    <p><?php echo $_product->getName(); ?></p>
+                    </a>
+              </div>
+                <?php
+                if ($i==4) {
+                    echo '</div>';
+                    $i=0;
+                }
+            }
+        }
+        ?>
+        </div>
+        <a class="prev-suggest" >&#10094;</a>
+        <a class="next-suggest" >&#10095;</a>
+      </div>
+    <?php
+    } ?>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Bss_CheckoutSuccessPage/js/suggest": {}
+        }
+    }
+</script> 

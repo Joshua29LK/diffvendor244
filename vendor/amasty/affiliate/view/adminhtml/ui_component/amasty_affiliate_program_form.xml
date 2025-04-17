@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">amasty_affiliate_program_form.amasty_affiliate_program_form_data_source</item>
+            <item name="deps" xsi:type="string">amasty_affiliate_program_form.amasty_affiliate_program_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Affiliate Program</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">amasty_affiliate_program_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="array">
+                <item name="name" xsi:type="string">back</item>
+                <item name="label" xsi:type="string" translate="true">Back</item>
+                <item name="class" xsi:type="string">back</item>
+                <item name="url" xsi:type="string">*/*/</item>
+            </item>
+            <item name="save" xsi:type="string">Amasty\Affiliate\Block\Adminhtml\Program\Edit\SaveButton</item>
+            <item name="reset" xsi:type="string">Amasty\Affiliate\Block\Adminhtml\Program\Edit\ResetButton</item>
+            <item name="save_and_continue" xsi:type="string">Amasty\Affiliate\Block\Adminhtml\Program\Edit\SaveAndContinueButton</item>
+            <item name="delete" xsi:type="string">Amasty\Affiliate\Block\Adminhtml\Program\Edit\DeleteButton</item>
+        </item>
+    </argument>
+    <dataSource name="amasty_affiliate_program_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Amasty\Affiliate\Model\Program\DataProvider</argument>
+            <argument name="name" xsi:type="string">amasty_affiliate_program_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">program_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="amasty_affiliate/program/save"/>
+                    <item name="cart_price_url" xsi:type="url" path="sales_rule/promo_quote/edit"/>
+                    <item name="new_cart_price_url" xsi:type="url" path="sales_rule/promo_quote/new"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">General Information</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Program Name</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">affiliate_program</item>
+                    <item name="dataScope" xsi:type="string">name</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="is_active">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">affiliate_program</item>
+                    <item name="dataScope" xsi:type="string">is_active</item>
+                </item>
+                <item name="options" xsi:type="object">Amasty\Affiliate\Model\Program\Source\IsActive</item>
+            </argument>
+        </field>
+        <field name="rule_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Amasty_Affiliate/js/form/element/program/rule</item>
+                    <item name="elementTmpl" xsi:type="string">Amasty_Affiliate/form/element/program/rule</item>
+                    <item name="label" xsi:type="string" translate="true">Shopping Cart Price Rule</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">affiliate_program</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="object">Amasty\Affiliate\Model\Program\Source\Rules</item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="commission">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Commission Configuration</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <component name="variable">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="template" xsi:type="string">Amasty_Affiliate/form/element/program/notice</item>
+                    <item name="value" xsi:type="string" translate="true"><![CDATA[
+If the commission type is percent, its value is dynamic and based on the store profit margin (order total after discount, before taxes).</br>
+If the commission type is fixed, its value is always static.
+                    ]]></item>
+                    <item name="sortOrder" xsi:type="number">1</item>
+                </item>
+            </argument>
+        </component>
+        <field name="withdrawal_type">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Pay Commission</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">affiliate_program</item>
+                    <item name="dataScope" xsi:type="string">withdrawal_type</item>
+                </item>
+                <item name="options" xsi:type="array">
+                    <item name="per_sale" xsi:type="array">
+                        <item name="value" xsi:type="string">per_sale</item>
+                        <item name="label" xsi:type="string" translate="true">Pay per Sale</item>
+                    </item>
+                    <item name="per_profit" xsi:type="array">
+                        <item name="value" xsi:type="string">per_profit</item>
+                        <item name="label" xsi:type="string" translate="true">Pay Per Profit</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="commission_per_profit_amount">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Amount to Pay Commission</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">affiliate_program</item>
+                    <item name="dataScope" xsi:type="string">commission_per_profit_amount</item>
+                    <item name="component" xsi:type="string">Amasty_Affiliate/js/form/visible-on-option/program/withdrawal-type/text</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="per_profit" xsi:type="string">per_profit</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="commission_value_type">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Commission Type</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">affiliate_program</item>
+                    <item name="dataScope" xsi:type="string">commission_value_type</item>
+                </item>
+                <item name="options" xsi:type="object">Amasty\Affiliate\Model\Program\Source\CommissionType</item>
+            </argument>
+        </field>
+        <field name="commission_value">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Commission Value</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">affiliate_program</item>
+                    <item name="dataScope" xsi:type="string">commission_value</item>
+                </item>
+            </argument>
+        </field>
+        <field name="restrict_transactions_to_number_orders">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Restrict Transactions to N Orders</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">affiliate_program</item>
+                    <item name="dataScope" xsi:type="string">restrict_transactions_to_number_orders</item>
+                    <item name="notice" xsi:type="string" translate="true">Specify the number of orders the affiliate will earn the commission for with one shared coupon code or referral link. Enter the value more than 0 to use this feature.</item>
+                    <item name="component" xsi:type="string">Amasty_Affiliate/js/form/visible-on-option/program/withdrawal-type/text</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="per_sale" xsi:type="string">per_sale</item>
+                    </item>
+                    <item name="validation" xsi:type="array">
+                        <item name="integer" xsi:type="boolean">true</item>
+                        <item name="validate-zero-or-greater" xsi:type="boolean">true</item>
+                        <item name="validate-digits" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="from_second_order">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="label" xsi:type="string" translate="true">Use different commission from 2nd order of a Customer.</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">affiliate_program</item>
+                    <item name="dataScope" xsi:type="string">from_second_order</item>
+                    <item name="notice" xsi:type="string" translate="true">Select "No" to apply the above commission to all orders.</item>
+                    <item name="component" xsi:type="string">Amasty_Affiliate/js/form/visible-on-option/program/withdrawal-type/select</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="per_sale" xsi:type="string">per_sale</item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+            </argument>
+        </field>
+        <field name="commission_type_second">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Commission Type (from 2nd order)</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">affiliate_program</item>
+                    <item name="dataScope" xsi:type="string">commission_type_second</item>
+                    <item name="component" xsi:type="string">Amasty_Affiliate/js/form/visible-on-option/program/second-order/select</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="1" xsi:type="number">1</item>
+                    </item>
+                    <item name="secondValuesForOptions" xsi:type="array">
+                        <item name="per_sale" xsi:type="string">per_sale</item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="object">Amasty\Affiliate\Model\Program\Source\CommissionType</item>
+            </argument>
+        </field>
+        <field name="commission_value_second">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Commission Value (from 2nd order)</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">affiliate_program</item>
+                    <item name="dataScope" xsi:type="string">commission_value_second</item>
+                    <item name="component" xsi:type="string">Amasty_Affiliate/js/form/visible-on-option/program/second-order/text</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="1" xsi:type="number">1</item>
+                    </item>
+                    <item name="secondValuesForOptions" xsi:type="array">
+                        <item name="per_sale" xsi:type="string">per_sale</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="is_lifetime">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="label" xsi:type="string" translate="true">Keep paying commissions to the first affiliate</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">affiliate_program</item>
+                    <item name="dataScope" xsi:type="string">is_lifetime</item>
+                    <item name="notice" xsi:type="string" translate="true">If 'Yes': When a customer first buys products through the affiliate A's link, but later makes purchases using B's links, the transaction will still be counted for the affiliate A.</item>
+                </item>
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="commission_calculation">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Commission Calculation</item>
+                <item name="component" xsi:type="string">Amasty_Affiliate/js/form/element/program/commission-fieldset</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">30</item>
+                <item name="opened" xsi:type="boolean">true</item>
+                <item name="imports" xsi:type="array">
+                    <item name="withdrawalType" xsi:type="string">${ $.parentName }.commission.withdrawal_type:value</item>
+                    <item name="commissionType" xsi:type="string">${ $.parentName }.commission.commission_value_type:value</item>
+                </item>
+            </item>
+        </argument>
+        <component name="variable">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="template" xsi:type="string">Amasty_Affiliate/form/element/program/notice</item>
+                    <item name="value" xsi:type="string" translate="true"><![CDATA[
+This configuration is applicable to the Percent Commission Type only.
+                    ]]></item>
+                    <item name="sortOrder" xsi:type="number">1</item>
+                </item>
+            </argument>
+        </component>
+        <field name="commission_calc_is_enabled">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Calculate Commission for Specific Products.</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">affiliate_program</item>
+                    <item name="dataScope" xsi:type="string">commission_calculation.is_enabled</item>
+                    <item name="notice" translate="true" xsi:type="string">Select 'Yes' if you'd like to calculate commission for specific products.</item>
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="switcherConfig" xsi:type="array">
+                        <item name="enabled" xsi:type="boolean">true</item>
+                        <item name="rules" xsi:type="array">
+                            <item name="0" xsi:type="array">
+                                <item name="value" xsi:type="string">0</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">amasty_affiliate_program_form.amasty_affiliate_program_form.commission_calculation.commission_calc_action_strategy</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">amasty_affiliate_program_form.amasty_affiliate_program_form.commission_calculation.commission_calc_skus</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+                                    </item>
+                                    <item name="2" xsi:type="array">
+                                        <item name="target" xsi:type="string">amasty_affiliate_program_form.amasty_affiliate_program_form.commission_calculation.commission_calc_categories</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">1</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">amasty_affiliate_program_form.amasty_affiliate_program_form.commission_calculation.commission_calc_action_strategy</item>
+                                        <item name="callback" xsi:type="string">show</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">amasty_affiliate_program_form.amasty_affiliate_program_form.commission_calculation.commission_calc_skus</item>
+                                        <item name="callback" xsi:type="string">show</item>
+                                    </item>
+                                    <item name="2" xsi:type="array">
+                                        <item name="target" xsi:type="string">amasty_affiliate_program_form.amasty_affiliate_program_form.commission_calculation.commission_calc_categories</item>
+                                        <item name="callback" xsi:type="string">show</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+            </argument>
+        </field>
+        <field name="commission_calc_action_strategy">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Action</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">affiliate_program</item>
+                    <item name="dataScope" xsi:type="string">commission_calculation.action_strategy</item>
+                    <item name="default" xsi:type="string">1</item>
+                </item>
+                <item name="options" xsi:type="object">Amasty\Affiliate\Model\Program\Source\CommissionActionStrategy</item>
+            </argument>
+        </field>
+        <field name="commission_calc_skus">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">SKU</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="dataScope" xsi:type="string">commission_calculation.skus</item>
+                    <item name="noticeMap" xsi:type="array">
+                        <item name="0" xsi:type="string" translate="true">Specify a comma-separated list of SKUs affiliates can’t earn the commission for.</item>
+                        <item name="1" xsi:type="string" translate="true">Specify a comma-separated list of SKUs affiliates can earn the commission for.</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="notice" xsi:type="string">${ $.parentName }.commission_calc_action_strategy:value</item>
+                    </item>
+                    <item name="template" xsi:type="string">Amasty_Affiliate/form/notice_field</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">Enter the details in either SKU or Category field to make this feature work. Otherwise, it’ll be ignored and commission will be calculated for all products.</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="commission_calc_categories">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Category</item>
+                    <item name="additionalClasses" xsi:type="string">amaffiliate-ui-select</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Catalog/js/components/new-category</item>
+                    <item name="elementTmpl" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                    <item name="dataScope" xsi:type="string">commission_calculation.categories</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="noticeMap" xsi:type="array">
+                        <item name="0" xsi:type="string" translate="true">Specify categories of products affiliates can't earn the commission for.</item>
+                        <item name="1" xsi:type="string" translate="true">Specify categories of products affiliates can earn the commission for.</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="notice" xsi:type="string">${ $.parentName }.commission_calc_action_strategy:value</item>
+                    </item>
+                    <item name="template" xsi:type="string">Amasty_Affiliate/form/notice_field</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">Enter the details in either SKU or Category field to make this feature work. Otherwise, it’ll be ignored and commission will be calculated for all products.</item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="object">Magento\Catalog\Ui\Component\Product\Form\Categories\Options</item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="customers_and_customers_groups">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Customers and Customer Groups</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">40</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <component name="variable">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="template" xsi:type="string">Amasty_Affiliate/form/element/program/notice</item>
+                    <item name="value" xsi:type="string" translate="true"><![CDATA[
+Unless a particular Group (or Customer) is selected here, any Customer who is allowed to be an Affiliate may issue Coupons and Affiliate links related to this Program.</br>
+Customers selected in Customers list will be allowed regardless of this program's Customer Groups configuration.</br>
+Does not affect which Customers may use Affiliate links and Coupons.
+                    ]]></item>
+                    <item name="sortOrder" xsi:type="number">1</item>
+                </item>
+            </argument>
+        </component>
+        <field name="available_groups">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Customer Groups</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">groupcat_rule</item>
+                    <item name="dataScope" xsi:type="string">available_groups</item>
+                    <item name="sortOrder" xsi:type="string">40</item>
+                </item>
+                <item name="options" xsi:type="object">Amasty\Affiliate\Model\Rule\CustomerGroupsOptionsProvider</item>
+            </argument>
+        </field>
+        <field name="available_customers">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Customer IDs</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="notice" xsi:type="string" translate="true">Comma-separated.</item>
+                </item>
+            </argument>
+        </field>
+
+        <container name="modal">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="componentType" xsi:type="string">modal</item>
+                    <item name="targetField" xsi:type="string">amasty_affiliate_program_form.amasty_affiliate_program_form.customers_and_customers_groups.available_customers</item>
+                    <item name="component" xsi:type="string">Amasty_Affiliate/js/modal/modal-select-customers</item>
+                    <item name="options" xsi:type="array">
+                        <item name="type" xsi:type="string">slide</item>
+                        <item name="title" xsi:type="string" translate="true">Select Customers</item>
+                        <item name="buttons" xsi:type="array">
+                            <item name="0" xsi:type="array">
+                                <item name="text" xsi:type="string" translate="true">Cancel</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="string">closeModal</item>
+                                </item>
+                            </item>
+                            <item name="1" xsi:type="array">
+                                <item name="text" xsi:type="string" translate="true">Add Selected Customers</item>
+                                <item name="class" xsi:type="string">action-primary</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="targetName" xsi:type="string">${ $.name }</item>
+                                        <item name="actionName" xsi:type="string">setSelectedCustomers</item>
+                                    </item>
+                                    <item name="1" xsi:type="string">closeModal</item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+            <insertListing name="customer_grid">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="component" xsi:type="string">Amasty_Affiliate/js/modal/listing/insert-listing</item>
+                        <item name="targetField" xsi:type="string">amasty_affiliate_program_form.amasty_affiliate_program_form.customers_and_customers_groups.available_customers</item>
+                        <!--Avoid admin__scope-old cssclass assign -->
+                        <item name="cssclass" xsi:type="string">customer-grid-insert-listing</item>
+                        <item name="dataScope" xsi:type="string">customers</item>
+                        <item name="autoRender" xsi:type="boolean">false</item>
+                        <item name="selectionsProvider" xsi:type="string">amasty_affiliate_customer_listing.amasty_affiliate_customer_listing.amasty_affiliate_customer_columns.ids</item>
+                        <item name="externalProvider" xsi:type="string">amasty_affiliate_customer_listing.amasty_affiliate_customer_data_source</item>
+                        <item name="ns" xsi:type="string">amasty_affiliate_customer_listing</item>
+                        <item name="realTimeLink" xsi:type="boolean">true</item>
+                        <item name="behaviourType" xsi:type="string">simple</item>
+                        <item name="dataLinks" xsi:type="array">
+                            <item name="imports" xsi:type="boolean">false</item>
+                            <item name="exports" xsi:type="boolean">false</item>
+                        </item>
+                        <item name="externalFilterMode" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </insertListing>
+        </container>
+        <container name="buttons">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="required" xsi:type="boolean">true</item>
+                    <item name="label" xsi:type="string" translate="true">List your customers:</item>
+                    <item name="labelVisible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">container</item>
+                    <item name="componentType" xsi:type="string">container</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/button</item>
+                    <item name="template" xsi:type="string">ui/form/components/button/container</item>
+                    <item name="additionalClasses" xsi:type="string">admin__field-small</item>
+                    <item name="title" xsi:type="string" translate="true">Add Customers</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${$.parentName}.modal</item>
+                            <item name="actionName" xsi:type="string">toggleModal</item>
+                        </item>
+                        <item name="1" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${$.parentName}.modal.customer_grid</item>
+                            <item name="actionName" xsi:type="string">render</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </container>
+    </fieldset>
+</form>

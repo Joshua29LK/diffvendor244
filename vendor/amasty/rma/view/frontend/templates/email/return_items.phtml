@@ -1,0 +1,49 @@
+<?php
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package Amasty_Rma
+*/
+?>
+<?php
+/** @var \Amasty\Rma\Model\Request\Email\EmailRequestItem[] $items */
+$items = $block->getReturnItems();
+?>
+<table class="email-items">
+    <thead>
+        <tr>
+            <th class="item-info">
+                <?= $block->escapeHtml(__('SKU')); ?>
+            </th>
+            <th class="item-qty">
+                <?= $block->escapeHtml(__('Qty')); ?>
+            </th>
+            <th class="item-info">
+                <?= $block->escapeHtml(__('Reason')); ?>
+            </th>
+            <th class="item-info">
+                <?= $block->escapeHtml(__('Condition')); ?>
+            </th>
+            <th class="item-info">
+                <?= $block->escapeHtml(__('Resolution')); ?>
+            </th>
+            <th class="item-info">
+                <?= $block->escapeHtml(__('Status')); ?>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php if ($items):
+        foreach ($items as $item): ?>
+            <tr>
+                <td><?= $block->escapeHtml($item->getItemSku()); ?></td>
+                <td><?= $block->escapeHtml($item->getQty()); ?></td>
+                <td><?= $block->escapeHtml($item->getReason()); ?></td>
+                <td><?= $block->escapeHtml($item->getCondition()); ?></td>
+                <td><?= $block->escapeHtml($item->getResolution()); ?></td>
+                <td><?= $block->escapeHtml($item->getStatus()); ?></td>
+            </tr>
+        <?php endforeach;
+    endif;?>
+    </tbody>
+</table>

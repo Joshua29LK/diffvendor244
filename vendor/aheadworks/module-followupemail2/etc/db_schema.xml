@@ -1,0 +1,432 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="aw_fue2_campaign" resource="default" engine="innodb" comment="AW Follow Up Email 2 Campaign">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Campaign Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <column xsi:type="datetime" name="start_date" on_update="false" nullable="true"/>
+        <column xsi:type="datetime" name="end_date" on_update="false" nullable="true"/>
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Status"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="AW_FUE2_CAMPAIGN_START_DATE" indexType="btree">
+            <column name="start_date"/>
+        </index>
+        <index referenceId="AW_FUE2_CAMPAIGN_END_DATE" indexType="btree">
+            <column name="end_date"/>
+        </index>
+        <index referenceId="AW_FUE2_CAMPAIGN_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+    </table>
+    <table name="aw_fue2_event" resource="default" engine="innodb" comment="AW Follow Up Email 2 Event">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Event Id"/>
+        <column xsi:type="int" name="campaign_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Campaign Id"/>
+        <column xsi:type="varchar" name="event_type" nullable="false" length="128" comment="Event Type"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="varchar" name="bcc_emails" nullable="true" length="255" comment="BCC Email(s)"/>
+        <column xsi:type="smallint" name="newsletter_only" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Send to Newsletter Subscribers Only"/>
+        <column xsi:type="smallint" name="failed_emails_mode" padding="5" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Failed Emails Mode"/>
+        <column xsi:type="varchar" name="product_type_ids" nullable="false" length="255" comment="Product Type IDs"/>
+        <column xsi:type="mediumtext" name="cart_conditions" nullable="false" comment="Cart Conditions"
+                disabled="true"/>
+        <column xsi:type="mediumtext" name="lifetime_conditions" nullable="false" comment="Lifetime Conditions"
+                disabled="true"/>
+        <column xsi:type="varchar" name="customer_groups" nullable="false" length="255" comment="Customer Groups"/>
+        <column xsi:type="varchar" name="order_statuses" nullable="false" length="255" comment="Order Statuses"/>
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false"
+                default="1" comment="Status"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_FUE2_EVENT_CAMPAIGN_ID_AW_FUE2_CAMPAIGN_ID" table="aw_fue2_event"
+                    column="campaign_id" referenceTable="aw_fue2_campaign" referenceColumn="id" onDelete="CASCADE"/>
+        <index referenceId="AW_FUE2_EVENT_EVENT_TYPE" indexType="btree">
+            <column name="event_type"/>
+        </index>
+        <index referenceId="AW_FUE2_EVENT_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+    </table>
+    <table name="aw_fue2_event_store" resource="default" engine="innodb"
+           comment="AW Follow Up Email 2 Event To Store Linkage Table">
+        <column xsi:type="int" name="event_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Event ID"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="event_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_FUE2_EVENT_STORE_EVENT_ID_AW_FUE2_EVENT_ID"
+                    table="aw_fue2_event_store" column="event_id" referenceTable="aw_fue2_event" referenceColumn="id"
+                    onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="AW_FUE2_EVENT_STORE_STORE_ID_STORE_STORE_ID"
+                    table="aw_fue2_event_store" column="store_id" referenceTable="store" referenceColumn="store_id"
+                    onDelete="CASCADE"/>
+        <index referenceId="AW_FUE2_EVENT_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+    <table name="aw_fue2_event_email" resource="default" engine="innodb" comment="AW Follow Up Email 2 Event Email">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Mail Id"/>
+        <column xsi:type="int" name="event_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Event Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="smallint" name="email_send_days" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Email Send Days"/>
+        <column xsi:type="smallint" name="email_send_hours" padding="5" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Email Send Hours"/>
+        <column xsi:type="smallint" name="email_send_minutes" padding="5" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Email Send Minutes"/>
+        <column xsi:type="smallint" name="when" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="When"/>
+        <column xsi:type="smallint" name="position" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Position"/>
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Status"/>
+        <column xsi:type="smallint" name="ab_testing_mode" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="AB Testing Mode"/>
+        <column xsi:type="smallint" name="primary_email_content" padding="5" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Primary Email Content"/>
+        <column xsi:type="smallint" name="ab_email_content" padding="5" unsigned="true" nullable="false"
+                identity="false" default="0" comment="AB Email Content"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_FUE2_EVENT_EMAIL_EVENT_ID_AW_FUE2_EVENT_ID"
+                    table="aw_fue2_event_email" column="event_id" referenceTable="aw_fue2_event" referenceColumn="id"
+                    onDelete="CASCADE"/>
+        <index referenceId="AW_FUE2_EVENT_EMAIL_POSITION" indexType="btree">
+            <column name="position"/>
+        </index>
+        <index referenceId="AW_FUE2_EVENT_EMAIL_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+    </table>
+    <table name="aw_fue2_event_email_content" resource="default" engine="innodb"
+           comment="AW Follow Up Email 2 Event Mail Content">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Content Id"/>
+        <column xsi:type="int" name="email_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Event Mail Id"/>
+        <column xsi:type="varchar" name="sender_name" nullable="false" length="255" comment="Sender Name"/>
+        <column xsi:type="varchar" name="sender_email" nullable="false" length="255" comment="Sender Email"/>
+        <column xsi:type="varchar" name="subject" nullable="false" length="255" comment="Subject"/>
+        <column xsi:type="mediumtext" name="content" nullable="false" comment="Content"/>
+        <column xsi:type="varchar" name="header_template" nullable="false" length="255" comment="Header Template"/>
+        <column xsi:type="varchar" name="footer_template" nullable="false" length="255" comment="Footer Template"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_FUE2_EVENT_EMAIL_CONTENT_EMAIL_ID_AW_FUE2_EVENT_EMAIL_ID"
+                    table="aw_fue2_event_email_content" column="email_id" referenceTable="aw_fue2_event_email"
+                    referenceColumn="id" onDelete="CASCADE"/>
+    </table>
+    <table name="aw_fue2_event_history" resource="default" engine="innodb" comment="AW Follow Up Email 2 Event History">
+        <column xsi:type="bigint" name="id" padding="20" unsigned="true" nullable="false" identity="true"
+                comment="Event History Id"/>
+        <column xsi:type="int" name="reference_id" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Reference Id"/>
+        <column xsi:type="varchar" name="event_type" nullable="false" length="128" comment="Event Type"/>
+        <column xsi:type="mediumtext" name="event_data" nullable="false" comment="Event Data"/>
+        <column xsi:type="timestamp" name="triggered_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Triggered At"/>
+        <column xsi:type="smallint" name="processed" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Is Processed"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="AW_FUE2_EVENT_HISTORY_REFERENCE_ID" indexType="btree">
+            <column name="reference_id"/>
+        </index>
+        <index referenceId="AW_FUE2_EVENT_HISTORY_EVENT_TYPE" indexType="btree">
+            <column name="event_type"/>
+        </index>
+        <index referenceId="AW_FUE2_EVENT_HISTORY_PROCESSED" indexType="btree">
+            <column name="processed"/>
+        </index>
+    </table>
+    <table name="aw_fue2_event_queue" resource="default" engine="innodb" comment="AW Follow Up Email 2 Event Queue">
+        <column xsi:type="bigint" name="id" padding="20" unsigned="true" nullable="false" identity="true"
+                comment="Event Queue Id"/>
+        <column xsi:type="int" name="event_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Event Id"/>
+        <column xsi:type="varchar" name="event_type" nullable="false" length="128" comment="Event Type"/>
+        <column xsi:type="int" name="reference_id" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Reference Id"/>
+        <column xsi:type="mediumtext" name="event_data" nullable="false" comment="Event Data"/>
+        <column xsi:type="varchar" name="security_code" nullable="false" length="128" comment="Security Code"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Status"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_FUE2_EVENT_QUEUE_EVENT_ID_AW_FUE2_EVENT_ID"
+                    table="aw_fue2_event_queue" column="event_id" referenceTable="aw_fue2_event" referenceColumn="id"
+                    onDelete="CASCADE"/>
+        <index referenceId="AW_FUE2_EVENT_QUEUE_REFERENCE_ID" indexType="btree">
+            <column name="reference_id"/>
+        </index>
+        <index referenceId="AW_FUE2_EVENT_QUEUE_EVENT_TYPE" indexType="btree">
+            <column name="event_type"/>
+        </index>
+        <index referenceId="AW_FUE2_EVENT_QUEUE_SECURITY_CODE" indexType="btree">
+            <column name="security_code"/>
+        </index>
+        <index referenceId="AW_FUE2_EVENT_QUEUE_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+    </table>
+    <table name="aw_fue2_event_queue_email" resource="default" engine="innodb"
+           comment="AW Follow Up Email 2 Event Queue Email">
+        <column xsi:type="bigint" name="id" padding="20" unsigned="true" nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="bigint" name="event_queue_id" padding="20" unsigned="true" nullable="false" identity="false"
+                comment="Event Queue Id"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Updated At"/>
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Status"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_FUE2_EVENT_QUEUE_EMAIL_EVENT_QUEUE_ID_AW_FUE2_EVENT_QUEUE_ID"
+                    table="aw_fue2_event_queue_email" column="event_queue_id" referenceTable="aw_fue2_event_queue"
+                    referenceColumn="id" onDelete="CASCADE"/>
+        <index referenceId="AW_FUE2_EVENT_QUEUE_EMAIL_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+    </table>
+    <table name="aw_fue2_email_queue" resource="default" engine="innodb" comment="AW Follow Up Email 2 Email Queue">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Mail Queue Id"/>
+        <column xsi:type="int" name="event_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Event Id"/>
+        <column xsi:type="int" name="event_email_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Event Email Id"/>
+        <column xsi:type="int" name="email_content_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Email Content Id"/>
+        <column xsi:type="bigint" name="event_queue_email_id" padding="20" unsigned="true" nullable="true"
+                identity="false" comment="Event Queue Email Id"/>
+        <column xsi:type="varchar" name="event_type" nullable="false" length="128" comment="Event Type"/>
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Status"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <column xsi:type="timestamp" name="scheduled_at" on_update="true" nullable="true" default="CURRENT_TIMESTAMP"
+                comment="Scheduled At"/>
+        <column xsi:type="timestamp" name="sent_at" on_update="false" nullable="true" comment="Sent At"/>
+        <column xsi:type="int" name="store_id" padding="11" unsigned="false" nullable="false" identity="false"
+                comment="Store Id"/>
+        <column xsi:type="varchar" name="sender_name" nullable="false" length="255" comment="Sender Name"/>
+        <column xsi:type="varchar" name="sender_email" nullable="false" length="255" comment="Sender Email"/>
+        <column xsi:type="varchar" name="recipient_name" nullable="false" length="255" comment="Recipient Name"/>
+        <column xsi:type="varchar" name="recipient_email" nullable="false" length="255" comment="Recipient Email"/>
+        <column xsi:type="varchar" name="subject" nullable="true" length="255" comment="Subject"/>
+        <column xsi:type="mediumtext" name="content" nullable="true" comment="Content"/>
+        <column xsi:type="smallint" name="content_version" padding="5" unsigned="true" nullable="true" identity="false"
+                comment="Content Version"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_FUE2_EMAIL_QUEUE_EVENT_ID_AW_FUE2_EVENT_ID"
+                    table="aw_fue2_email_queue" column="event_id" referenceTable="aw_fue2_event" referenceColumn="id"
+                    onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="AW_FUE2_EMAIL_QUEUE_EVENT_EMAIL_ID_AW_FUE2_EVENT_EMAIL_ID"
+                    table="aw_fue2_email_queue" column="event_email_id" referenceTable="aw_fue2_event_email"
+                    referenceColumn="id" onDelete="CASCADE"/>
+        <index referenceId="AW_FUE2_EMAIL_QUEUE_EVENT_TYPE" indexType="btree">
+            <column name="event_type"/>
+        </index>
+        <index referenceId="AW_FUE2_EMAIL_QUEUE_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+        <index referenceId="AW_FUE2_EMAIL_QUEUE_SCHEDULED_AT" indexType="btree">
+            <column name="scheduled_at"/>
+        </index>
+        <index referenceId="AW_FUE2_EMAIL_QUEUE_SENT_AT" indexType="btree">
+            <column name="sent_at"/>
+        </index>
+    </table>
+    <table name="aw_fue2_order_quote" resource="default" engine="innodb" comment="AW Follow Up Email 2 Order Quote">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Order Id"/>
+        <column xsi:type="mediumtext" name="quote_data" nullable="false" comment="Quote Data"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="AW_FUE2_ORDER_QUOTE_ORDER_ID" indexType="btree">
+            <column name="order_id"/>
+        </index>
+    </table>
+    <table name="aw_fue2_statistics_history" resource="default" engine="innodb"
+           comment="AW Follow Up Email 2 Statistics History">
+        <column xsi:type="bigint" name="id" padding="20" unsigned="true" nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="varchar" name="email" nullable="false" length="255" comment="Email"/>
+        <column xsi:type="int" name="email_content_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Email Content Id"/>
+        <column xsi:type="int" name="sent" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Sent"/>
+        <column xsi:type="int" name="opened" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Opened"/>
+        <column xsi:type="int" name="clicked" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Clicked"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="FK_EAD875589713301711F09CC401383E2A"
+                    table="aw_fue2_statistics_history" column="email_content_id"
+                    referenceTable="aw_fue2_event_email_content" referenceColumn="id" onDelete="CASCADE"/>
+    </table>
+    <table name="aw_fue2_statistics" resource="default" engine="innodb" comment="AW Follow Up Email 2 Statistics">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="varchar" name="email" nullable="false" length="255" comment="Email"/>
+        <column xsi:type="int" name="event_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Event Id"/>
+        <column xsi:type="int" name="event_email_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Event Email Id"/>
+        <column xsi:type="int" name="email_content_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Email Content Id"/>
+        <column xsi:type="int" name="sent" padding="10" unsigned="true" nullable="false" identity="false" default="0"
+                comment="Sent"/>
+        <column xsi:type="int" name="opened" padding="10" unsigned="true" nullable="false" identity="false" default="0"
+                comment="Opened"/>
+        <column xsi:type="int" name="clicked" padding="10" unsigned="true" nullable="false" identity="false" default="0"
+                comment="Clicked"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_FUE2_STATISTICS_EVENT_ID_AW_FUE2_EVENT_ID"
+                    table="aw_fue2_statistics" column="event_id" referenceTable="aw_fue2_event" referenceColumn="id"
+                    onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="AW_FUE2_STATISTICS_EVENT_EMAIL_ID_AW_FUE2_EVENT_EMAIL_ID"
+                    table="aw_fue2_statistics" column="event_email_id" referenceTable="aw_fue2_event_email"
+                    referenceColumn="id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="FK_3C9F1B7EF732D59B1301DE0F1EFCF18A" table="aw_fue2_statistics"
+                    column="email_content_id" referenceTable="aw_fue2_event_email_content" referenceColumn="id"
+                    onDelete="CASCADE"/>
+    </table>
+    <table name="aw_fue2_unsubscribe" resource="default" engine="innodb" comment="AW Follow Up Unsubscribe">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Store Id"/>
+        <column xsi:type="varchar" name="email" nullable="false" length="255" comment="Email"/>
+        <column xsi:type="smallint" name="type" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Type"/>
+        <column xsi:type="varchar" name="value" nullable="true" length="128" comment="Value"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_FUE2_UNSUBSCRIBE_STORE_ID_STORE_STORE_ID"
+                    table="aw_fue2_unsubscribe" column="store_id" referenceTable="store" referenceColumn="store_id"
+                    onDelete="CASCADE"/>
+        <index referenceId="AW_FUE2_UNSUBSCRIBE_STORE_ID_EMAIL_TYPE_VALUE" indexType="btree">
+            <column name="store_id"/>
+            <column name="email"/>
+            <column name="type"/>
+            <column name="value"/>
+        </index>
+        <index referenceId="AW_FUE2_UNSUBSCRIBE_STORE_ID_EMAIL_TYPE" indexType="btree">
+            <column name="store_id"/>
+            <column name="email"/>
+            <column name="type"/>
+        </index>
+        <index referenceId="AW_FUE2_UNSUBSCRIBE_STORE_ID_EMAIL" indexType="btree">
+            <column name="store_id"/>
+            <column name="email"/>
+        </index>
+    </table>
+    <table name="aw_fue2_config" resource="default" engine="innodb" comment="AW Follow Up Email 2 Config">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Parameter Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="128" comment="Parameter Name"/>
+        <column xsi:type="varchar" name="value" nullable="false" length="255" comment="Value"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+    <table name="aw_fue2_event_conditions" resource="default" engine="innodb" comment="aw_fue2_event_conditions">
+        <column xsi:type="int" name="event_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Event Id"/>
+        <column xsi:type="smallint" name="type" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Conditions Type"/>
+        <column xsi:type="mediumtext" name="value" nullable="false" comment="Conditions"/>
+        <constraint xsi:type="foreign" referenceId="AW_FUE2_EVENT_CONDITIONS_EVENT_ID_AW_FUE2_EVENT_ID"
+                    table="aw_fue2_event_conditions" column="event_id" referenceTable="aw_fue2_event"
+                    referenceColumn="id" onDelete="CASCADE"/>
+        <index referenceId="AW_FUE2_EVENT_CONDITIONS_EVENT_ID_TYPE" indexType="btree">
+            <column name="event_id"/>
+            <column name="type"/>
+        </index>
+    </table>
+    <table name="aw_fue2_scheduled_emails" resource="default" engine="innodb"
+           comment="AW Follow Up Email 2 Scheduled Emails Indexer">
+        <column xsi:type="bigint" name="event_queue_id" padding="20" unsigned="true" nullable="false" identity="false"
+                comment="Event Queue Id"/>
+        <column xsi:type="varchar" name="campaign_name" nullable="false" length="255" comment="Campaign Name"/>
+        <column xsi:type="varchar" name="event_name" nullable="false" length="255" comment="Event Name"/>
+        <column xsi:type="varchar" name="event_type" nullable="false" length="128" comment="Event Type"/>
+        <column xsi:type="varchar" name="email_name" nullable="false" length="255" comment="Email Name"/>
+        <column xsi:type="smallint" name="ab_testing_mode" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="AB Testing Mode"/>
+        <column xsi:type="varchar" name="recipient_name" nullable="false" length="255" comment="Recipient Name"/>
+        <column xsi:type="varchar" name="recipient_email" nullable="false" length="255" comment="Recipient Email"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Store Id"/>
+        <column xsi:type="timestamp" name="scheduled_to" on_update="false" nullable="true" comment="Scheduled To"/>
+        <constraint xsi:type="foreign" referenceId="AW_FUE2_SCHEDULED_EMAILS_EVENT_QUEUE_ID_AW_FUE2_EVENT_QUEUE_ID"
+                    table="aw_fue2_scheduled_emails" column="event_queue_id" referenceTable="aw_fue2_event_queue"
+                    referenceColumn="id" onDelete="CASCADE"/>
+        <index referenceId="AW_FUE2_SCHEDULED_EMAILS_SCHEDULED_TO" indexType="btree">
+            <column name="scheduled_to"/>
+        </index>
+    </table>
+    <table name="aw_fue2_scheduled_emails_idx" resource="default" engine="innodb"
+           comment="AW Follow Up Email 2 Scheduled Emails Indexer Idx">
+        <column xsi:type="int" name="event_queue_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Event Queue Id"/>
+        <column xsi:type="varchar" name="campaign_name" nullable="false" length="255" comment="Campaign Name"/>
+        <column xsi:type="varchar" name="event_name" nullable="false" length="255" comment="Event Name"/>
+        <column xsi:type="varchar" name="event_type" nullable="false" length="128" comment="Event Type"/>
+        <column xsi:type="varchar" name="email_name" nullable="false" length="255" comment="Email Name"/>
+        <column xsi:type="smallint" name="ab_testing_mode" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="AB Testing Mode"/>
+        <column xsi:type="varchar" name="recipient_name" nullable="false" length="255" comment="Recipient Name"/>
+        <column xsi:type="varchar" name="recipient_email" nullable="false" length="255" comment="Recipient Email"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Store Id"/>
+        <column xsi:type="timestamp" name="scheduled_to" on_update="false" nullable="true" comment="Scheduled To"/>
+    </table>
+    <table name="aw_fue2_event_aw_customer_segment" resource="default" engine="innodb"
+           comment="AW Follow Up Email 2 Event To AW Customer Segment Linkage Table">
+        <column xsi:type="int" name="event_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Event ID"/>
+        <column xsi:type="int" name="aw_customer_segment_id" padding="10" unsigned="true" nullable="false"
+                identity="false" comment="AW Customer Segment ID"/>
+        <constraint xsi:type="foreign" referenceId="AW_FUE2_EVENT_AW_CUSTOMER_SEGMENT_EVENT_ID_AW_FUE2_EVENT_ID"
+                    table="aw_fue2_event_aw_customer_segment" column="event_id" referenceTable="aw_fue2_event"
+                    referenceColumn="id" onDelete="CASCADE"/>
+        <index referenceId="AW_FUE2_EVENT_AW_CSTR_SEGMENT_EVENT_ID_AW_CSTR_SEGMENT_ID" indexType="btree">
+            <column name="event_id"/>
+            <column name="aw_customer_segment_id"/>
+        </index>
+    </table>
+</schema>

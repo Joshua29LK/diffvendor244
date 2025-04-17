@@ -1,0 +1,12 @@
+<div class="admin__data-grid-wrap" data-role="grid-wrapper">
+    <if args="hasData()">
+        <div class="data-row"
+            repeat="foreach: rows, item: '$row'"
+            attr="'data-tooltip-search-scope': 'search-scope-' + $index"
+            render="rowTmpl"></div>
+    </if>
+    <ifnot args="hasData()">
+        <div class="data-row-no-data" translate="'No Campaigns yet'"></div>
+        <div class="data-row-read-manual" html="getReadmeText()"></div>
+    </ifnot>
+</div>

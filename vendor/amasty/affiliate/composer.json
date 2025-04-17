@@ -1,0 +1,27 @@
+{
+    "name": "amasty\/affiliate",
+    "description": "Amasty Affiliate",
+    "require": {
+        "php": ">=7.3",
+        "amasty\/base": ">=1.13.3",
+        "magento\/framework": ">=102.0.1"
+    },
+    "type": "magento2-module",
+    "version": "2.1.5",
+    "suggest": {
+        "amasty\/module-affiliate-mftf-3": "Install module-affiliate-mftf-3 module to be able to run Affiliate MFTF tests for Magento 2.4.1 and higher.",
+        "amasty\/module-mixin-rewrite-patch": "Install mixin rewrite patch if you have a problem with extension on Magento 2.4.2+ version on Checkout",
+        "amasty\/module-affiliate-mftf-2": "Install module-affiliate-mftf-2 module to be able to run Affiliate MFTF tests for Magento 2.3.5 and higher."
+    },
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\Affiliate\\": ""
+        }
+    }
+}

@@ -1,0 +1,14 @@
+
+<div class="admin__field admin__field-option">
+    <input type="checkbox"
+           class="admin__control-checkbox"
+           simple-checked="checked"
+           ko-disabled="disabled"
+           ko-focused="focused"
+           ko-value="value"
+           attr="id: uid, name: inputName"/>
+
+    <label  attr="for: uid" class="admin__field-label" >
+        <text args="$data.description ? $data.description \: $t('Use')"></text> <a attr="href: $data.configSettingsUrl" target="_blank"><span translate="'Settings'" ></span></a>
+    </label>
+</div>

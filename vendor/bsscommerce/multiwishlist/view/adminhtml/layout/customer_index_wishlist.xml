@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * @category   BSS
+ * @package    Bss_MultiWishlist
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <referenceContainer name="root">
+        <referenceBlock name="customer.wishlist.edit.tab">
+            <referenceBlock name="customer.wishlist.edit.tab.columnSet">
+                <block class="Magento\Backend\Block\Widget\Grid\Column" as="wishlist_group" ifconfig="bss_multiwishlist/general/enable">
+                    <arguments>
+                        <argument name="header" xsi:type="string" translate="true">Wishlist Group</argument>
+                        <argument name="id" xsi:type="string">wishlist_name</argument>
+                        <argument name="index" xsi:type="string">wishlist_name</argument>
+                        <argument name="filter" xsi:type="string">Magento\Wishlist\Block\Adminhtml\Widget\Grid\Column\Filter\Text</argument>
+                        <argument name="column_css_class" xsi:type="string">col-name</argument>
+                        <argument name="header_css_class" xsi:type="string">col-name</argument>
+                    </arguments>
+                </block>
+            </referenceBlock>
+        </referenceBlock>
+    </referenceContainer>
+</layout>

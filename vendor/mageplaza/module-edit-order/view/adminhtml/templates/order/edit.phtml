@@ -1,0 +1,104 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_EditOrder
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var $helper \Mageplaza\EditOrder\Helper\Data */
+$helper = $this->helper(\Mageplaza\EditOrder\Helper\Data::class);
+
+/** @var \Mageplaza\EditOrder\Block\Adminhtml\Order\EditOrder $block */
+$order = $block->getCurrentOrder();
+$updateAfterEditingConfig = (int) $helper->getUpdateAfterEditing()[0];
+
+$isHaveInvoice = $block->getInvoiceColection() ? 1 : 0;
+$isCanCredit   = $helper->canCredit($order);
+
+$ssMessage1 = __("The order has been updated!");
+$ssMessage2 = __("The invoice, shipments and creditmemos has been updated!");
+?>
+
+<?php if ($block->getHelperData()->isEnabled($order->getStoreId()) && in_array($order->getStatus(), $helper->getEditableOrderStatus())): ?>
+    <input id="update-after-editing" value='<?= /** @noEscape */ $updateAfterEditingConfig ?>' type="hidden">
+    <form id="edit_form" data-order-config='<?= $block->escapeHtml($block->getOrderDataJson()) ?>'
+          data-load-base-url="<?= /* @noEscape */ $block->getLoadBlockUrl() ?>"
+          action="<?= /* @noEscape */ $block->getActionForm() ?>" method="post" enctype="multipart/form-data"
+          data-mage-init='{"validation":{}}'>
+        <div id="order-data">
+            <div id="order-message">
+                <script type="text/javascript">
+                    require(['jquery',], function ($) {
+                        $(document).ready(function(){
+                            var isHaveInvoice = <?= /* @noEscape */ $isHaveInvoice ?>,
+                                ssMessage2    = '';
+                            if (isHaveInvoice === 1 && localStorage.getItem("updateConfig") === '1') {
+                                ssMessage2 = '<br><span><?= /* @noEscape */ $ssMessage2 ?></span>';
+                            }
+
+                            if(localStorage.getItem("ss-messages") === '1') {
+                                $('#messages #mpeditorder-messages').append('<div class="message message-success success">' +
+                                    '<span><?= /* @noEscape */ $ssMessage1 ?></span>' +
+                                    ssMessage2 +
+                                    '</div>');
+                                localStorage.removeItem('ss-messages');
+                                localStorage.removeItem('updateConfig');
+                                $('html, body').animate({scrollTop: 0}, 'slow');
+                            }
+                        });
+                    });
+                </script>
+                <?= $block->getChildHtml('message') ?>
+            </div>
+            <?= $block->getChildHtml('mpeditorder_edit_order_info') ?>
+            <?= $block->getChildHtml('mpeditorder_edit_account_info') ?>
+            <?= $block->getChildHtml('mpeditorder_edit_billing_address') ?>
+            <?php if ($block->isVirtualProduct()): ?>
+                <?= $block->getChildHtml('mpeditorder_edit_shipping_address') ?>
+            <?php endif ?>
+            <?= $block->getChildHtml('mpeditorder_edit_payment_method') ?>
+            <?= $block->getChildHtml('mpeditorder_edit_shipping_method') ?>
+            <?= $block->getChildHtml('mpeditorder_edit_items') ?>
+            <?= $block->getChildHtml('mpeditorder_quick_edit') ?>
+        </div>
+    </form>
+
+    <script type="text/javascript">
+        require(['jquery',], function ($) {
+            $(window).on('load', function() {
+                setTimeout(function() {
+                    if(localStorage.getItem("isRecalculateShippingFee") === '1') {
+                        $('#mpeditorder-shipping-method-btn').trigger('click');
+                    }
+                    localStorage.removeItem('isRecalculateShippingFee');
+                }, 700);
+            });
+        });
+    </script>
+    <?php if (!$isCanCredit): ?>
+    <style>
+        button#order_creditmemo{
+            display: none;
+        }
+    </style>
+    <?php endif; ?>
+    <style>
+        .order-account-information .actions, .order-billing-address .actions, .order-shipping-address .actions {
+            display: none;
+        }
+    </style>
+<?php endif ?>

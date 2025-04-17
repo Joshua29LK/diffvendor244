@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="amasty_affiliate" translate="label" type="text" sortOrder="010606" showInDefault="1" showInWebsite="0"
+                 showInStore="0">
+            <label>Affiliate</label>
+            <tab>amasty</tab>
+            <resource>Amasty_Affiliate::settings</resource>
+            <group id="amasty_information" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Information</label>
+                <frontend_model>Amasty\Affiliate\Block\Adminhtml\System\Config\Information</frontend_model>
+            </group>
+            <group id="general" sortOrder="10" translate="label" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Settings</label>
+                <field id="link_to_footer" sortOrder="10" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Add Affiliate Link to Footer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cookie_expiration" sortOrder="20" translate="label comment" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cookie Expiration (Days)</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <comment>The number of days the system stores cookies for the affiliate program. Default: 365 (Days). If a referred visitor comes to
+                        your site using an affiliate link and completes any order within 365 days, he (she) will receive a discount and the affiliate will get a commission. After this period the affiliate won't earn
+                        any commission, a referred customer won't get a discount.</comment>
+                </field>
+            </group>
+            <group id="account" sortOrder="20" translate="label" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Account</label>
+                <field id="email_notifications" sortOrder="10" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Checked "Email Notifications" by Default</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If "Yes", the "Email notifications" subscription will be auto checked in the affiliate account.</comment>
+                </field>
+            </group>
+            <group id="url" sortOrder="30" translate="label" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Affiliate URL</label>
+                <field id="general_url" sortOrder="10" translate="label comment" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Affiliate General URL</label>
+                    <comment>This text replace amasty_affiliate in next url: {donmain}/amasty_affiliate/account/setting.</comment>
+                    <validate>validate-no-empty</validate>
+                </field>
+                <field id="parameter" sortOrder="20" translate="label comment" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Customer Parameter</label>
+                    <comment>It will be used in URLs such as: ?c=123</comment>
+                </field>
+                <field id="length" sortOrder="30" translate="label comment" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Affiliate code length</label>
+                    <comment>The code should contain from 4 to 31 symbols. '10' is set by default.</comment>
+                    <validate>validate-number validate-number-range number-range-4-31</validate>
+                </field>
+            </group>
+            <group id="commission" sortOrder="40" translate="label" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Commission Workflow</label>
+                <field id="add_commission_status" sortOrder="10" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Add Commission When Order Obtained Status</label>
+                    <source_model>Amasty\Affiliate\Model\Source\OrderStatus</source_model>
+                </field>
+                <field id="subtract_commission_status" sortOrder="20" translate="label comment" type="multiselect" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Subtract Commission When Order Obtained Status</label>
+                    <source_model>Amasty\Affiliate\Model\Source\OrderStatus</source_model>
+                    <comment>It works for the Pay per Sale programs only.</comment>
+                </field>
+                <field id="subtract_creditmemo" sortOrder="30" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Subtract Commission When Creditmemo is Created</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>It works for the Pay per Sale programs only.</comment>
+                </field>
+                <field id="holding_period" sortOrder="40" translate="label comment" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Commission Holding Period (Days)</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+            </group>
+            <group id="commission_calculation" sortOrder="46" translate="label" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Commission Configuration</label>
+                <field id="include_shipping" sortOrder="10" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Include Shipping</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable this setting if you’d like the system to take into account shipping price during commission calculation.</comment>
+                </field>
+                <field id="include_tax" sortOrder="10" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Include Tax</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable this setting if you’d like the system to take into account tax amount during commission calculation.</comment>
+                </field>
+            </group>
+            <group id="withdrawal" sortOrder="50" translate="label" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Withdrawal Configuration</label>
+                <field id="minimum_amount" sortOrder="10" translate="label comment" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Minimum Withdrawal Amount</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="minimum_balance" sortOrder="20" translate="label comment" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>The Minimum "Available" Balance to Request Withdrawal</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+            </group>
+            <group id="email" sortOrder="60" translate="label" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Email Notifications</label>
+                <group id="general" translate="label" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>General</label>
+                    <field id="recipient_email" sortOrder="10" translate="label" type="text" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="0">
+                        <label>Send Emails To</label>
+                        <validate>validate-email</validate>
+                    </field>
+                    <field id="sender_email_identity" sortOrder="20" translate="label" type="select" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="0">
+                        <label>Email Sender</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    </field>
+                </group>
+                <group id="affiliate" sortOrder="10" translate="label" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>To Affiliate</label>
+                    <field id="welcome" sortOrder="10" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Welcome Email After Sign Up</label>
+                        <frontend_class>requires requires-amasty_affiliate_email_general</frontend_class>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="welcome_template" sortOrder="20" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Template</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    </field>
+                    <field id="account_status" sortOrder="30" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Account Status Change</label>
+                        <frontend_class>requires requires-amasty_affiliate_email_general</frontend_class>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="account_status_template" sortOrder="40" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Template</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    </field>
+                    <field id="transaction_created" sortOrder="50" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>New Transaction is Created</label>
+                        <frontend_class>requires requires-amasty_affiliate_email_general</frontend_class>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="transaction_created_template" sortOrder="60" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Template</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    </field>
+                    <field id="transaction_changed" sortOrder="70" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Transaction Status is Changed</label>
+                        <frontend_class>requires requires-amasty_affiliate_email_general</frontend_class>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="transaction_changed_template" sortOrder="80" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Template</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    </field>
+                    <field id="withdrawal_changed" sortOrder="90" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Withdrawal Status is Changed</label>
+                        <frontend_class>requires requires-amasty_affiliate_email_general</frontend_class>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="withdrawal_changed_template" sortOrder="100" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Template</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    </field>
+                </group>
+                <group id="admin" sortOrder="20" translate="label" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>To Admin</label>
+                    <field id="withdrawal_request" sortOrder="10" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>New Withdrawal Request</label>
+                        <frontend_class>requires requires-amasty_affiliate_email_general</frontend_class>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="withdrawal_request_template" sortOrder="20" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Template</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    </field>
+                    <field id="new_affiliate" sortOrder="20" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>New Affiliate Sing Up</label>
+                        <frontend_class>requires requires-amasty_affiliate_email_general</frontend_class>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="new_affiliate_template" sortOrder="30" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Template</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    </field>
+                </group>
+            </group>
+            <group id="friends" sortOrder="70" translate="label" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Refer Friends</label>
+                <field id="account_id" sortOrder="10" translate="label comment" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>AddThis Account ID</label>
+                    <comment><![CDATA[Public AddThis Account ID ra-5968d339b0751a2f is used for testing purpose. Please click <a href="https://www.addthis.com" target="_blank">here</a> to get your own AddThis Account ID.]]></comment>
+                </field>
+                <field id="text" sortOrder="20" translate="label comment" type="textarea" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Refer Friends Page Content</label>
+                </field>
+                <field id="text_traffic" sortOrder="30" translate="label comment" type="textarea" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Traffic Sources Page Content</label>
+                </field>
+                <field id="on_product_listing" sortOrder="40" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable on Product Listing Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="on_product_details" sortOrder="50" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable on Product Details Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="on_my_account" sortOrder="60" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable on My Account / Affiliate menu </label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="terms" sortOrder="80" translate="label" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Terms and Conditions</label>
+                <field id="checkbox_text" sortOrder="10" translate="label comment" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Checkbox Text</label>
+                </field>
+                <field id="checkbox_checked" sortOrder="20" translate="label comment" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Checkbox is Checked by Default</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

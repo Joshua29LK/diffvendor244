@@ -1,0 +1,9 @@
+category_id,store_id,parent_id,path,name,description,custom_design,category_products,attribute_set_id,position,url_key,url_path,image,is_active,include_in_menu,landing_page,display_mode,page_layout,meta_title,meta_keywords,meta_description,custom_design_from,custom_design_to,default_sort_by,available_sort_by,is_anchor,custom_use_parent_settings,layered_navigation_price_step,custom_apply_to_products,custom_layout_update
+,0,4,1/2/3/4,Testtttttttt Sort,Test Importantttt,,24-MB01|24-MB04|24-MB03,3,2,,,black.jpg,1,1,1,PRODUCTS_AND_PAGE,2columns-left,12345,fdafsf,fdafsf,2016/03/13,2016/03/23,price,price|name,1,1,150,1,"<referenceContainer name=""content"">
+    <referenceBlock name=""category.products.list"">
+        <action method=""setTemplate"">
+            <argument name=""template"" xsi:type=""string"">Magento_Catalog::product/my-own-list.phtml</argument>
+        </action>
+    </referenceBlock>
+</referenceContainer>
+"

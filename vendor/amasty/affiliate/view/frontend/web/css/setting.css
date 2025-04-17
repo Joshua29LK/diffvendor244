@@ -1,0 +1,12 @@
+.actions-toolbar {
+    float: right;
+}
+
+fieldset.fieldset {
+    width: 35%;
+}
+
+.referring_code .control {
+    position: relative;
+    padding-right: 30px;
+}

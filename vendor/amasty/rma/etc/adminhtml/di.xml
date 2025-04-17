@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package Amasty_Rma
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Sales\Block\Adminhtml\Order\View">
+        <plugin name="CreateRMAButtonOnOrderView" type="Amasty\Rma\Plugin\OrderView\CreateRmaButton"/>
+    </type>
+    <type name="Magento\Sales\Model\AdminOrder\Create">
+        <plugin name="Amasty_Rma::handle_session_request_id" type="Amasty\Rma\Plugin\AdminOrder\CreatePlugin"/>
+    </type>
+    <type name="Amasty\Rma\Model\Request\ResourceModel\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">amasty_rma_request</argument>
+            <argument name="resourceModel" xsi:type="string">Amasty\Rma\Model\Request\ResourceModel\Request</argument>
+        </arguments>
+    </type>
+</config>

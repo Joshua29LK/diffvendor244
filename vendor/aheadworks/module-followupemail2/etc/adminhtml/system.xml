@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="aheadworks" translate="label" sortOrder="300">
+            <label>Aheadworks Extensions</label>
+        </tab>
+        <section id="followupemailtwo" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Follow Up Email 2</label>
+            <tab>aheadworks</tab>
+            <resource>Aheadworks_Followupemail2::config_followupemailtwo</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="sender" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sender</label>
+                    <comment>This will be used by default as "From" in outgoing emails</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="testemail" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Email Recipient</label>
+                    <validate>validate-email</validate>
+                </field>
+                <field id="bcc_email_addresses" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>BCC Email Address(es)</label>
+                    <validate>validate-emails</validate>
+                    <comment>Separate email addresses by commas</comment>
+                </field>
+                <field id="enabletestmode" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Mode</label>
+                    <comment>Send all emails to test recipient</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="maillog" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Mail Log</label>
+                <field id="keepfor" translate="label" type="text" sortOrder="10" showInDefault="1">
+                    <label>Keep Emails for, days</label>
+                    <comment>0 disables log cleaning. Not recommended.</comment>
+                    <validate>validate-digits</validate>
+                </field>
+            </group>
+            <group id="header_and_footer" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Header and Footer</label>
+                <field id="email_header_template" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header Template</label>
+                    <source_model>Aheadworks\Followupemail2\Model\Source\Email\Header</source_model>
+                </field>
+                <field id="email_footer_template" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer Template</label>
+                    <source_model>Aheadworks\Followupemail2\Model\Source\Email\Footer</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

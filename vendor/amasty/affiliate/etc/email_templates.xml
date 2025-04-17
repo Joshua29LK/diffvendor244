@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="amasty_affiliate_email_affiliate_welcome_template" label="Welcome email after sign up" file="amasty_affiliate_email_affiliate_welcome_template.html" type="html" module="Amasty_Affiliate" area="frontend"/>
+    <template id="amasty_affiliate_email_affiliate_withdrawal_changed_template" label="Withdrawal status is changed" file="amasty_affiliate_email_affiliate_withdrawal_changed_template.html" type="html" module="Amasty_Affiliate" area="frontend"/>
+    <template id="amasty_affiliate_email_affiliate_account_status_template" label="Account status change" file="amasty_affiliate_email_affiliate_account_status_template.html" type="html" module="Amasty_Affiliate" area="frontend"/>
+    <template id="amasty_affiliate_email_affiliate_transaction_created_template" label="New transaction" file="amasty_affiliate_email_affiliate_transaction_created_template.html" type="html" module="Amasty_Affiliate" area="frontend"/>
+    <template id="amasty_affiliate_email_affiliate_transaction_changed_template" label="Transaction status change" file="amasty_affiliate_email_affiliate_transaction_changed_template.html" type="html" module="Amasty_Affiliate" area="frontend"/>
+
+    <template id="amasty_affiliate_email_admin_withdrawal_request_template" label="New withdrawal request" file="amasty_affiliate_email_admin_withdrawal_request_template.html" type="html" module="Amasty_Affiliate" area="frontend"/>
+    <template id="amasty_affiliate_email_admin_new_affiliate_template" label="New affiliate sign up" file="amasty_affiliate_email_admin_new_affiliate_template.html" type="html" module="Amasty_Affiliate" area="frontend"/>
+</config>

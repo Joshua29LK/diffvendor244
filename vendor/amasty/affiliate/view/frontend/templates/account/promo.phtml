@@ -1,0 +1,171 @@
+<?php
+/** @var Magento\Framework\Escaper $escaper */
+/** @var \Amasty\Affiliate\Block\Account\Promo $block */
+/** @var \Amasty\Affiliate\Model\ResourceModel\Program\Collection $programs */
+$coupons = $block->getCoupons();
+/** @var \Amasty\Affiliate\Model\ResourceModel\Banner\Collection $banners */
+$banners = $block->getBanners();
+$i = 0;
+$j = 0;
+?>
+<div class="block">
+    <div class="block-title"><strong><?= $escaper->escapeHtml(__('Coupon Codes')) ?></strong></div>
+    <?php if ($coupons && count($coupons)): ?>
+        <div class="table-wrapper">
+            <table class="data table">
+                <caption class="table-caption"><?= $escaper->escapeHtml(__('Coupon Codes')) ?></caption>
+                <thead>
+                    <tr>
+                        <th scope="col" class="col"><?= $escaper->escapeHtml(__('Affiliate Program')) ?></th>
+                        <th scope="col" class="col"><?= $escaper->escapeHtml(__('Coupon Code')) ?></th>
+                        <th scope="col" class="col"><?= $escaper->escapeHtml(__('Custom Coupon Codes')) ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php /** @var \Amasty\Affiliate\Model\Coupon $coupon */foreach ($coupons as $coupon): ?>
+                    <tr>
+                        <?php $i++ ?>
+                        <td data-th="<?= $escaper->escapeHtml(__('Program Name')) ?>" class="col">
+                            <?= $escaper->escapeHtml($coupon->getName()) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Coupon Code')) ?>"
+                            class="col amaffiliate-coupon-code">
+                            <span id="post-shortlink-<?= $escaper->escapeHtml($i) ?>">
+                                <?= $escaper->escapeHtml($coupon->getCode()) ?>
+                            </span>
+                            <button class="amaffiliate-copy-button"
+                                    title="<?= $escaper->escapeHtml(__('Copy Coupon Code'))?>"
+                                    aria-label="<?= $escaper->escapeHtml(__('Copy Coupon Code'))?>"
+                                    data-amaffiliate-js="copy-button"
+                                    data-clipboard-target="#post-shortlink-<?= $escaper->escapeHtml($i) ?>"></button>
+                        </td>
+                        <td class="amaffiliate-coupon-code">
+                        <?php $customCoupons = $block->getCustomCoupons($coupon); ?>
+                        <?php /** @var \Amasty\Affiliate\Model\Coupon $customCoupon */
+                        foreach ($customCoupons as $customCoupon): ?>
+                            <div class="amaffiliate-wrapper">
+                                <span id="custom-coupon-<?= $escaper->escapeHtml($j) ?>"><?= $escaper->escapeHtml($customCoupon->getCode()) ?></span>
+                                <button class="amaffiliate-copy-button"
+                                        title="<?= $escaper->escapeHtml(__('Copy Coupon Code'))?>"
+                                        aria-label="<?= $escaper->escapeHtml(__('Copy Coupon Code'))?>"
+                                        data-amaffiliate-js="copy-button"
+                                        data-clipboard-target="#custom-coupon-<?= $escaper->escapeHtml($j) ?>">
+                                </button>
+                            </div>
+                        <?php $j++;?>
+                        <?php endforeach; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <i><?= $block->escapeHtml(__('Share the coupon and receive a commission for the purchase using this code.')) ?></i>
+        </div>
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+        <?php endif ?>
+    <?php else: ?>
+        <div class="message info empty"><span><?= $block->escapeHtml(__('You have no coupons.')); ?></span></div>
+    <?php endif ?>
+</div>
+<div class="block">
+    <div class="block-title"><strong><?= $block->escapeHtml(__('Referral Link')) ?></strong></div>
+    <div class="field input_link">
+        <label for="input-link" class="label">
+            <span>
+                <?= $block->escapeHtml(__('Enter any URL from this store in the form below to generate a new referral link')) ?>
+            </span>
+        </label>
+        <div class="control">
+            <input
+                    id="input-link-text"
+                    class="input-text"
+                    data-amaffiliate-js="input-link"
+                    type="text"
+                    name="input_link"
+                    title="<?= $block->escapeHtml(__('Enter any URL from this store
+                    in the form below to generate a new referral link')) ?>" />
+            <button
+                    class="button action primary affiliate_button"
+                    id="copy-button-link"
+                    data-amaffiliate-js="copy-button-link"
+                    data-clipboard-target="#affiliate-link"
+            />
+                <?= $block->escapeHtml(__('Copy')) ?>
+            </button>
+            <span id="affiliate-link" data-amaffiliate-js="affiliate-link"></span>
+        </div>
+        <div id="link-params" data-amaffiliate-js="link-params" style="display: none;"><?= $block->escapeHtml($block->getLinkParams()) ?></div>
+    </div>
+</div>
+<div class="block">
+    <div class="block-title"><strong><?= $block->escapeHtml(__('Banners')) ?></strong></div>
+    <?php if ($banners && count($banners)): ?>
+        <div class="table-wrapper">
+            <table class="data table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col"><?= $block->escapeHtml(__('Name')) ?></th>
+                        <th scope="col" class="col"><?= $block->escapeHtml(__('Type')) ?></th>
+                        <th scope="col" class="col"><?= $block->escapeHtml(__('Clicks')) ?></th>
+                        <th scope="col" class="col"><?= $block->escapeHtml(__('Link')) ?></th>
+                        <th scope="col" class="col"><?= $block->escapeHtml(__('Preview')) ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php /** @var \Amasty\Affiliate\Model\Banner $banner */foreach ($banners as $banner): ?>
+                    <tr>
+                        <td data-th="<?= $block->escapeHtml(__('Name')) ?>" class="col">
+                            <?= $block->escapeHtml($banner->getTitle()) ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Type')) ?>" class="col">
+                            <?= $block->escapeHtml($banner->getType()) ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Clicks')) ?>" class="col">
+                            <?= $block->escapeHtml($banner->getCurrentAccountClickCount()) ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Link')) ?>" class="col">
+                            <?= $block->escapeHtml($banner->getLink()) ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Preview')) ?>" class="col">
+                            <a
+                                <?= $block->escapeHtml($block->getRelNofollow($banner)) ?>
+                               href='<?= $block->escapeHtml($block->getBannerLink($banner)) ?>'>
+                                <?php if ($banner->getType() == $banner::TYPE_IMAGE): ?>
+                                    <img src='<?= $block->escapeHtml($banner->getImageUrl()) ?>' />
+                                <?php else: ?>
+                                    <?= $block->escapeHtml($banner->getText()) ?>
+                                <?php endif; ?>
+                            </a>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Copy')) ?>" class="col float-right">
+                            <button
+                                    class="button action primary affiliate_button"
+                                    id="copy-button-preview"
+                                    data-amaffiliate-js="copy-button-preview"
+                            >
+                                <?= $block->escapeHtml(__('Copy')) ?>
+                            </button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+                <caption class="table-caption"><?= $block->escapeHtml(__('Banners')) ?></caption>
+            </table>
+        </div>
+    <?php else: ?>
+        <div class="message info empty"><span><?= $block->escapeHtml(__('You have no banners.')); ?></span></div>
+    <?php endif ?>
+</div>
+<span id="copy-text" data-amaffiliate-js="copy-text" style="display: none;"><?= $block->escapeHtml(__('Copy')) ?></span>
+<span id="copied-text" data-amaffiliate-js="copied-text" style="display: none;"><?= $block->escapeHtml(__('Copied')) ?></span>
+
+<script type="text/x-magento-init">
+        {
+            "*": {
+                "Amasty_Affiliate/js/promo": {}
+            }
+        }
+</script>

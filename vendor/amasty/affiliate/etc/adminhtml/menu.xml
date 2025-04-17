@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Amasty_Affiliate::affiliate" title="Affiliate" module="Amasty_Affiliate" parent="Magento_Backend::marketing" sortOrder="100" resource="Amasty_Affiliate::affiliate"/>
+        <add id="Amasty_Affiliate::program" title="Manage Programs" sortOrder="10" module="Amasty_Affiliate" parent="Amasty_Affiliate::affiliate" action="amasty_affiliate/program/" resource="Amasty_Affiliate::program"/>
+        <add id="Amasty_Affiliate::account" title="Manage Accounts" sortOrder="20" module="Amasty_Affiliate" parent="Amasty_Affiliate::affiliate" action="amasty_affiliate/account/" resource="Amasty_Affiliate::account"/>
+        <add id="Amasty_Affiliate::banner" title="Manage Banners" sortOrder="30" module="Amasty_Affiliate" parent="Amasty_Affiliate::affiliate" action="amasty_affiliate/banner/" resource="Amasty_Affiliate::banner"/>
+        <add id="Amasty_Affiliate::transaction" title="Manage Transactions" sortOrder="40" module="Amasty_Affiliate" parent="Amasty_Affiliate::affiliate" action="amasty_affiliate/transaction/" resource="Amasty_Affiliate::transaction"/>
+        <add id="Amasty_Affiliate::withdrawals" title="Manage Withdrawals" sortOrder="50" module="Amasty_Affiliate" parent="Amasty_Affiliate::affiliate" action="amasty_affiliate/withdrawal/" resource="Amasty_Affiliate::withdrawals"/>
+        <add id="Amasty_Affiliate::settings" title="Settings" sortOrder="60" module="Amasty_Affiliate" parent="Amasty_Affiliate::affiliate" action="adminhtml/system_config/edit/section/amasty_affiliate" resource="Amasty_Affiliate::settings"/>
+    </menu>
+</config>

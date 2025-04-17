@@ -1,0 +1,405 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Aheadworks\Followupemail2\Api\Data\CampaignInterface" type="Aheadworks\Followupemail2\Model\Campaign" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\CampaignSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Aheadworks\Followupemail2\Api\CampaignRepositoryInterface" type="Aheadworks\Followupemail2\Model\ResourceModel\CampaignRepository" />
+    <preference for="Aheadworks\Followupemail2\Api\CampaignManagementInterface" type="Aheadworks\Followupemail2\Model\CampaignManagement" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\EventInterface" type="Aheadworks\Followupemail2\Model\Event" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\EventSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Aheadworks\Followupemail2\Api\EventRepositoryInterface" type="Aheadworks\Followupemail2\Model\ResourceModel\EventRepository" />
+    <preference for="Aheadworks\Followupemail2\Api\EventManagementInterface" type="Aheadworks\Followupemail2\Model\EventManagement" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\EmailInterface" type="Aheadworks\Followupemail2\Model\Email" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\EmailSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\EmailContentInterface" type="Aheadworks\Followupemail2\Model\Email\Content" />
+    <preference for="Aheadworks\Followupemail2\Api\EmailContentRepositoryInterface" type="Aheadworks\Followupemail2\Model\ResourceModel\Email\ContentRepository" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\EmailContentSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Aheadworks\Followupemail2\Api\EmailRepositoryInterface" type="Aheadworks\Followupemail2\Model\ResourceModel\EmailRepository" />
+    <preference for="Aheadworks\Followupemail2\Api\EmailManagementInterface" type="Aheadworks\Followupemail2\Model\EmailManagement" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\QueueInterface" type="Aheadworks\Followupemail2\Model\Queue" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\QueueSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Aheadworks\Followupemail2\Api\QueueRepositoryInterface" type="Aheadworks\Followupemail2\Model\ResourceModel\QueueRepository" />
+    <preference for="Aheadworks\Followupemail2\Api\QueueManagementInterface" type="Aheadworks\Followupemail2\Model\QueueManagement" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\PreviewInterface" type="Aheadworks\Followupemail2\Model\Preview" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\EventHistoryInterface" type="Aheadworks\Followupemail2\Model\EventHistory" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\EventHistorySearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Aheadworks\Followupemail2\Api\EventHistoryRepositoryInterface" type="Aheadworks\Followupemail2\Model\ResourceModel\EventHistoryRepository" />
+    <preference for="Aheadworks\Followupemail2\Api\EventHistoryManagementInterface" type="Aheadworks\Followupemail2\Model\EventHistoryManagement" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\EventQueueInterface" type="Aheadworks\Followupemail2\Model\Event\Queue" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\EventQueueSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\EventQueueEmailInterface" type="Aheadworks\Followupemail2\Model\Event\Queue\Email" />
+    <preference for="Aheadworks\Followupemail2\Api\EventQueueRepositoryInterface" type="Aheadworks\Followupemail2\Model\ResourceModel\Event\QueueRepository" />
+    <preference for="Aheadworks\Followupemail2\Api\EventQueueManagementInterface" type="Aheadworks\Followupemail2\Model\Event\QueueManagement" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\StatisticsInterface" type="Aheadworks\Followupemail2\Model\Statistics\Info" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\StatisticsHistoryInterface" type="Aheadworks\Followupemail2\Model\Statistics\History" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\StatisticsHistorySearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Aheadworks\Followupemail2\Api\StatisticsHistoryRepositoryInterface" type="Aheadworks\Followupemail2\Model\ResourceModel\Statistics\HistoryRepository" />
+    <preference for="Aheadworks\Followupemail2\Api\StatisticsManagementInterface" type="Aheadworks\Followupemail2\Model\StatisticsManagement" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\UnsubscribeInterface" type="Aheadworks\Followupemail2\Model\Unsubscribe" />
+    <preference for="Aheadworks\Followupemail2\Api\Data\UnsubscribeSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Aheadworks\Followupemail2\Api\UnsubscribeRepositoryInterface" type="Aheadworks\Followupemail2\Model\ResourceModel\UnsubscribeRepository" />
+
+    <preference for="Magento\Framework\Mail\TemplateInterface" type="Aheadworks\Followupemail2\Model\Template" />
+    <preference for="Magento\Email\Model\Template" type="Aheadworks\Followupemail2\Model\Template" />
+
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Aheadworks\Followupemail2\Api\Data\CampaignInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">aw_fue2_campaign</item>
+                    <item name="identifierField" xsi:type="string">id</item>
+                </item>
+                <item name="Aheadworks\Followupemail2\Api\Data\EventInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">aw_fue2_event</item>
+                    <item name="identifierField" xsi:type="string">id</item>
+                </item>
+                <item name="Aheadworks\Followupemail2\Api\Data\EmailInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">aw_fue2_event_email</item>
+                    <item name="identifierField" xsi:type="string">id</item>
+                </item>
+                <item name="Aheadworks\Followupemail2\Api\Data\QueueInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">aw_fue2_email_queue</item>
+                    <item name="identifierField" xsi:type="string">id</item>
+                </item>
+                <item name="Aheadworks\Followupemail2\Api\Data\EventHistoryInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">aw_fue2_event_history</item>
+                    <item name="identifierField" xsi:type="string">id</item>
+                </item>
+                <item name="Aheadworks\Followupemail2\Api\Data\EventQueueInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">aw_fue2_event_queue</item>
+                    <item name="identifierField" xsi:type="string">id</item>
+                </item>
+                <item name="Aheadworks\Followupemail2\Api\Data\StatisticsHistoryInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">aw_fue2_statistics_history</item>
+                    <item name="identifierField" xsi:type="string">id</item>
+                </item>
+                <item name="Aheadworks\Followupemail2\Api\Data\EmailContentInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">aw_fue2_event_email_content</item>
+                    <item name="identifierField" xsi:type="string">id</item>
+                </item>
+                <item name="Aheadworks\Followupemail2\Api\Data\UnsubscribeInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">aw_fue2_unsubscribe</item>
+                    <item name="identifierField" xsi:type="string">id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Aheadworks\Followupemail2\Api\Data\EventInterface" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Event\Hydrator</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Aheadworks\Followupemail2\Model\Template\Resolver\Product">
+        <arguments>
+            <argument name="resolvers" xsi:type="array">
+                <item name="sales_order_item" xsi:type="object">Aheadworks\Followupemail2\Model\Template\Resolver\Order\Item</item>
+                <item name="sales_quote_item" xsi:type="object">Aheadworks\Followupemail2\Model\Template\Resolver\Quote\Item</item>
+                <item name="catalog_product" xsi:type="object">Aheadworks\Followupemail2\Model\Template\Resolver\Product\Product</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="Aheadworks\Followupemail2\Api\Data\CampaignInterface" xsi:type="array">
+                    <item name="delete" xsi:type="array">
+                        <item name="statUpdater" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Campaign\Relation\Statistics\DeleteHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="eventQueueUpdater" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Campaign\Relation\EventQueue\SaveHandler</item>
+                    </item>
+                </item>
+                <item name="Aheadworks\Followupemail2\Api\Data\EventInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="storeReader" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Event\Relation\Store\ReadHandler</item>
+                        <item name="conditionsReader" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Event\Relation\Conditions\ReadHandler</item>
+                        <item name="awCustomerSegmentReader" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Event\Relation\AwCustomerSegment\ReadHandler</item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="storeCreator" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Event\Relation\Store\SaveHandler</item>
+                        <item name="conditionsCreator" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Event\Relation\Conditions\SaveHandler</item>
+                        <item name="awCustomerSegmentCreator" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Event\Relation\AwCustomerSegment\SaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="storeUpdater" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Event\Relation\Store\SaveHandler</item>
+                        <item name="conditionsUpdater" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Event\Relation\Conditions\SaveHandler</item>
+                        <item name="eventQueueUpdater" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Event\Relation\EventQueue\SaveHandler</item>
+                        <item name="awCustomerSegmentUpdater" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Event\Relation\AwCustomerSegment\SaveHandler</item>
+                    </item>
+                    <item name="delete" xsi:type="array">
+                        <item name="statUpdater" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Event\Relation\Statistics\DeleteHandler</item>
+                    </item>
+                </item>
+                <item name="Aheadworks\Followupemail2\Api\Data\EmailInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="contentReader" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Email\Relation\Content\ReadHandler</item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="contentCreator" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Email\Relation\Content\SaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="contentUpdater" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Email\Relation\Content\SaveHandler</item>
+                        <item name="whenUpdater" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Email\Relation\When\SaveHandler</item>
+                    </item>
+                    <item name="delete" xsi:type="array">
+                        <item name="statUpdater" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Email\Relation\Statistics\DeleteHandler</item>
+                    </item>
+                </item>
+                <item name="Aheadworks\Followupemail2\Api\Data\EventQueueInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="contentReader" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Event\Queue\Relation\Email\ReadHandler</item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="contentCreator" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Event\Queue\Relation\Email\SaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="contentUpdater" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Event\Queue\Relation\Email\SaveHandler</item>
+                    </item>
+                </item>
+                <item name="Aheadworks\Followupemail2\Api\Data\QueueInterface" xsi:type="array">
+                    <item name="create" xsi:type="array">
+                        <item name="eventQueueUpdater" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Queue\Relation\EventQueueEmail\SaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="eventQueueUpdater" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Queue\Relation\EventQueueEmail\SaveHandler</item>
+                    </item>
+                    <item name="delete" xsi:type="array">
+                        <item name="eventQueueUpdater" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Queue\Relation\EventQueueEmail\DeleteHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="aw_followupemail2_campaign_listing_data_source" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Campaign\Grid\Collection</item>
+                <item name="aw_followupemail2_event_queue_listing_data_source" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Indexer\ScheduledEmails\Grid\Collection</item>
+                <item name="aw_followupemail2_queue_listing_data_source" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Queue\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Aheadworks\Followupemail2\Model\ResourceModel\Campaign\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">aw_fue2_campaign</argument>
+            <argument name="eventPrefix" xsi:type="string">aw_fue2_campaign_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">campaign_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Campaign</argument>
+        </arguments>
+    </type>
+    <type name="Aheadworks\Followupemail2\Model\ResourceModel\Indexer\ScheduledEmails\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">aw_fue2_scheduled_emails</argument>
+            <argument name="eventPrefix" xsi:type="string">aw_fue2_scheduled_emails_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">scheduled_emails_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Indexer\ScheduledEmails</argument>
+        </arguments>
+    </type>
+    <type name="Aheadworks\Followupemail2\Model\ResourceModel\Queue\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">aw_fue2_email_queue</argument>
+            <argument name="eventPrefix" xsi:type="string">aw_fue2_queue_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">queue_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Aheadworks\Followupemail2\Model\ResourceModel\Queue</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="AwFollowupemail2GridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AwFollowupemail2CampaignDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Aheadworks\Followupemail2\Model\ResourceModel\Campaign\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">AwFollowupemail2GridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AwFollowupemail2EventQueueDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Aheadworks\Followupemail2\Model\ResourceModel\Indexer\ScheduledEmails\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">AwFollowupemail2GridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AwFollowupemail2QueueDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Aheadworks\Followupemail2\Model\ResourceModel\Queue\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">AwFollowupemail2GridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Aheadworks\Followupemail2\Model\Event\TypePool">
+        <arguments>
+            <argument name="eventTypes" xsi:type="array">
+                <item name="1" xsi:type="array">
+                    <item name="enabled" xsi:type="boolean">true</item>
+                    <item name="code" xsi:type="const">Aheadworks\Followupemail2\Api\Data\EventInterface::TYPE_ABANDONED_CART</item>
+                    <item name="title" xsi:type="string">Abandoned Cart</item>
+                    <item name="description" xsi:type="string"></item>
+                    <item name="handler" xsi:type="string">Aheadworks\Followupemail2\Model\Event\Handler\AbandonedCart</item>
+                    <item name="customer_conditions" xsi:type="boolean">true</item>
+                    <item name="cart_conditions" xsi:type="boolean">true</item>
+                    <item name="order_conditions" xsi:type="boolean">false</item>
+                    <item name="product_conditions" xsi:type="boolean">true</item>
+                    <item name="product_rules" xsi:type="boolean">false</item>
+                    <item name="allowed_for_guests" xsi:type="boolean">true</item>
+                    <item name="email_prediction" xsi:type="boolean">false</item>
+                </item>
+                <item name="2" xsi:type="array">
+                    <item name="enabled" xsi:type="boolean">true</item>
+                    <item name="code" xsi:type="const">Aheadworks\Followupemail2\Api\Data\EventInterface::TYPE_ORDER_STATUS_CHANGED</item>
+                    <item name="title" xsi:type="string">Order Status Changed</item>
+                    <item name="description" xsi:type="string"></item>
+                    <item name="handler" xsi:type="string">Aheadworks\Followupemail2\Model\Event\Handler\OrderStatusChanged</item>
+                    <item name="customer_conditions" xsi:type="boolean">true</item>
+                    <item name="cart_conditions" xsi:type="boolean">false</item>
+                    <item name="order_conditions" xsi:type="boolean">true</item>
+                    <item name="product_conditions" xsi:type="boolean">true</item>
+                    <item name="product_rules" xsi:type="boolean">false</item>
+                    <item name="allowed_for_guests" xsi:type="boolean">true</item>
+                    <item name="email_prediction" xsi:type="boolean">false</item>
+                </item>
+                <item name="3" xsi:type="array">
+                    <item name="enabled" xsi:type="boolean">true</item>
+                    <item name="code" xsi:type="const">Aheadworks\Followupemail2\Api\Data\EventInterface::TYPE_CUSTOMER_REGISTRATION</item>
+                    <item name="title" xsi:type="string">Customer Registration</item>
+                    <item name="description" xsi:type="string"></item>
+                    <item name="handler" xsi:type="string">Aheadworks\Followupemail2\Model\Event\Handler\CustomerRegistration</item>
+                    <item name="customer_conditions" xsi:type="boolean">false</item>
+                    <item name="cart_conditions" xsi:type="boolean">false</item>
+                    <item name="order_conditions" xsi:type="boolean">false</item>
+                    <item name="product_conditions" xsi:type="boolean">false</item>
+                    <item name="product_rules" xsi:type="boolean">false</item>
+                    <item name="allowed_for_guests" xsi:type="boolean">false</item>
+                    <item name="email_prediction" xsi:type="boolean">false</item>
+                </item>
+                <item name="4" xsi:type="array">
+                    <item name="enabled" xsi:type="boolean">true</item>
+                    <item name="code" xsi:type="const">Aheadworks\Followupemail2\Api\Data\EventInterface::TYPE_CUSTOMER_LAST_ACTIVITY</item>
+                    <item name="title" xsi:type="string">Any Customer Activity</item>
+                    <item name="description" xsi:type="string"></item>
+                    <item name="handler" xsi:type="string">Aheadworks\Followupemail2\Model\Event\Handler\CustomerLastActivity</item>
+                    <item name="customer_conditions" xsi:type="boolean">true</item>
+                    <item name="cart_conditions" xsi:type="boolean">false</item>
+                    <item name="order_conditions" xsi:type="boolean">false</item>
+                    <item name="product_conditions" xsi:type="boolean">false</item>
+                    <item name="product_rules" xsi:type="boolean">false</item>
+                    <item name="allowed_for_guests" xsi:type="boolean">false</item>
+                    <item name="email_prediction" xsi:type="boolean">false</item>
+                </item>
+                <item name="5" xsi:type="array">
+                    <item name="enabled" xsi:type="boolean">true</item>
+                    <item name="code" xsi:type="const">Aheadworks\Followupemail2\Api\Data\EventInterface::TYPE_NEWSLETTER_SUBSCRIPTION</item>
+                    <item name="title" xsi:type="string">Newsletter Subscription</item>
+                    <item name="description" xsi:type="string"></item>
+                    <item name="handler" xsi:type="string">Aheadworks\Followupemail2\Model\Event\Handler\NewsletterSubscription</item>
+                    <item name="customer_conditions" xsi:type="boolean">true</item>
+                    <item name="cart_conditions" xsi:type="boolean">false</item>
+                    <item name="order_conditions" xsi:type="boolean">false</item>
+                    <item name="product_conditions" xsi:type="boolean">false</item>
+                    <item name="product_rules" xsi:type="boolean">false</item>
+                    <item name="allowed_for_guests" xsi:type="boolean">true</item>
+                    <item name="email_prediction" xsi:type="boolean">false</item>
+                </item>
+                <item name="6" xsi:type="array">
+                    <item name="enabled" xsi:type="boolean">true</item>
+                    <item name="code" xsi:type="const">Aheadworks\Followupemail2\Api\Data\EventInterface::TYPE_CUSTOMER_REVIEW</item>
+                    <item name="title" xsi:type="string">Customer Submitted a Review</item>
+                    <item name="description" xsi:type="string"></item>
+                    <item name="handler" xsi:type="string">Aheadworks\Followupemail2\Model\Event\Handler\CustomerReview</item>
+                    <item name="customer_conditions" xsi:type="boolean">true</item>
+                    <item name="cart_conditions" xsi:type="boolean">false</item>
+                    <item name="order_conditions" xsi:type="boolean">false</item>
+                    <item name="product_conditions" xsi:type="boolean">true</item>
+                    <item name="product_rules" xsi:type="boolean">true</item>
+                    <item name="allowed_for_guests" xsi:type="boolean">false</item>
+                    <item name="email_prediction" xsi:type="boolean">false</item>
+                </item>
+                <item name="7" xsi:type="array">
+                    <item name="enabled" xsi:type="boolean">true</item>
+                    <item name="code" xsi:type="const">Aheadworks\Followupemail2\Api\Data\EventInterface::TYPE_WISHLIST_CONTENT_CHANGED</item>
+                    <item name="title" xsi:type="string">Wishlist Content Has Been Changed</item>
+                    <item name="description" xsi:type="string"></item>
+                    <item name="handler" xsi:type="string">Aheadworks\Followupemail2\Model\Event\Handler\WishlistContentChanged</item>
+                    <item name="customer_conditions" xsi:type="boolean">true</item>
+                    <item name="cart_conditions" xsi:type="boolean">false</item>
+                    <item name="order_conditions" xsi:type="boolean">false</item>
+                    <item name="product_conditions" xsi:type="boolean">true</item>
+                    <item name="product_rules" xsi:type="boolean">true</item>
+                    <item name="allowed_for_guests" xsi:type="boolean">false</item>
+                    <item name="email_prediction" xsi:type="boolean">false</item>
+                </item>
+                <item name="8" xsi:type="array">
+                    <item name="enabled" xsi:type="boolean">true</item>
+                    <item name="code" xsi:type="const">Aheadworks\Followupemail2\Api\Data\EventInterface::TYPE_CUSTOMER_BIRTHDAY</item>
+                    <item name="title" xsi:type="string">Customer Birthday</item>
+                    <item name="description" xsi:type="string"></item>
+                    <item name="handler" xsi:type="string">Aheadworks\Followupemail2\Model\Event\Handler\CustomerBirthday</item>
+                    <item name="customer_conditions" xsi:type="boolean">true</item>
+                    <item name="cart_conditions" xsi:type="boolean">false</item>
+                    <item name="order_conditions" xsi:type="boolean">false</item>
+                    <item name="product_conditions" xsi:type="boolean">false</item>
+                    <item name="product_rules" xsi:type="boolean">false</item>
+                    <item name="allowed_for_guests" xsi:type="boolean">false</item>
+                    <item name="email_prediction" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <argument name="defaultType" xsi:type="const">Aheadworks\Followupemail2\Api\Data\EventInterface::TYPE_ABANDONED_CART</argument>
+        </arguments>
+    </type>
+    <preference for="Aheadworks\Followupemail2\Model\Event\TypeInterface" type="Aheadworks\Followupemail2\Model\Event\Type" />
+
+    <virtualType name="AwFueScheduledEmailsIndexer" type="Aheadworks\Followupemail2\Model\Indexer\ScheduledEmails" />
+
+    <type name="Magento\Quote\Model\Quote">
+        <plugin name="aw-fue2-quote-plugin" type="Aheadworks\Followupemail2\Model\Event\Plugin\Quote" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Magento\Customer\Api\AccountManagementInterface">
+        <plugin name="aw-fue2-save-guest-email-plugin" type="Aheadworks\Followupemail2\Model\Event\Plugin\Email" sortOrder="10" disabled="false" />
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order">
+        <plugin name="aw-fue2-save-order-plugin" type="Aheadworks\Followupemail2\Model\Event\Plugin\Order" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Magento\Customer\Model\ResourceModel\Customer">
+        <plugin name="aw-fue2-save-customer-plugin" type="Aheadworks\Followupemail2\Model\Event\Plugin\Customer" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Magento\Customer\Model\Visitor">
+        <plugin name="aw-fue2-save-visitor-plugin" type="Aheadworks\Followupemail2\Model\Event\Plugin\Visitor" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Magento\Newsletter\Model\Subscriber">
+        <plugin name="aw-fue2-subscriber-plugin" type="Aheadworks\Followupemail2\Model\Event\Plugin\Subscriber" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Magento\Review\Model\Review">
+        <plugin name="aw-fue2-review-plugin" type="Aheadworks\Followupemail2\Model\Event\Plugin\Review" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Magento\Wishlist\Model\ResourceModel\Item">
+        <plugin name="aw-fue2-wishlist-item-plugin" type="Aheadworks\Followupemail2\Model\Event\Plugin\WishlistItem" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Aheadworks\CustomerSegmentation\Model\ResourceModel\Segment">
+        <plugin name="aw-fue2-aw-customer-segment-plugin" type="Aheadworks\Followupemail2\Model\Event\Plugin\AwCustomerSegment" sortOrder="10" disabled="false"/>
+    </type>
+
+    <type name="Magento\Setup\Model\FixtureGenerator\EntityGeneratorFactory">
+        <plugin name="aw-fue2-update-custom-table-map" type="Aheadworks\Followupemail2\Plugin\Setup\Model\FixtureGenerator\EntityGeneratorFactory\UpdateCustomTableMapPlugin"/>
+    </type>
+
+    <type name="Aheadworks\Followupemail2\Model\ResourceModel\Event\QueueRepository">
+        <plugin name="aw-fue2-event-queue-rep-plugin" type="Aheadworks\Followupemail2\Plugin\Model\ResourceModel\Event\QueueRepositoryPlugin"/>
+    </type>
+
+    <type name="Aheadworks\Followupemail2\Model\Statistics\EmailTracker">
+        <arguments>
+            <argument name="urlBuilder" xsi:type="object" shared="false">Magento\Framework\Url</argument>
+        </arguments>
+    </type>
+    <type name="Aheadworks\Followupemail2\Model\Template\Variable">
+        <arguments>
+            <argument name="urlBuilder" xsi:type="object" shared="false">Magento\Framework\Url</argument>
+        </arguments>
+    </type>
+</config>

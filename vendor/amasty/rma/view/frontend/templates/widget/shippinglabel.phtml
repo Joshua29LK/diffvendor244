@@ -1,0 +1,12 @@
+<?php
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package Amasty_Rma
+*/
+?>
+<?php /** @var \Amasty\Rma\Block\Widget\ShippingLabelButton $block */ ?>
+
+<a class="am-print-shipping-label action primary" href="<?= $block->escapeUrl($block->getDownloadUrl()); ?>" target="_blank">
+    <?= $block->escapeHtml($block->getLabel()); ?>
+</a>

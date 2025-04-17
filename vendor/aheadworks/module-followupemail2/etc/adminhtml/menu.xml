@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Aheadworks_Followupemail2::home" title="Follow Up Email 2 by Aheadworks" module="Aheadworks_Followupemail2" sortOrder="100" parent="Magento_Backend::marketing" resource="Aheadworks_Followupemail2::home"/>
+        <add id="Aheadworks_Followupemail2::campaigns" title="Campaigns" module="Aheadworks_Followupemail2" sortOrder="10" parent="Aheadworks_Followupemail2::home" action="aw_followupemail2/campaign/index" resource="Aheadworks_Followupemail2::campaigns"/>
+        <add id="Aheadworks_Followupemail2::event_queue" title="Scheduled emails" module="Aheadworks_Followupemail2" sortOrder="20" parent="Aheadworks_Followupemail2::home" action="aw_followupemail2/event_queue/index" resource="Aheadworks_Followupemail2::event_queue"/>
+        <add id="Aheadworks_Followupemail2::mail_log" title="Mail Log" module="Aheadworks_Followupemail2" sortOrder="30" parent="Aheadworks_Followupemail2::home" action="aw_followupemail2/queue/index" resource="Aheadworks_Followupemail2::mail_log"/>
+    </menu>
+</config>

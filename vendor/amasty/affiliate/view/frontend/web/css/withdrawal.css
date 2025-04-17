@@ -1,0 +1,24 @@
+.affiliate-balance-info {
+    display: inline-block;
+}
+
+div.affiliate-price-field {
+    margin: 5px;
+    padding: 10px;
+    background: #f0f0f0;
+    float: left;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.actions-toolbar.inline {
+    margin-left: 25px;
+    vertical-align: middle;
+}
+
+.comment {
+    font-size: small;
+    margin-bottom: 10px;
+}

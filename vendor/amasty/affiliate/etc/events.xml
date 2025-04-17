@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!--program-->
+    <event name="amasty_affiliate_api_data_programinterface_save_before">
+        <observer name="legacy_model_save" instance="Magento\Framework\EntityManager\Observer\BeforeEntitySave" />
+    </event>
+    <event name="amasty_affiliate_api_data_programinterface_save_after">
+        <observer name="legacy_model_save" instance="Magento\Framework\EntityManager\Observer\AfterEntitySave" />
+    </event>
+    <event name="amasty_affiliate_api_data_programinterface_delete_before">
+        <observer name="legacy_model_delete" instance="Magento\Framework\EntityManager\Observer\BeforeEntityDelete" />
+    </event>
+    <event name="amasty_affiliate_api_data_programinterface_delete_after">
+        <observer name="legacy_model_delete" instance="Magento\Framework\EntityManager\Observer\AfterEntityDelete" />
+    </event>
+    <event name="amasty_affiliate_api_data_programinterface_load_after">
+        <observer name="legacy_model_load" instance="Magento\Framework\EntityManager\Observer\AfterEntityLoad" />
+    </event>
+
+    <!--account-->
+    <event name="amasty_affiliate_api_data_accountinterface_save_before">
+        <observer name="legacy_model_save" instance="Magento\Framework\EntityManager\Observer\BeforeEntitySave" />
+    </event>
+    <event name="amasty_affiliate_api_data_accountinterface_save_after">
+        <observer name="legacy_model_save" instance="Magento\Framework\EntityManager\Observer\AfterEntitySave" />
+    </event>
+    <event name="amasty_affiliate_api_data_accountinterface_delete_before">
+        <observer name="legacy_model_delete" instance="Magento\Framework\EntityManager\Observer\BeforeEntityDelete" />
+    </event>
+    <event name="amasty_affiliate_api_data_accountinterface_delete_after">
+        <observer name="legacy_model_delete" instance="Magento\Framework\EntityManager\Observer\AfterEntityDelete" />
+    </event>
+    <event name="amasty_affiliate_api_data_accountinterface_load_after">
+        <observer name="legacy_model_load" instance="Magento\Framework\EntityManager\Observer\AfterEntityLoad" />
+    </event>
+
+    <!--banner-->
+    <event name="amasty_affiliate_api_data_bannerinterface_save_before">
+        <observer name="legacy_model_save" instance="Magento\Framework\EntityManager\Observer\BeforeEntitySave" />
+    </event>
+    <event name="amasty_affiliate_api_data_bannerinterface_save_after">
+        <observer name="legacy_model_save" instance="Magento\Framework\EntityManager\Observer\AfterEntitySave" />
+    </event>
+    <event name="amasty_affiliate_api_data_bannerinterface_delete_before">
+        <observer name="legacy_model_delete" instance="Magento\Framework\EntityManager\Observer\BeforeEntityDelete" />
+    </event>
+    <event name="amasty_affiliate_api_data_bannerinterface_delete_after">
+        <observer name="legacy_model_delete" instance="Magento\Framework\EntityManager\Observer\AfterEntityDelete" />
+    </event>
+    <event name="amasty_affiliate_api_data_bannerinterface_load_after">
+        <observer name="legacy_model_load" instance="Magento\Framework\EntityManager\Observer\AfterEntityLoad" />
+    </event>
+
+    <!--withdrawal-->
+    <event name="amasty_affiliate_api_data_withdrawalinterface_save_before">
+        <observer name="legacy_model_save" instance="Magento\Framework\EntityManager\Observer\BeforeEntitySave" />
+    </event>
+    <event name="amasty_affiliate_api_data_withdrawalinterface_save_after">
+        <observer name="legacy_model_save" instance="Magento\Framework\EntityManager\Observer\AfterEntitySave" />
+    </event>
+    <event name="amasty_affiliate_api_data_withdrawalinterface_delete_before">
+        <observer name="legacy_model_delete" instance="Magento\Framework\EntityManager\Observer\BeforeEntityDelete" />
+    </event>
+    <event name="amasty_affiliate_api_data_withdrawalinterface_delete_after">
+        <observer name="legacy_model_delete" instance="Magento\Framework\EntityManager\Observer\AfterEntityDelete" />
+    </event>
+    <event name="amasty_affiliate_api_data_withdrawalinterface_load_after">
+        <observer name="legacy_model_load" instance="Magento\Framework\EntityManager\Observer\AfterEntityLoad" />
+    </event>
+
+    <!--order-->
+    <event name="sales_order_place_after">
+        <observer name="amasty_affiliate" instance="Amasty\Affiliate\Observer\SalesOrderAfterPlaceObserver" />
+    </event>
+
+    <event name="sales_quote_address_collect_totals_before">
+        <observer name="amasty_affiliate_validate_coupon" instance="Amasty\Affiliate\Observer\CouponCodeValidation" />
+    </event>
+
+    <event  name="amasty_affiliate_program_save_after">
+        <observer name="affiliate_program_after_save" instance="Amasty\Affiliate\Observer\ProgramSaveAfterObserver"/>
+    </event>
+</config>

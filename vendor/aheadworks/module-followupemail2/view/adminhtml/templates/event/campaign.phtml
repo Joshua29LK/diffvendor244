@@ -1,0 +1,68 @@
+<?php
+/** @var \Aheadworks\Followupemail2\Block\Adminhtml\Event\Campaign $block */
+// @codingStandardsIgnoreFile
+?>
+<div class="campaign">
+    <div class="campaign-label">
+        <?php echo $block->escapeHtml(__('Campaign')); ?>
+    </div>
+    <div class="left">
+        <div class="campaign-name">
+            <?php echo $block->escapeHtml($block->getName()); ?>
+        </div>
+        <?php if ($block->hasDateSelected()) :?>
+            <div class="campaign-period">
+                <span class="label"><?php echo $block->escapeHtml(__('Period')); ?></span>
+                <?php if ($block->getStartDate()) :?>
+                    <span><?php echo $block->escapeHtml(__('from')); ?></span>
+                    <?php echo $block->escapeHtml($block->getStartDate()); ?>
+                </if>
+                <?php endif; ?>
+                <?php if ($block->getEndDate()) :?>
+                    <span><?php echo $block->escapeHtml(__('to')); ?></span>
+                    <?php echo $block->escapeHtml($block->getEndDate()); ?>
+                    </if>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+        <div class="campaign-description">
+            <?php echo $block->escapeHtml($block->getDescription()); ?>
+        </div>
+        <div class="campaign-content">
+            <span class="item">
+                <span id="campaign-events-count" class="highlighted">
+                    <?php echo $block->escapeHtml($block->getEventsCount()); ?>
+                </span>
+                <span><?php echo $block->escapeHtml(__('Events')); ?></span>
+            </span>
+            <span class="item">
+                <span id="campaign-emails-count" class="highlighted">
+                    <?php echo $block->escapeHtml($block->getEmailsCount()); ?>
+                </span>
+                <span><?php echo $block->escapeHtml(__('Emails')); ?></span>
+            </span>
+        </div>
+    </div>
+    <div class="right">
+        <div>
+            <table class="campaign-statistics">
+                <tr>
+                    <th><?php echo $block->escapeHtml(__('Sent')); ?></th>
+                    <th><?php echo $block->escapeHtml(__('Opened')); ?></th>
+                    <th><?php echo $block->escapeHtml(__('Clicks')); ?></th>
+                    <th><?php echo $block->escapeHtml(__('Open Rate')); ?></th>
+                    <th><?php echo $block->escapeHtml(__('Click Rate')); ?></th>
+                </tr>
+                <tr>
+                    <?php $statistics = $block->getEmailStatistics(); ?>
+                    <td class="sent"><?php echo $block->escapeHtml($statistics['sent']); ?></td>
+                    <td class="opened"><?php echo $block->escapeHtml($statistics['opened']); ?></td>
+                    <td class="clicks"><?php echo $block->escapeHtml($statistics['clicks']); ?></td>
+                    <td class="open-rate highlighted"><?php echo $block->escapeHtml($statistics['open_rate']); ?>%</td>
+                    <td class="click-rate highlighted"><?php echo $block->escapeHtml($statistics['click_rate']); ?>%</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+

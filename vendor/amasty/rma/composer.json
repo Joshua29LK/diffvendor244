@@ -1,0 +1,26 @@
+{
+    "name": "amasty\/rma",
+    "description": "RMA by Amasty",
+    "require": {
+        "php": ">=7.3.0",
+        "amasty\/base": ">=1.13.3"
+    },
+    "suggest": {
+        "amasty\/rma-graphql": "We recommend to install RMA GraphQL module if you use Magento 2.3.3+.",
+        "amasty\/module-rma-mftf-2": "Install module-rma-mftf-2 module to be able to run Rma MFTF tests for Magento 2.3.6+ version.",
+        "amasty\/module-rma-mftf-3": "Install module-rma-mftf-3 module to be able to run Rma MFTF tests for Magento 2.4.1+ version."
+    },
+    "type": "magento2-module",
+    "version": "2.6.8",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\Rma\\": ""
+        }
+    }
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<page layout="2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Amasty_Affiliate::css/styles.css"/>
+    </head>
+    <body>
+        <referenceContainer name="sidebar.main">
+            <block class="Magento\Framework\View\Element\Template" name="amasty_affiliate_account_navigation_block" template="Amasty_Affiliate::html/collapsible.phtml" after="customer_account_navigation_block">
+                <block class="Magento\Framework\View\Element\Html\Links" name="amasty_affiliate_account_navigation" before="-">
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">nav items</argument>
+                    </arguments>
+                    <block class="Amasty\Affiliate\Ui\Element\Html\Link\Current" name="amasty-affiliate-account-navigation-program">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Affiliate Programs</argument>
+                            <argument name="path" xsi:type="string">account/program</argument>
+                        </arguments>
+                    </block>
+                    <block class="Amasty\Affiliate\Ui\Element\Html\Link\Current" name="amasty-affiliate-account-navigation-transaction">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">My Balance</argument>
+                            <argument name="path" xsi:type="string">account/transaction</argument>
+                        </arguments>
+                    </block>
+                    <block class="Amasty\Affiliate\Ui\Element\Html\Link\Current" name="amasty-affiliate-account-navigation-share">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Promo Data</argument>
+                            <argument name="path" xsi:type="string">account/promo</argument>
+                        </arguments>
+                    </block>
+                    <block class="Amasty\Affiliate\Ui\Element\Html\Link\Current" name="amasty-affiliate-account-navigation-widget">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Promo Widget</argument>
+                            <argument name="path" xsi:type="string">account/widget</argument>
+                        </arguments>
+                    </block>
+                    <block class="Amasty\Affiliate\Ui\Element\Html\Link\Current" name="amasty-affiliate-account-navigation-traffic">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Traffic Sources</argument>
+                            <argument name="path" xsi:type="string">account/traffic</argument>
+                        </arguments>
+                    </block>
+                    <block ifconfig="amasty_affiliate/friends/on_my_account" class="Amasty\Affiliate\Ui\Element\Html\Link\Current" name="amasty-affiliate-account-navigation-refer">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Refer Friends</argument>
+                            <argument name="path" xsi:type="string">account/refer</argument>
+                        </arguments>
+                    </block>
+                    <block class="Amasty\Affiliate\Ui\Element\Html\Link\Current" name="amasty-affiliate-account-navigation-withdrawal">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">My Withdrawals</argument>
+                            <argument name="path" xsi:type="string">account/withdrawal</argument>
+                        </arguments>
+                    </block>
+                    <block class="Amasty\Affiliate\Ui\Element\Html\Link\Current" name="amasty-affiliate-account-navigation-setting">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Affiliate Settings</argument>
+                            <argument name="path" xsi:type="string">account/setting</argument>
+                        </arguments>
+                    </block>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

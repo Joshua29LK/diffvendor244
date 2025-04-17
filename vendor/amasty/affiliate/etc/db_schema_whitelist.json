@@ -1,0 +1,178 @@
+{
+    "amasty_affiliate_account": {
+        "column": {
+            "account_id": true,
+            "customer_id": true,
+            "is_affiliate_active": true,
+            "accepted_terms_conditions": true,
+            "receive_notifications": true,
+            "paypal_email": true,
+            "referring_code": true,
+            "referring_website": true,
+            "balance": true,
+            "on_hold": true,
+            "commission_paid": true,
+            "lifetime_commission": true,
+            "widget_width": true,
+            "widget_height": true,
+            "widget_title": true,
+            "widget_products_num": true,
+            "widget_type": true,
+            "widget_show_name": true,
+            "widget_show_price": true,
+            "is_custom_referring_code": true
+        },
+        "index": {
+            "AMASTY_AFFILIATE_ACCOUNT_ACCOUNT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AMASTY_AFFILIATE_ACCOUNT_CSTR_ID_CSTR_ENTT_ENTT_ID": true
+        }
+    },
+    "amasty_affiliate_transaction": {
+        "column": {
+            "transaction_id": true,
+            "affiliate_account_id": true,
+            "program_id": true,
+            "order_increment_id": true,
+            "profit": true,
+            "balance": true,
+            "commission": true,
+            "discount": true,
+            "updated_at": true,
+            "type": true,
+            "status": true,
+            "balance_change_type": true
+        },
+        "index": {
+            "AMASTY_AFFILIATE_TRANSACTION_TRANSACTION_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_A7190746FBD9A8938C3CEECD7D1B4C05": true
+        }
+    },
+    "amasty_affiliate_banner": {
+        "column": {
+            "banner_id": true,
+            "title": true,
+            "type": true,
+            "image": true,
+            "text": true,
+            "link": true,
+            "rel_no_follow": true,
+            "status": true
+        },
+        "index": {
+            "AMASTY_AFFILIATE_BANNER_BANNER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "amasty_affiliate_lifetime": {
+        "column": {
+            "lifetime_id": true,
+            "affiliate_account_id": true,
+            "program_id": true,
+            "customer_email": true
+        },
+        "index": {
+            "AMASTY_AFFILIATE_LIFETIME_LIFETIME_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_9E70FF0AA87794F27834769EFB5572DC": true,
+            "FK_6B7EB15C6239C41504C771A2421BC5B4": true
+        }
+    },
+    "amasty_affiliate_links": {
+        "column": {
+            "link_id": true,
+            "affiliate_account_id": true,
+            "created_at": true,
+            "link_type": true,
+            "element_id": true
+        },
+        "index": {
+            "AMASTY_AFFILIATE_LINKS_LINK_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_991FC61EDA763A613A4ABB5A0DE64507": true
+        }
+    },
+    "amasty_affiliate_program": {
+        "column": {
+            "program_id": true,
+            "rule_id": true,
+            "name": true,
+            "withdrawal_type": true,
+            "is_active": true,
+            "commission_value": true,
+            "commission_per_profit_amount": true,
+            "commission_value_type": true,
+            "from_second_order": true,
+            "commission_type_second": true,
+            "commission_value_second": true,
+            "is_lifetime": true,
+            "frequency": true,
+            "total_sales": true,
+            "available_customers": true,
+            "available_groups": true,
+            "restrict_transactions_to_number_orders": true
+        },
+        "index": {
+            "AMASTY_AFFILIATE_PROGRAM_PROGRAM_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AMASTY_AFFILIATE_PROGRAM_RULE_ID_SALESRULE_RULE_ID": true
+        }
+    },
+    "amasty_affiliate_coupon": {
+        "column": {
+            "entity_id": true,
+            "account_id": true,
+            "program_id": true,
+            "coupon_id": true,
+            "current_profit": true,
+            "is_system": true
+        },
+        "index": {
+            "AMASTY_AFFILIATE_COUPON_ENTITY_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_71CCCF6DBB6051BE08D426717D9D80D7": true,
+            "FK_8837F0B64E5C8E38D2A00290A5DD1CF1": true
+        }
+    },
+    "amasty_affiliate_program_order_counter": {
+        "column": {
+            "program_id": true,
+            "affiliate_account_id": true,
+            "order_counter": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_0C5542C8A9FE962C8A307E96CF77B6C3": true,
+            "FK_9C5B3275953F5FC08AA9336D1AD1285D": true
+        }
+    },
+    "amasty_affiliate_commission_calculation": {
+        "column": {
+            "id": true,
+            "program_id": true,
+            "is_enabled": true,
+            "action_strategy": true,
+            "skus": true,
+            "categories": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_ADA1D9245BB85327B7A1FF2B73010746": true
+        }
+    }
+}

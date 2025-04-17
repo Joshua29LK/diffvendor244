@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="amasty_affiliate_check_transactions" instance="Amasty\Affiliate\Model\Transaction" method="completeHoldTransactions">
+            <!--every 5 minutes to test-->
+            <!--<schedule>*/5 * * * *</schedule>-->
+            <!--at 2.30AM every day-->
+            <schedule>30 2 * * *</schedule>
+        </job>
+    </group>
+</config>

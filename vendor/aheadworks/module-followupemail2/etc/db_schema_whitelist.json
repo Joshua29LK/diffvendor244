@@ -1,0 +1,322 @@
+{
+    "aw_fue2_campaign": {
+        "column": {
+            "id": true,
+            "name": true,
+            "description": true,
+            "start_date": true,
+            "end_date": true,
+            "status": true
+        },
+        "index": {
+            "AW_FUE2_CAMPAIGN_START_DATE": true,
+            "AW_FUE2_CAMPAIGN_END_DATE": true,
+            "AW_FUE2_CAMPAIGN_STATUS": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "aw_fue2_event": {
+        "column": {
+            "id": true,
+            "campaign_id": true,
+            "event_type": true,
+            "name": true,
+            "bcc_emails": true,
+            "newsletter_only": true,
+            "failed_emails_mode": true,
+            "product_type_ids": true,
+            "cart_conditions": true,
+            "lifetime_conditions": true,
+            "customer_groups": true,
+            "order_statuses": true,
+            "status": true
+        },
+        "index": {
+            "AW_FUE2_EVENT_EVENT_TYPE": true,
+            "AW_FUE2_EVENT_STATUS": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_FUE2_EVENT_CAMPAIGN_ID_AW_FUE2_CAMPAIGN_ID": true
+        }
+    },
+    "aw_fue2_event_store": {
+        "column": {
+            "event_id": true,
+            "store_id": true
+        },
+        "index": {
+            "AW_FUE2_EVENT_STORE_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_FUE2_EVENT_STORE_EVENT_ID_AW_FUE2_EVENT_ID": true,
+            "AW_FUE2_EVENT_STORE_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "aw_fue2_event_email": {
+        "column": {
+            "id": true,
+            "event_id": true,
+            "name": true,
+            "email_send_days": true,
+            "email_send_hours": true,
+            "email_send_minutes": true,
+            "when": true,
+            "position": true,
+            "status": true,
+            "ab_testing_mode": true,
+            "primary_email_content": true,
+            "ab_email_content": true
+        },
+        "index": {
+            "AW_FUE2_EVENT_EMAIL_POSITION": true,
+            "AW_FUE2_EVENT_EMAIL_STATUS": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_FUE2_EVENT_EMAIL_EVENT_ID_AW_FUE2_EVENT_ID": true
+        }
+    },
+    "aw_fue2_event_email_content": {
+        "column": {
+            "id": true,
+            "email_id": true,
+            "sender_name": true,
+            "sender_email": true,
+            "subject": true,
+            "content": true,
+            "header_template": true,
+            "footer_template": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_FUE2_EVENT_EMAIL_CONTENT_EMAIL_ID_AW_FUE2_EVENT_EMAIL_ID": true
+        }
+    },
+    "aw_fue2_event_history": {
+        "column": {
+            "id": true,
+            "reference_id": true,
+            "event_type": true,
+            "event_data": true,
+            "triggered_at": true,
+            "processed": true
+        },
+        "index": {
+            "AW_FUE2_EVENT_HISTORY_REFERENCE_ID": true,
+            "AW_FUE2_EVENT_HISTORY_EVENT_TYPE": true,
+            "AW_FUE2_EVENT_HISTORY_PROCESSED": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "aw_fue2_event_queue": {
+        "column": {
+            "id": true,
+            "event_id": true,
+            "event_type": true,
+            "reference_id": true,
+            "event_data": true,
+            "security_code": true,
+            "created_at": true,
+            "status": true
+        },
+        "index": {
+            "AW_FUE2_EVENT_QUEUE_REFERENCE_ID": true,
+            "AW_FUE2_EVENT_QUEUE_EVENT_TYPE": true,
+            "AW_FUE2_EVENT_QUEUE_SECURITY_CODE": true,
+            "AW_FUE2_EVENT_QUEUE_STATUS": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_FUE2_EVENT_QUEUE_EVENT_ID_AW_FUE2_EVENT_ID": true
+        }
+    },
+    "aw_fue2_event_queue_email": {
+        "column": {
+            "id": true,
+            "event_queue_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "status": true
+        },
+        "index": {
+            "AW_FUE2_EVENT_QUEUE_EMAIL_STATUS": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_FUE2_EVENT_QUEUE_EMAIL_EVENT_QUEUE_ID_AW_FUE2_EVENT_QUEUE_ID": true
+        }
+    },
+    "aw_fue2_email_queue": {
+        "column": {
+            "id": true,
+            "event_id": true,
+            "event_email_id": true,
+            "email_content_id": true,
+            "event_queue_email_id": true,
+            "event_type": true,
+            "status": true,
+            "created_at": true,
+            "scheduled_at": true,
+            "sent_at": true,
+            "store_id": true,
+            "sender_name": true,
+            "sender_email": true,
+            "recipient_name": true,
+            "recipient_email": true,
+            "subject": true,
+            "content": true,
+            "content_version": true
+        },
+        "index": {
+            "AW_FUE2_EMAIL_QUEUE_EVENT_TYPE": true,
+            "AW_FUE2_EMAIL_QUEUE_STATUS": true,
+            "AW_FUE2_EMAIL_QUEUE_SCHEDULED_AT": true,
+            "AW_FUE2_EMAIL_QUEUE_SENT_AT": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_FUE2_EMAIL_QUEUE_EVENT_ID_AW_FUE2_EVENT_ID": true,
+            "AW_FUE2_EMAIL_QUEUE_EVENT_EMAIL_ID_AW_FUE2_EVENT_EMAIL_ID": true
+        }
+    },
+    "aw_fue2_order_quote": {
+        "column": {
+            "id": true,
+            "order_id": true,
+            "quote_data": true
+        },
+        "index": {
+            "AW_FUE2_ORDER_QUOTE_ORDER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "aw_fue2_statistics_history": {
+        "column": {
+            "id": true,
+            "email": true,
+            "email_content_id": true,
+            "sent": true,
+            "opened": true,
+            "clicked": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_EAD875589713301711F09CC401383E2A": true
+        }
+    },
+    "aw_fue2_statistics": {
+        "column": {
+            "id": true,
+            "email": true,
+            "event_id": true,
+            "event_email_id": true,
+            "email_content_id": true,
+            "sent": true,
+            "opened": true,
+            "clicked": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_FUE2_STATISTICS_EVENT_ID_AW_FUE2_EVENT_ID": true,
+            "AW_FUE2_STATISTICS_EVENT_EMAIL_ID_AW_FUE2_EVENT_EMAIL_ID": true,
+            "FK_3C9F1B7EF732D59B1301DE0F1EFCF18A": true
+        }
+    },
+    "aw_fue2_unsubscribe": {
+        "column": {
+            "id": true,
+            "store_id": true,
+            "email": true,
+            "type": true,
+            "value": true
+        },
+        "index": {
+            "AW_FUE2_UNSUBSCRIBE_STORE_ID_EMAIL_TYPE_VALUE": true,
+            "AW_FUE2_UNSUBSCRIBE_STORE_ID_EMAIL_TYPE": true,
+            "AW_FUE2_UNSUBSCRIBE_STORE_ID_EMAIL": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_FUE2_UNSUBSCRIBE_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "aw_fue2_config": {
+        "column": {
+            "id": true,
+            "name": true,
+            "value": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "aw_fue2_event_conditions": {
+        "column": {
+            "event_id": true,
+            "type": true,
+            "value": true
+        },
+        "index": {
+            "AW_FUE2_EVENT_CONDITIONS_EVENT_ID_TYPE": true
+        },
+        "constraint": {
+            "AW_FUE2_EVENT_CONDITIONS_EVENT_ID_AW_FUE2_EVENT_ID": true
+        }
+    },
+    "aw_fue2_scheduled_emails": {
+        "column": {
+            "event_queue_id": true,
+            "campaign_name": true,
+            "event_name": true,
+            "event_type": true,
+            "email_name": true,
+            "ab_testing_mode": true,
+            "recipient_name": true,
+            "recipient_email": true,
+            "store_id": true,
+            "scheduled_to": true
+        },
+        "index": {
+            "AW_FUE2_SCHEDULED_EMAILS_SCHEDULED_TO": true
+        },
+        "constraint": {
+            "AW_FUE2_SCHEDULED_EMAILS_EVENT_QUEUE_ID_AW_FUE2_EVENT_QUEUE_ID": true
+        }
+    },
+    "aw_fue2_scheduled_emails_idx": {
+        "column": {
+            "event_queue_id": true,
+            "campaign_name": true,
+            "event_name": true,
+            "event_type": true,
+            "email_name": true,
+            "ab_testing_mode": true,
+            "recipient_name": true,
+            "recipient_email": true,
+            "store_id": true,
+            "scheduled_to": true
+        }
+    },
+    "aw_fue2_event_aw_customer_segment": {
+        "column": {
+            "event_id": true,
+            "aw_customer_segment_id": true
+        },
+        "index": {
+            "AW_FUE2_EVENT_AW_CSTR_SEGMENT_EVENT_ID_AW_CSTR_SEGMENT_ID": true
+        },
+        "constraint": {
+            "AW_FUE2_EVENT_AW_CUSTOMER_SEGMENT_EVENT_ID_AW_FUE2_EVENT_ID": true
+        }
+    }
+}

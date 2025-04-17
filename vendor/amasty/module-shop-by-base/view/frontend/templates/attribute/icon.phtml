@@ -1,0 +1,50 @@
+<?php
+
+use Amasty\ShopbyBase\Model\OptionSetting;
+use \Amasty\ShopbyBase\ViewModel\OptionProcessorInterface;
+
+/**
+ * @var \Amasty\ShopbyBase\Block\Product\AttributeIcon $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$optionsData = $block->getOptionsData();
+?>
+
+<?php foreach ($optionsData as $setting): ?>
+    <?php
+        $title = $block->stripTags($setting[OptionProcessorInterface::TITLE]);
+        $alt = $block->stripTags($setting[OptionSetting::SMALL_IMAGE_ALT]) ?: $title;
+    ?>
+    <div class="amshopby-option-link">
+        <a href="<?= $escaper->escapeUrl($setting[OptionProcessorInterface::LINK_URL]); ?>"
+           title="<?= $escaper->escapeHtml($title); ?>"
+            <?= /* @noEscape */ $setting[OptionProcessorInterface::TOOLTIP_JS] ?? '' ?>
+        >
+            <img title="<?= $escaper->escapeHtml($title); ?>"
+                alt="<?= $escaper->escapeHtml($alt); ?>"
+                src="<?= $escaper->escapeUrl($setting[OptionProcessorInterface::IMAGE_URL]) ?>"/>
+        </a>
+        <?php if (!empty($setting[OptionProcessorInterface::SHORT_DESCRIPTION])): ?>
+            <span class="link-short-description">
+                    <?= /* @noEscape */ $setting[OptionProcessorInterface::SHORT_DESCRIPTION];?>
+            <span>
+        <?php endif; ?>
+    </div>
+<?php endforeach; ?>
+
+<script type="text/x-magento-init">
+     {
+         ".amshopby-option-link [data-amshopby-js='brand-tooltip']": {
+             "amShopbyTooltipInit": {
+                "additionalClasses": "-no-double",
+                "position": {
+                    "my": "left bottom-10",
+                    "at": "left top",
+                    "collision": "flipfit flip"
+                },
+                "selector": "a"
+             }
+         }
+     }
+</script>

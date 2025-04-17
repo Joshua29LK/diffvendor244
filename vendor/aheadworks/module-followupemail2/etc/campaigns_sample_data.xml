@@ -1,0 +1,326 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="campaigns_sample_data.xsd">
+    <campaign>
+        <name>Abandoned Cart Campaign</name>
+        <description>Get back lost customers, let them recover their carts. Even the smallest recovery rate has huge impact on sales. Inside the campaign you will find an example on the abandoned cart email timings.</description>
+        <event>
+            <event_type>abandoned_cart</event_type>
+            <name>For customers with lifetime sales UNDER $500</name>
+            <failed_emails_mode>1</failed_emails_mode>
+            <lifetime_conditions>lteq</lifetime_conditions>
+            <lifetime_value>500</lifetime_value>
+            <email>
+                <name>Offering assistance</name>
+                <email_send_days>0</email_send_days>
+                <email_send_hours>1</email_send_hours>
+                <email_send_minutes>0</email_send_minutes>
+                <subject>Thanks for visiting {{var store.name}}!</subject>
+                <content><![CDATA[<p><strong>Dear {{var customer.firstname}},</strong></p>
+<p>We’ve noticed you left a shopping cart behind and we are wondering if anything went wrong. Please let us know if we could be of assistance and feel free to contact us for any additional information.</p>
+<p><strong style="text-transform: uppercase;">CART ITEMS:</strong></p>
+<table>
+{{for item in quote.items}}
+<tr>
+<td style="width:150px;height:150px"><img src="{{thumbnail width="100" height="150" source="$item.product_id"}}"/></td>
+<td style="vertical-align: middle;">
+<a href="{{productUrl source="$item.product_id"}}">{{var item.name}}</a> x {{var item.qty|formatDecimal}} </td>
+</tr>
+{{/for}}
+</table>
+<p><strong style="text-transform: uppercase;">Cart subtotal:</strong> {{var quote.subtotal|formatPrice}}</p>
+<p>Follow this link to view your cart and complete the purchase at <a href="{{var url_restore_cart}}">{{var store.name}}</a></p>
+<p>And don't forget to use the coupon: <strong>EXAMPLECODE10</strong> to get 10% discount.</p>
+<p>Thanks for visiting our store and hope to see you soon!</p>]]>
+                </content>
+            </email>
+            <email>
+                <name>Friendly reminder</name>
+                <email_send_days>0</email_send_days>
+                <email_send_hours>23</email_send_hours>
+                <email_send_minutes>0</email_send_minutes>
+                <subject>Your cart is waiting at {{var store.name}}!</subject>
+                <content><![CDATA[<p><strong>Hi {{var customer.firstname}},</strong></p>
+<p>We’ve kept your cart intact, so there is still a chance to pick up where you left off!</p>
+<p><strong style="text-transform: uppercase;">CART ITEMS:</strong></p>
+<table>
+{{for item in quote.items}}
+<tr>
+<td style="width:150px;height:150px"><img src="{{thumbnail width="100" height="150" source="$item.product_id"}}"/></td>
+<td style="vertical-align: middle;">
+<a href="{{productUrl source="$item.product_id"}}">{{var item.name}}</a> x {{var item.qty|formatDecimal}} </td>
+</tr>
+{{/for}}
+</table>
+<p><strong style="text-transform: uppercase;">Cart subtotal:</strong> {{var quote.subtotal|formatPrice}}</p>
+<p>Follow this link to view your cart and complete the purchase at <a href="{{var url_restore_cart}}">{{var store.name}}</a></p>
+<p>Meanwhile, feel free to visit <a href="{{store url=""}}">{{var store.name}}</a> and see what else we’ve got!</p>]]>
+                </content>
+            </email>
+            <email>
+                <name>Last call</name>
+                <email_send_days>2</email_send_days>
+                <email_send_hours>0</email_send_hours>
+                <email_send_minutes>0</email_send_minutes>
+                <subject>A coupon for your cart at {{var store.name}}!</subject>
+                <content><![CDATA[<p><strong>Hi {{var customer.firstname}},</strong></p>
+<p>We can see that the cart you’ve left at our store is still awaiting your decision, so we decided to try and tip the scale in our favor. Coupon code below provides you with an attractive discount on cart items, but only if used within the next 24 hours!</p>
+<p><strong style="text-transform: uppercase;">COUPON CODE:</strong> EXAMPLECODE2</p>
+<p><strong style="text-transform: uppercase;">CART ITEMS:</strong></p>
+<table>
+{{for item in quote.items}}
+<tr>
+<td style="width:150px;height:150px"><img src="{{thumbnail width="100" height="150" source="$item.product_id"}}"/></td>
+<td style="vertical-align: middle;">
+<a href="{{productUrl source="$item.product_id"}}">{{var item.name}}</a> x {{var item.qty|formatDecimal}} </td>
+</tr>
+{{/for}}
+</table>
+<p><strong style="text-transform: uppercase;">Cart subtotal:</strong> {{var quote.subtotal|formatPrice}}</p>
+<p>Follow this link to view your cart and complete the purchase at <a href="{{var url_restore_cart}}">{{var store.name}}</a></p>
+<p>Hurry up!</p>]]>
+                </content>
+            </email>
+        </event>
+        <event>
+            <event_type>abandoned_cart</event_type>
+            <name>For customers with lifetime sales OVER $500</name>
+            <failed_emails_mode>1</failed_emails_mode>
+            <lifetime_conditions>gt</lifetime_conditions>
+            <lifetime_value>500</lifetime_value>
+            <email>
+                <name>Offering assistance</name>
+                <email_send_days>0</email_send_days>
+                <email_send_hours>1</email_send_hours>
+                <email_send_minutes>0</email_send_minutes>
+                <subject>Thanks for visiting {{var store.name}}!</subject>
+                <content><![CDATA[<p><strong>Dear {{var customer.firstname}},</strong></p>
+<p>We’ve noticed you left a shopping cart behind and we are wondering if anything went wrong. Please let us know if we could be of assistance and feel free to contact us for any additional information.</p>
+<p><strong style="text-transform: uppercase;">CART ITEMS:</strong></p>
+<table>
+{{for item in quote.items}}
+<tr>
+<td style="width:150px;height:150px"><img src="{{thumbnail width="100" height="150" source="$item.product_id"}}"/></td>
+<td style="vertical-align: middle;">
+<a href="{{productUrl source="$item.product_id"}}">{{var item.name}}</a> x {{var item.qty|formatDecimal}} </td>
+</tr>
+{{/for}}
+</table>
+<p><strong style="text-transform: uppercase;">Cart subtotal:</strong> {{var quote.subtotal|formatPrice}}</p>
+<p>Follow this link to view your cart and complete the purchase at <a href="{{var url_restore_cart}}">{{var store.name}}</a></p>
+<p>And don't forget to use the coupon: <strong>EXAMPLECODE10</strong> to get 10% discount.</p>
+<p>Thanks for visiting our store and hope to see you soon!</p>]]>
+                </content>
+            </email>
+            <email>
+                <name>Friendly reminder</name>
+                <email_send_days>0</email_send_days>
+                <email_send_hours>23</email_send_hours>
+                <email_send_minutes>0</email_send_minutes>
+                <subject>Your cart is waiting at {{var store.name}}!</subject>
+                <content><![CDATA[<p><strong>Hi {{var customer.firstname}},</strong></p>
+<p>We’ve kept your cart intact, so there is still a chance to pick up where you left off!</p>
+<p><strong style="text-transform: uppercase;">CART ITEMS:</strong></p>
+<table>
+{{for item in quote.items}}
+<tr>
+<td style="width:150px;height:150px"><img src="{{thumbnail width="100" height="150" source="$item.product_id"}}"/></td>
+<td style="vertical-align: middle;">
+<a href="{{productUrl source="$item.product_id"}}">{{var item.name}}</a> x {{var item.qty|formatDecimal}} </td>
+</tr>
+{{/for}}
+</table>
+<p><strong style="text-transform: uppercase;">Cart subtotal:</strong> {{var quote.subtotal|formatPrice}}</p>
+<p>Follow this link to view your cart and complete the purchase at <a href="{{var url_restore_cart}}">{{var store.name}}</a></p>
+<p>Meanwhile, feel free to visit <a href="{{store url=""}}">{{var store.name}}</a> and see what else we’ve got!</p>]]>
+                </content>
+            </email>
+            <email>
+                <name>Last call</name>
+                <email_send_days>2</email_send_days>
+                <email_send_hours>0</email_send_hours>
+                <email_send_minutes>0</email_send_minutes>
+                <subject>A coupon for your cart at {{var store.name}}!</subject>
+                <content><![CDATA[<p><strong>Hi {{var customer.firstname}},</strong></p>
+<p>We can see that the cart you’ve left at our store is still awaiting your decision, so we decided to try and tip the scale in our favor. Coupon code below provides you with an attractive discount on cart items, but only if used within the next 24 hours!</p>
+<p><strong style="text-transform: uppercase;">COUPON CODE:</strong> EXAMPLECODE15</p>
+<p><strong style="text-transform: uppercase;">CART ITEMS:</strong></p>
+<table>
+{{for item in quote.items}}
+<tr>
+<td style="width:150px;height:150px"><img src="{{thumbnail width="100" height="150" source="$item.product_id"}}"/></td>
+<td style="vertical-align: middle;">
+<a href="{{productUrl source="$item.product_id"}}">{{var item.name}}</a> x {{var item.qty|formatDecimal}} </td>
+</tr>
+{{/for}}
+</table>
+<p><strong style="text-transform: uppercase;">Cart subtotal:</strong> {{var quote.subtotal|formatPrice}}</p>
+<p>Follow this link to view your cart and complete the purchase at <a href="{{var url_restore_cart}}">{{var store.name}}</a></p>
+<p>Hurry up!</p>]]>
+                </content>
+            </email>
+        </event>
+    </campaign>
+    <campaign>
+        <name>Customer Engagement Campaign</name>
+        <description>Establishing communication is the key to sales. A precisely targeted message, considering customer's purchase history or recent activity will gain you bonus loyalty points. Ask for their opinion for a review, or congratulate with the first year at the store. Attention wins hearts.</description>
+        <event>
+            <event_type>order_status_changed</event_type>
+            <name>Review request</name>
+            <failed_emails_mode>1</failed_emails_mode>
+            <order_statuses>complete</order_statuses>
+            <email>
+                <name>Review request email</name>
+                <email_send_days>14</email_send_days>
+                <email_send_hours>0</email_send_hours>
+                <email_send_minutes>0</email_send_minutes>
+                <subject>Did you enjoy that thing from {{var store.name}}?</subject>
+                <content><![CDATA[<p><strong>Hi {{var customer_firstname}},</strong></p>
+<p>Thanks again for shopping at <a href="{{store url=""}}">{{var store.name}}</a>, we really appreciate your business!</p>
+<p>Hopefully you had the chance to try the items we shipped and already have some experiences to share. Your feedback will help our team to improve the selection of items we carry, while our customers will be happy to hear from someone who tried the product firsthand.</p>
+<p>The items you purchased may be found here:</p>
+<table>
+{{for item in order.getAllVisibleItems()}}
+<tr>
+<td style="width:150px;height:150px"><img src="{{thumbnail width="100" height="150" source="$item.product"}}"/></td>
+<td style="vertical-align: middle;">
+<a href="{{productUrl source="$item"}}">{{var item.name}}</a> x {{var item.qty_ordered|formatDecimal}} </td>
+</tr>
+{{/for}}
+</table>
+<p>We’d appreciate it if you find the time to leave a review and we hope that you choose <a href="{{store url=""}}">{{var store.name}}</a> for your future purchases!</p>]]>
+                </content>
+            </email>
+        </event>
+        <event>
+            <event_type>customer_last_activity</event_type>
+            <name>Win Back Customers</name>
+            <failed_emails_mode>1</failed_emails_mode>
+            <email>
+                <name>Offering assistance</name>
+                <email_send_days>30</email_send_days>
+                <email_send_hours>0</email_send_hours>
+                <email_send_minutes>0</email_send_minutes>
+                <subject>Long time no see :)</subject>
+                <content><![CDATA[<p><strong>Hi {{var customer.firstname}},</strong></p>
+<p>You haven’t been around for a while. If you have any questions or need assistance, we'll be glad to help. Just reply to this email and we'll be there for you!</p>
+<p>As a sidenote, we've got some new stuff on <a href="{{store url=""}}">{{var store.name}}</a> that might be interesting for you :)</p>]]>
+                </content>
+            </email>
+            <email>
+                <name>What you've missed</name>
+                <email_send_days>15</email_send_days>
+                <email_send_hours>0</email_send_hours>
+                <email_send_minutes>0</email_send_minutes>
+                <subject>What you've missed at {{var store.name}}!</subject>
+                <content><![CDATA[<p><strong>Hi {{var customer.firstname}},</strong></p>
+<p>We just wanted to let you know that we miss you. While you were away we have greatly updated our catalog and started a number of sales campaigns.</p>
+<p>Make sure to check back at <a href="{{store url=""}}">{{var store.name}}</a>! You will definetely enjoy it :)</p>]]>
+                </content>
+            </email>
+            <email>
+                <name>Miss you email</name>
+                <email_send_days>15</email_send_days>
+                <email_send_hours>0</email_send_hours>
+                <email_send_minutes>0</email_send_minutes>
+                <subject>We miss you at {{var store.name}}!</subject>
+                <content><![CDATA[<p><strong>Hey {{var customer.firstname}},</strong></p>
+<p>It seems like forever since you visited our store.</p>
+<p>We are sure you will find even more products to your liking than before. Come check them out.</p>
+<p>Here is a 10% discount code EXAMPLECODE for your next purchse. It will be valid through 5 days! Hurry up to use it at <a href="{{store url=""}}">{{var store.name}}</a>!
+See you soon :)</p>]]>
+                </content>
+            </email>
+        </event>
+        <event>
+            <event_type>customer_registration</event_type>
+            <name>Anniversary Emails</name>
+            <failed_emails_mode>1</failed_emails_mode>
+            <email>
+                <name>It's been a year (1year)</name>
+                <email_send_days>365</email_send_days>
+                <email_send_hours>0</email_send_hours>
+                <email_send_minutes>0</email_send_minutes>
+                <subject>Your first year with {{var store.name}}</subject>
+                <content><![CDATA[<p><strong>Hi {{var customer.firstname}},</strong></p>
+<p>We would like to thank you for an amazing year together. You have made this store a better place!</p>
+<p>As a token of gratitude we are happy to offer you a 15% discount:</p>
+<p><strong>EXAMPLECODE</strong></p>
+<p>Be sure to apply it towards your next purchase at <a href="{{store url=""}}">{{var store.name}}</a></p>
+<p>Best regards,</p>
+<p>Your <a href="{{store url=""}}">{{var store.name}}</a> team.</p>]]>
+                </content>
+            </email>
+            <email>
+                <name>Thank you for being with us (2 years)</name>
+                <email_send_days>365</email_send_days>
+                <email_send_hours>0</email_send_hours>
+                <email_send_minutes>0</email_send_minutes>
+                <subject>Two years with {{var store.name}}</subject>
+                <content><![CDATA[<p><strong>Hey {{var customer.firstname}},</strong></p>
+<p>It's been two years, can you believe it? We sure do!</p>
+<p>Thank you for being amazing and being with us. Feel free coming back and using your 15% discount:</p>
+<p><strong>EXAMPLECODE</strong></p>
+<p>Best regards,</p>
+<p>Your <a href="{{store url=""}}">{{var store.name}}</a> team.</p>]]>
+                </content>
+            </email>
+        </event>
+        <event>
+            <event_type>customer_registration</event_type>
+            <name>New registration</name>
+            <failed_emails_mode>1</failed_emails_mode>
+            <email>
+                <name>New registration</name>
+                <email_send_days>2</email_send_days>
+                <email_send_hours>0</email_send_hours>
+                <email_send_minutes>0</email_send_minutes>
+                <subject>Welcome to {{var store.name}}!</subject>
+                <content><![CDATA[<p><strong>Hi {{var customer.firstname}},</strong></p>
+<p>We are happy you have chosen <a href="{{store url=""}}">{{var store.name}}</a> and we hope that you can find everything you need at our store!</p>
+<p>Feel free to contact us should you require any assistance and our team will help you out.</p>
+<p>Enjoy shopping at <a href="{{store url=""}}">{{var store.name}}</a>!</p>]]>
+                </content>
+            </email>
+        </event>
+    </campaign>
+    <campaign>
+        <name>Sales Follow-ups Campaign</name>
+        <description>Offering office supplies? Why don't send friendly reminders at the end of the month? Your customers have probably ran out of paper and coffee. Or is it that you want to cross-sell? Set up a couple of emails depending on the customer's purchase history and offer relevant related products.</description>
+        <event>
+            <event_type>order_status_changed</event_type>
+            <name>Complementary Products Offer</name>
+            <failed_emails_mode>1</failed_emails_mode>
+            <order_statuses>complete</order_statuses>
+            <email>
+                <name>Complementary (14 days)</name>
+                <email_send_days>14</email_send_days>
+                <email_send_hours>0</email_send_hours>
+                <email_send_minutes>0</email_send_minutes>
+                <subject>See what else we’ve got at {{var store.name}}</subject>
+                <content><![CDATA[<p><strong>Hi {{var customer_firstname}},</strong></p>
+<p>Thanks again for choosing our store, we really appreciate your business!</p>
+<p>We hope you had a chance to try everything out and you are happy with your purchase! Keep in mind that we carry a selection of complementary items that might take your experience a couple levels up ;)</p>
+<p>Feel free to visit <a href="{{store url=""}}">{{var store.name}}</a> and see what else we got!</p>]]>
+                </content>
+            </email>
+        </event>
+        <event>
+            <event_type>order_status_changed</event_type>
+            <name>Consumable Products Notification</name>
+            <failed_emails_mode>1</failed_emails_mode>
+            <order_statuses>complete</order_statuses>
+            <email>
+                <name>Consumable (30 days)</name>
+                <email_send_days>30</email_send_days>
+                <email_send_hours>0</email_send_hours>
+                <email_send_minutes>0</email_send_minutes>
+                <subject>A little extra for your next order at {{var store.name}}</subject>
+                <content><![CDATA[<p><strong>Hi {{var customer_firstname}},</strong></p>
+<p>Your monthly supplies you got at <a href="{{store url=""}}">{{var store.name}}</a> are probably running low. Don't forget to stock up! Here is you 5% discount for your next purchase:</p>
+<p><strong>COUPON CODE:</strong> EXAMPLECODE</p>
+<p>Thanks for shopping at <a href="{{store url=""}}">{{var store.name}}</a>!</p>]]>
+                </content>
+            </email>
+        </event>
+    </campaign>
+</config>

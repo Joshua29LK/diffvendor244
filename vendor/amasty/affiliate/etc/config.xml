@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <amasty_affiliate>
+            <general>
+                <cookie_expiration>365</cookie_expiration>
+                <link_to_footer>1</link_to_footer>
+            </general>
+            <url>
+                <general_url>affiliate</general_url>
+                <parameter>affiliate_code</parameter>
+                <length>10</length>
+            </url>
+            <commission>
+                <add_commission_status>complete</add_commission_status>
+                <subtract_commission_status>closed</subtract_commission_status>
+                <holding_period>0</holding_period>
+            </commission>
+            <commission_calculation>
+                <include_shipping>0</include_shipping>
+                <include_tax>0</include_tax>
+            </commission_calculation>
+            <withdrawal>
+                <minimum_amount>50</minimum_amount>
+                <minimum_balance>0</minimum_balance>
+            </withdrawal>
+            <friends>
+                <text>Here you can share the store home page link with your friends. To share the specific product page or category page just open it in the browser and use the sharing widget right from the page.</text>
+                <text_traffic>Here you can find the traffic information from the different sources. Share more, earn more!</text_traffic>
+                <account_id>ra-5968d339b0751a2f</account_id>
+            </friends>
+            <terms>
+                <checkbox_text>I agree to the terms and conditions</checkbox_text>
+                <title>Terms and Conditions</title>
+            </terms>
+        </amasty_affiliate>
+        <promo>
+            <auto_generated_coupon_codes>
+                <format>alphanum</format>
+            </auto_generated_coupon_codes>
+        </promo>
+    </default>
+</config>

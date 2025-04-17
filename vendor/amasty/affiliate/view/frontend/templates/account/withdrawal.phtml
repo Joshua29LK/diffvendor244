@@ -1,0 +1,126 @@
+<?php
+/** @var \Amasty\Affiliate\Block\Account\Withdrawal $block */
+/** @var \Amasty\Affiliate\Model\Account $_account */
+$_account = $block->getAccount();
+$_withdrawals = $block->getWithdrawals();
+?>
+<div class="affiliate-balance-info">
+    <div class="affiliate-price-field"><?= $block->escapeHtml(__('Balance:')) ?>
+        <?= $block->escapeHtml($_account->getData('balance_with_currency')) ?>
+    </div>
+    <div class="affiliate-price-field">
+        <?= $block->escapeHtml(__('Available:')) ?> <?= $block->escapeHtml($_account->getData('available_with_currency')) ?>
+    </div>
+    <?php if ($block->getMinimumAmount() > 0): ?>
+        <div class="affiliate-price-field">
+            <?= $block->escapeHtml(__('Minimum Payout:')) ?> <?= $block->escapeHtml($block->getMinimumPriceAmount()) ?>
+        </div>
+    <?php endif; ?>
+</div>
+
+
+<form id="form-validate"
+      class="form"
+      action="<?= $block->escapeHtml($block->getUrl('amasty_affiliate/account_withdrawal/request')) ?>"
+      method="post"
+      id="form-validate"
+      enctype="multipart/form-data"
+      autocomplete="off"
+      data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'
+>
+    <?= $block->getBlockHtml('formkey')?>
+    <div class="field required">
+        <fieldset class="fieldset">
+            <div class="field required inline">
+                <label class="label"><span><?= $block->escapeHtml(__('Amount')) ?></span></label>
+                <div class="control required">
+                    <input
+                            data-validate="{number:true, required:true}"
+                            class="input-text"
+                            type="text"
+                            name="amount"
+                            title="<?= $block->escapeHtml(__('Amount')) ?>"
+                    >
+                </div>
+            </div>
+            <div class="actions-toolbar inline">
+                <div class="primary">
+                    <button type="submit" class="action save primary" title="<?= $block->escapeHtml(__('Submit Request')) ?>">
+                        <span><?= $block->escapeHtml(__('Send Request')) ?></span>
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</form>
+<?php if ($block->getMinimumBalance() > 0): ?>
+<div class="comment">
+    <?= $block->escapeHtml(__('The minimum "Available" balance to request a withdrawal is '))
+        . $block->escapeHtml($block->getMinimumBalancePrice()); ?>
+</div>
+<?php endif; ?>
+
+<?php if ($_withdrawals && count($_withdrawals)): ?>
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history">
+            <thead>
+            <tr>
+                <th scope="col" class="col"><?= $block->escapeHtml(__('#')) ?></th>
+                <th scope="col" class="col"><?= $block->escapeHtml(__('Date')) ?></th>
+                <th scope="col" class="col"><?= $block->escapeHtml(__('Amount')) ?></th>
+                <th scope="col" class="col"><?= $block->escapeHtml(__('Status')) ?></th>
+                <th scope="col" class="col actions"><?= $block->escapeHtml(__('Action')) ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php /** @var \Amasty\Affiliate\Model\Transaction $_withdrawal */
+            foreach ($_withdrawals as $_withdrawal):
+            ?>
+                <tr>
+                    <td data-th="<?= $block->escapeHtml(__('#')) ?>" class="col">
+                        <?= $block->escapeHtml($_withdrawal->getTransactionId()) ?>
+                    </td>
+                    <td data-th="<?= $block->escapeHtml(__('Date')) ?>" class="col">
+                        <?= $block->escapeHtml($block->formatDate($_withdrawal->getUpdatedAt(), \IntlDateFormatter::SHORT), true) ?>
+                    </td>
+                    <td
+                            data-th="<?= $block->escapeHtml(__('Amount')) ?>"
+                            class="col
+                            <?= $block->escapeHtml($block->getPriceClass($_withdrawal)) ?>"
+                    >
+                        <?= $block->escapeHtml($block->convertToPrice($_withdrawal->getCommission())) ?>
+                    </td>
+                    <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col">
+                        <?= $block->escapeHtml(ucfirst($_withdrawal->getStatus())) ?>
+                    </td>
+                    <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                        <?php if ($block->showCancel($_withdrawal->getStatus())): ?>
+                            <a
+                                    href="<?= $block->escapeHtml($block->getCancelUrl($_withdrawal)) ?>"
+                                    class="action"
+                            >
+                                <span><?= $block->escapeHtml(__('Cancel')) ?></span>
+                            </a>
+                        <?php else: ?>
+                            <a
+                                    href="<?= $block->escapeHtml($block->getRepeatUrl($_withdrawal)) ?>"
+                                    class="action"
+                            >
+                                <span><?= $block->escapeHtml(__('Repeat')) ?></span>
+                            </a>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php
+            endforeach;
+            ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+<?php else: ?>
+    <div class="message info empty"><span><?= $block->escapeHtml(__('You have no withdrawals.')) ?></span></div>
+<?php endif ?>

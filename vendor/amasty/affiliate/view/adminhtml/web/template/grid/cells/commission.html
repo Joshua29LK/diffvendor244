@@ -1,0 +1,6 @@
+<div class="data-grid-cell-content" data-bind="
+                style: {color: $col.getLabel($row()).indexOf('-') !== 0 ? 'green' : 'red'},
+                text: $col.getLabel($row()).indexOf('-') !== 0
+                ? ('+' + $col.getLabel($row()))
+                : $col.getLabel($row())">
+</div>

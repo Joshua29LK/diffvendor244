@@ -1,0 +1,167 @@
+<?php
+/** @var \Amasty\Affiliate\Block\Account\Widget $block */
+/** @var Magento\Framework\Escaper $escaper */
+?>
+
+<form id="form-validate"
+      class="form"
+      action="<?= $escaper->escapeHtml($block->getUrl('amasty_affiliate/account/widgetPost')) ?>"
+      method="post"
+      id="form-validate"
+      enctype="multipart/form-data"
+      autocomplete="off"
+      data-hasrequired="<?= $escaper->escapeHtml(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'
+>
+    <fieldset class="fieldset affiliate-widget" data-hasrequired="<?= $escaper->escapeHtml(__('* Required Fields')) ?>">
+        <?= $block->getBlockHtml('formkey') ?>
+        <legend class="legend"><span><?= $escaper->escapeHtml(__('Settings')) ?></span></legend>
+        <div class="field required">
+            <label class="label"><span><?= $escaper->escapeHtml(__('Title')) ?></span></label>
+            <div class="control required">
+                <input
+                        data-validate="{required:true}"
+                        class="input-text"
+                        type="text"
+                        name="widget_title"
+                        title="<?= $escaper->escapeHtml(__('Title')) ?>"
+                        value="<?= $escaper->escapeHtml($block->getCurrentAccount()->getWidgetTitle()) ?>"
+                >
+            </div>
+        </div>
+        <div class="field required">
+            <label class="label"><span><?= $escaper->escapeHtml(__('Products Qty')) ?></span></label>
+            <div class="control required">
+                <input
+                        data-validate="{required:true, 'validate-number':true, 'validate-greater-than-zero':true}"
+                        class="input-text" type="text"
+                        name="widget_products_num"
+                        title="<?= $escaper->escapeHtml(__('Products Qty')) ?>"
+                        value="<?= $escaper->escapeHtml($block->getCurrentAccount()->getWidgetProductsNum()) ?>"
+                >
+            </div>
+        </div>
+        <div class="field">
+            <label class="label"><span><?= $escaper->escapeHtml(__('Width, px')) ?></span></label>
+            <div class="control required">
+                <input
+                        data-validate="{required:true, 'validate-greater-than-zero':true}"
+                        class="input-text" type="text"
+                        name="widget_width"
+                        title="<?= $escaper->escapeHtml(__('Width, px')) ?>"
+                        value="<?= $escaper->escapeHtml($block->getCurrentAccount()->getWidgetWidth()) ?>"
+                >
+            </div>
+        </div>
+        <div class="field">
+            <label class="label"><span><?= $escaper->escapeHtml(__('Height, px')) ?></span></label>
+            <div class="control required">
+                <input
+                        data-validate="{required:true, 'validate-greater-than-zero':true}"
+                        class="input-text" type="text"
+                        name="widget_height"
+                        title="<?= $escaper->escapeHtml(__('Height, px')) ?>"
+                        value="<?= $escaper->escapeHtml($block->getCurrentAccount()->getWidgetHeight()) ?>"
+                >
+            </div>
+        </div>
+        <div id="show-type" class="field">
+            <label class="with_right_margin">
+                <input
+                    <?= $escaper->escapeHtml($block->checkedBestsellers()) ?>
+                        value="<?= \Amasty\Affiliate\Model\Account::WIDGET_TYPE_BESTSELLER ?>"
+                        type="radio"
+                        name="widget_type"/>
+                <?= $escaper->escapeHtml(__('Bestsellers')) ?>
+            </label>
+            <br>
+            <label>
+                <input
+                    <?= $escaper->escapeHtml($block->checkedNew()) ?>
+                        value="<?= \Amasty\Affiliate\Model\Account::WIDGET_TYPE_NEW ?>"
+                        type="radio"
+                        name="widget_type"/>
+                <?= $escaper->escapeHtml(__('New Products')) ?>
+            </label>
+        </div>
+        <div class="field">
+            <label class="with_right_margin">
+                <input
+                    <?= $escaper->escapeHtml($block->checked('widget_show_name')) ?>
+                        type="checkbox" id="widget_show_name"
+                        name="widget_show_name"
+                        value="1"/>
+                <?= $escaper->escapeHtml(__('Product Name')) ?>
+            </label>
+            <br>
+            <label>
+                <input
+                    <?= $escaper->escapeHtml($block->checked('widget_show_price')) ?>
+                        type="checkbox"
+                        id="widget_show_price"
+                        name="widget_show_price"
+                        value="1"/>
+                <?= $escaper->escapeHtml(__('Price')) ?>
+            </label>
+        </div>
+    </fieldset>
+
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action save primary affiliate_button" title="<?= $escaper->escapeHtml(__('Save')) ?>">
+                <span><?= $escaper->escapeHtml(__('Save')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>
+
+<fieldset class="fieldset" id="affiliate-widget-part">
+    <legend class="legend"><span><?= $escaper->escapeHtml(__('Preview')) ?></span></legend>
+    <div id="widget-area">
+        <div id="affiliate-widget" data-amaffiliate-js="affiliate-widget" style="
+                width: <?= $escaper->escapeHtml($block->getCurrentAccount()->getWidgetWidth()) ?>px;
+                height: <?= $escaper->escapeHtml($block->getCurrentAccount()->getWidgetHeight()) ?>px;
+                overflow: auto;" >
+            <span id="widget-title" style="
+                width: 100%;
+                border-bottom: 1px solid;
+                font-weight: bold;
+                display: block;
+                text-align: center;
+                margin-bottom: 10px;
+            "><?= $escaper->escapeHtml($block->getCurrentAccount()->getWidgetTitle()) ?></span>
+            <?php $products = $block->getProducts() ?>
+            <?php /** @var \Magento\Catalog\Model\Product $product */foreach ($products as $product): ?>
+                <div class="widget-product" style="width: 100px; display: inline-block">
+                    <a href="<?= $escaper->escapeHtml($block->getProductUrl($product)) ?>">
+                        <div class="product-image">
+                            <img src="<?= $escaper->escapeHtml($block->getProductImageUrl($product)) ?>">
+                        </div>
+                        <?php if ($block->getCurrentAccount()->getWidgetShowName()): ?>
+                            <div class="product-name">
+                                <?= $escaper->escapeHtml($product->getName()); ?>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($block->getCurrentAccount()->getWidgetShowPrice()): ?>
+                            <div class="product-price">
+                                <?= $escaper->escapeHtml($block->convertToPrice($product)); ?>
+                            </div>
+                        <?php endif; ?>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</fieldset>
+<span id="copy-text" data-amaffiliate-js="copy-text" style="display: none;"><?= $escaper->escapeHtml(__('Copy')) ?></span>
+<span id="copied-text" data-amaffiliate-js="copied-text" style="display: none;"><?= $escaper->escapeHtml(__('Copied')) ?></span>
+<div id="copy-button" data-amaffiliate-js="copy-button" class="control">
+    <button class="button affiliate_button" id="copy-widget" data-amaffiliate-js="copy-widget"><?= $escaper->escapeHtml(__('Copy')) ?></button>
+</div>
+<script type="text/x-magento-init">
+        {
+            "*": {
+                "Amasty_Affiliate/js/promo": {}
+            }
+        }
+</script>

@@ -1,0 +1,254 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_CABAV
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Bss\CABAV\Block\Product\ProductList\AlsoBought */
+/** @var $block \Bss\CABAV\Block\Product\ProductList\AlsoViewed */
+
+$items = $block->getItems();
+$type = 'widget-product-grid';
+if ($items) :
+    $viewMode = 'grid';
+    $image = 'category_page_grid';
+    $maxRowGrid = $block->isMaxRow();
+    $mode = $block->isMode();
+    $title = $block->getTitle();
+    $type = $block->getTypeBlock();
+    $class = $type;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    $suffle = 'no';
+    $showAddTo = true;
+    $templateType = null;
+    $description = false;
+    $position = $block->getPositioned();
+?>
+<div class="block <?= $type ?>" data-limit="0" data-shuffle="0">
+    <div class="block-title title">
+        <strong id="block-<?php /* @escapeNotVerified */
+        echo $class ?>-heading" role="heading" aria-level="2"><?php /* @escapeNotVerified */
+            echo $title; ?></strong>
+    </div>
+
+    <?php if ($mode == 1) { ?>
+
+    <div class="columns block-content content" aria-labelledby="block-<?php /* @escapeNotVerified */
+    echo $class ?>-heading">
+        <div style="width: 100%" class="products wrapper <?= /* @escapeNotVerified */
+        $viewMode ?> products-<?= /* @escapeNotVerified */
+        $viewMode ?>">
+            <?php $iterator = 0; ?>
+            <ol class="products list items product-items owl-margin">
+                <?php foreach ($items as $_item): ?>
+                <li class="item product product-item alsobought-grid-<?= $maxRowGrid ?>">
+                    <div class="product-item-info full-page-grid" data-container="product-grid">
+                        <a href="<?php /* @escapeNotVerified */
+                        echo $block->getProductUrl($_item) ?>" class="product photo product-item-photo">
+                            <?php echo $block->getImage($_item, $image)->toHtml(); ?>
+                        </a>
+                        <div class="product details product-item-details">
+                            <strong class="product name product-item-name">
+                                <a class="product-item-link"
+                                   title="<?php echo $block->escapeHtml($_item->getName()) ?>"
+                                   href="<?php /* @escapeNotVerified */
+                                   echo $block->getProductUrl($_item) ?>">
+                                    <?php echo $block->escapeHtml($_item->getName()) ?></a>
+                            </strong>
+                            <?php /* @escapeNotVerified */
+                            echo $block->getProductPriceHtml($_item, $type); ?>
+
+                            <?php if ($block->isShowReviews() == 1) {
+                                echo $block->getReviewsSummaryHtml($_item, $templateType, true);
+                            } ?>
+                            <div class="product-item-inner">
+                                <div class="product actions product-item-actions" <?= strpos($position, $viewMode . '-actions') ? $position : '' ?>>
+                                    <?php if ($block->isShowAddToCart() == 1) : ?>
+                                        <div class="actions-primary" <?= strpos($position, $viewMode . '-primary') ? $position : '' ?>>
+                                            <?php if ($_item->isSaleable()): ?>
+                                                <?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)): ?>
+                                                    <button class="action tocart primary"
+                                                            data-mage-init='{"redirectUrl": {"url": "<?php /* @escapeNotVerified */
+                                                            echo $block->getAddToCartUrl($_item) ?>"}}'
+                                                            type="button" title="<?php /* @escapeNotVerified */
+                                                    echo __('Add to Cart') ?>">
+                                                                <span><?php /* @escapeNotVerified */
+                                                                    echo __('Add to Cart') ?></span>
+                                                    </button>
+                                                <?php else: ?>
+                                                    <?php $dataPost = $block->getDataPost(); ?>
+                                                    <form data-role="tocart-form" data-product-sku="<?= $_item->getSku(); ?>" action="<?= $dataPost['action'] ?>" method="post">
+                                                        <input type="hidden" name="product_id" value="<?= $_item->getId(); ?>">
+                                                        <input name="form_key" type="hidden" value="<?= $dataPost['form_key'] ?>">
+                                                        <input name="current_url" type="hidden" value="<?= $dataPost['current_url'] ?>">
+                                                        <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                            <span>Add to Cart</span>
+                                                        </button>
+                                                    </form>
+                                                <?php endif; ?>
+                                            <?php else: ?>
+                                                <?php if ($_item->getIsSalable()): ?>
+                                                    <div class="stock available">
+                                                                <span><?php /* @escapeNotVerified */
+                                                                    echo __('In stock') ?></span></div>
+                                                <?php else: ?>
+                                                    <div class="stock unavailable">
+                                                                <span><?php /* @escapeNotVerified */
+                                                                    echo __('Out of stock') ?></span></div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <div class="actions-secondary"
+                                         data-role="add-to-links" <?= strpos($position, $viewMode . '-secondary') ? $position : '' ?>>
+                                        <?php if ($block->isShowAddToWishList() == 1) : ?>
+                                            <a href="#"
+                                               data-post='<?php echo $block->getAddToWishlistParams($_item); ?>'
+                                               class="action towishlist" data-action="add-to-wishlist"
+                                               title="<?php echo __('Add to Wish List') ?>">
+                                                <span><?php echo __('Add to Wish List') ?></span>
+                                            </a>
+                                        <?php endif; ?>
+                                        <?php if ($block->isShowAddToCompare() == 1) : ?>
+                                            <?php $compareHelper = $block->compareHelper; ?>
+                                            <a href="#" class="action tocompare"
+                                               data-post='<?php echo $compareHelper->getPostDataParams($_item); ?>'
+                                               data-role="add-to-links"
+                                               title="<?php echo __('Add to Compare'); ?>">
+                                                <span><?php echo __('Add to Compare') ?></span>
+                                            </a>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php echo ($iterator == count($items) + 1) ? '</li>' : '' ?>
+                    <?php endforeach ?>
+            </ol>
+        </div>
+    </div>
+
+<?php } else { ?>
+
+    <div class="columns block-content content" aria-labelledby="block-<?php echo $class ?>-heading">
+        <div style="width: 100%" class="products wrapper <?= /* @escapeNotVerified */
+        $viewMode ?> products-<?= /* @escapeNotVerified */
+        $viewMode ?>">
+
+            <?php $iterator = 0; ?>
+
+            <ol class="products list items product-items owl-margin">
+                <li class="owl-carousel owl-theme" style="overflow: auto;" data-mage-init='{
+                        "Bss_CABAV/js/carousel": {
+                            "max": <?php echo $block->isMaxRow() ?>
+                        }
+                    }'>
+                    <?php foreach ($items as $_item): ?>
+                        <div class="item owl-item product-item-info product-item full-page-grid"
+                             data-container="product-grid">
+                            <a href="<?php /* @escapeNotVerified */
+                            echo $block->getProductUrl($_item) ?>" class="product photo product-item-photo">
+                                <?php echo $block->getImage($_item, $image)->toHtml(); ?>
+                            </a>
+                            <div class="product details product-item-details">
+                                <strong class="product name product-item-name">
+                                    <a class="product-item-link"
+                                       title="<?php echo $block->escapeHtml($_item->getName()) ?>"
+                                       href="<?php /* @escapeNotVerified */
+                                       echo $block->getProductUrl($_item) ?>">
+                                        <?php echo $block->escapeHtml($_item->getName()) ?></a>
+                                </strong>
+                                <?php /* @escapeNotVerified */
+                                echo $block->getProductPriceHtml($_item, $type); ?>
+
+                                <?php if ($block->isShowReviews() == 1) {
+                                    echo $block->getReviewsSummaryHtml($_item, $templateType, true);
+                                } ?>
+                                <div class="product-item-inner">
+                                    <div class="product actions product-item-actions" <?= strpos($position, $viewMode . '-actions') ? $position : '' ?>>
+                                        <?php if ($block->isShowAddToCart() == 1) : ?>
+                                            <div class="actions-primary" <?= strpos($position, $viewMode . '-primary') ? $position : '' ?>>
+                                                <?php if ($_item->isSaleable()): ?>
+                                                    <?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)): ?>
+                                                        <button class="action tocart primary"
+                                                                data-mage-init='{"redirectUrl": {"url": "<?php /* @escapeNotVerified */
+                                                                echo $block->getAddToCartUrl($_item) ?>"}}'
+                                                                type="button"
+                                                                title="<?php /* @escapeNotVerified */
+                                                                echo __('Add to Cart') ?>">
+                                                                    <span><?php /* @escapeNotVerified */
+                                                                        echo __('Add to Cart') ?></span>
+                                                        </button>
+                                                    <?php else: ?>
+                                                        <?php $dataPost = $block->getDataPost(); ?>
+                                                        <form data-role="tocart-form" data-product-sku="<?= $_item->getSku(); ?>" action="<?= $dataPost['action'] ?>" method="post">
+                                                            <input type="hidden" name="product_id" value="<?= $_item->getId(); ?>">
+                                                            <input name="form_key" type="hidden" value="<?= $dataPost['form_key'] ?>">
+                                                            <input name="current_url" type="hidden" value="<?= $dataPost['current_url'] ?>">
+                                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        </form>
+                                                    <?php endif; ?>
+                                                <?php else: ?>
+                                                    <?php if ($_item->getIsSalable()): ?>
+                                                        <div class="stock available">
+                                                                    <span><?php /* @escapeNotVerified */
+                                                                        echo __('In stock') ?></span></div>
+                                                    <?php else: ?>
+                                                        <div class="stock unavailable">
+                                                                    <span><?php /* @escapeNotVerified */
+                                                                        echo __('Out of stock') ?></span></div>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endif; ?>
+
+                                        <div class="actions-secondary"
+                                             data-role="add-to-links" <?= strpos($position, $viewMode . '-secondary') ? $position : '' ?>>
+                                            <?php if ($block->isShowAddToWishList() == 1) : ?>
+                                                <a href="#"
+                                                   data-post='<?php echo $block->getAddToWishlistParams($_item); ?>'
+                                                   class="action towishlist" data-action="add-to-wishlist"
+                                                   title="<?php echo __('Add to Wish List') ?>">
+                                                    <span><?php echo __('Add to Wish List') ?></span>
+                                                </a>
+                                            <?php endif; ?>
+                                            <?php $compareHelper = $block->compareHelper; ?>
+                                            <?php if ($block->isShowAddToCompare() == 1) : ?>
+                                                <a href="#" class="action tocompare"
+                                                   data-post='<?php echo $compareHelper->getPostDataParams($_item); ?>'
+                                                   data-role="add-to-links"
+                                                   title="<?php echo __('Add to Compare'); ?>">
+                                                    <span><?php echo __('Add to Compare') ?></span>
+                                                </a>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php echo ($iterator == count($items) + 1) ? '</div>' : '' ?>
+                    <?php endforeach ?>
+                </li>
+            </ol>
+        </div>
+    </div>
+    </div>
+<?php } endif; ?>

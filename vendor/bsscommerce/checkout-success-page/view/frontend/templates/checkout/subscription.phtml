@@ -1,0 +1,53 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_CheckoutSuccessPage
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+// @codingStandardsIgnoreFile
+?>
+<?php /** @var $block Bss\CheckoutSuccessPage\Block\Subscription */ ?>
+<hr>
+<?php
+    $order = $block->getOrder();
+    $email= $order->getCustomerEmail();
+?>
+
+<div class="block newsletter news-subs">
+<h4><?php echo __('Newsletter Subscription') ?></h4>
+    <div class="content">
+        <form class="form subscribe"
+            novalidate
+            action="<?php echo $block->getFormActionUrl() ?>"
+            method="post"
+            data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+            id="newsletter-validate-detail">
+            <div class="field newsletter">  
+                <label class="label" for="newsletter"></label>
+                <div class="control">
+                    <input name="email" type="email" id="newsletter"
+                                value="<?php echo $email ?>"
+                                placeholder="<?php echo __('Enter your email address') ?>"
+                                data-validate="{required:true, 'validate-email':true}"/>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="color-changing action subscribe primary" title="<?php echo __('Subscribe') ?>" type="submit">
+                    <span><?php echo __('Subscribe') ?></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+

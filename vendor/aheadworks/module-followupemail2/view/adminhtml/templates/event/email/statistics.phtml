@@ -1,0 +1,47 @@
+<?php
+/** @var \Aheadworks\Followupemail2\Block\Adminhtml\Event\Email\Statistics $block */
+// @codingStandardsIgnoreFile
+?>
+<?php $statisticsData = $block->getEmailContentStatisticsData(); ?>
+<?php if (count($statisticsData) > 0): ?>
+<div class="email-content-statistics">
+    <table>
+        <tr>
+            <th class="statistics-label"><?php echo $block->escapeHtml(__('Email Statistics')); ?></th>
+            <th><?php echo $block->escapeHtml(__('Sent')); ?></th>
+            <th><?php echo $block->escapeHtml(__('Opened')); ?></th>
+            <th><?php echo $block->escapeHtml(__('Clicks')); ?></th>
+            <th><?php echo $block->escapeHtml(__('Open Rate')); ?></th>
+            <th><?php echo $block->escapeHtml(__('Click Rate')); ?></th>
+        </tr>
+        <?php $index = 'A'; ?>
+        <?php foreach ($statisticsData as $statistics): ?>
+            <tr <?php if ($statistics['inactive']): ?>class="inactive"<?php endif; ?>>
+                <td class="statistics-label"><?php echo $block->escapeHtml(__('Version %1', $index)) ?></td>
+                <td class="statistics-value"><?php echo $block->escapeHtml($statistics['sent']); ?></td>
+                <td class="statistics-value"><?php echo $block->escapeHtml($statistics['opened']); ?></td>
+                <td class="statistics-value"><?php echo $block->escapeHtml($statistics['clicks']); ?></td>
+                <td class="statistics-value highlighted <?php if ($statistics['inactive']): ?>inactive<?php endif; ?>"><?php echo $block->escapeHtml($statistics['open_rate']); ?>%</td>
+                <td class="statistics-value highlighted <?php if ($statistics['inactive']): ?>inactive<?php endif; ?>"><?php echo $block->escapeHtml($statistics['click_rate']); ?>%</td>
+                <td class="statistics-reset"><a id="aw-fue2-content-<?php echo $block->escapeHtml($statistics['version']); ?>" href="#"><?php echo $block->escapeHtml(__('Reset statistics')); ?></a></td>
+            </tr>
+            <?php $index++; ?>
+        <?php endforeach; ?>
+        <tr>
+            <td colspan="6"/>
+            <td class="statistics-reset"><a id="aw-fue2-content-all" href="#" ><?php echo $block->escapeHtml(__('Reset statistics (all versions)')); ?></a></td>
+        </tr>
+    </table>
+</div>
+    <script type='text/javascript'>
+        require(['jquery', 'awFueEmailStatResetter'], function($){
+            var config = {
+                url: '<?php /* @noEscape */ echo $block->getResetUrl(); ?>',
+                statSelector: '.email-content-statistics .statistics-reset a',
+                emailId: '<?php /* @noEscape */ echo $block->getEmailId(); ?>'
+            };
+            $.awFueEmailStatResetter.init(config);
+        })
+    </script>
+
+<?php endif; ?>

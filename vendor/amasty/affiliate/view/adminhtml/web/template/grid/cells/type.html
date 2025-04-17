@@ -1,0 +1,5 @@
+<div class="data-grid-cell-content"
+     data-bind="text: $row()['balance_change_type'] == 1 && $row()[$data.index] !== 'withdrawal'
+                ? $col.getLabel($row()) + ' - Refund'
+                : $col.getLabel($row())">
+</div>

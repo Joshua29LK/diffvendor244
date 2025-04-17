@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form_data_source</item>
+            <item name="deps" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form_data_source</item>
+            <item name="namespace" xsi:type="string">aw_followupemail2_event_form</item>
+        </item>
+        <item name="buttons" xsi:type="array">
+            <item name="save" xsi:type="string">Aheadworks\Followupemail2\Block\Adminhtml\Event\SaveButton</item>
+            <item name="cancel" xsi:type="string">Aheadworks\Followupemail2\Block\Adminhtml\Event\CancelButton</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="config" xsi:type="array">
+            <item name="ajaxSaveType" xsi:type="string">simple</item>
+        </item>
+    </argument>
+    <dataSource name="aw_followupemail2_event_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Aheadworks\Followupemail2\Ui\DataProvider\Event\FormDataProvider</argument>
+            <argument name="name" xsi:type="string">aw_followupemail2_event_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="aw_followupemail2/event/save"/>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">campaign_id</item>
+                        <item name="1" xsi:type="string">event_type</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="data">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string"/>
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+        <field name="campaign_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">hidden</item>
+                    <item name="dataScope" xsi:type="string">data.campaign_id</item>
+                </item>
+            </argument>
+        </field>
+        <field name="duplicate_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">hidden</item>
+                    <item name="dataScope" xsi:type="string">data.duplicate_id</item>
+                    <item name="default" xsi:type="boolean">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="status">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Enable Event</item>
+                    <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/form/element/disable-confirm-switcher</item>
+                    <item name="confirmMessage" xsi:type="string" translate="true">Are you sure you want to deactivate the event? All the event email chains will be canceled. This action cannot be reversed.</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="dataScope" xsi:type="string">data.status</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </field>
+        <field name="event_type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Event\Types</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Event Type</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">data.event_type</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                    <item xsi:type="string" name="additionalClasses">aw-followupemail2-event_type</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+        </field>
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Event Name</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">data.name</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="bcc_emails">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">BCC Email(s)</item>
+                    <item name="notice" xsi:type="string" translate="true">Separate email addresses by commas</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">data.bcc_emails</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                </item>
+            </argument>
+        </field>
+        <field name="newsletter_only">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Send to Newsletter Subscribers Only</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="dataScope" xsi:type="string">data.newsletter_only</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="email_chain_settings">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Email Chain Delivery Settings</item>
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="failed_emails_mode">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Event\FailedEmailsMode</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">If Failed to Send Email</item>
+                    <item name="formElement" xsi:type="string">radioset</item>
+                    <item name="template" xsi:type="string">Aheadworks_Followupemail2/ui/form/element/checkbox-set</item>
+                    <item name="dataScope" xsi:type="string">data.failed_emails_mode</item>
+                    <item name="additionalClasses" xsi:type="string">aw-followupemail2-failed-emails-mode</item>
+                    <item name="notice" xsi:type="string" translate="true">In case on of the chain emails hasn't been sent out for some technical reasons</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="general_conditions" class="Aheadworks\Followupemail2\Ui\Component\Form\GeneralConditions">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">General Conditions</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">false</item>
+                <item name="sortOrder" xsi:type="number">30</item>
+            </item>
+        </argument>
+        <field name="store_ids">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Stores</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" xsi:type="string" translate="true">Store View</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="dataScope" xsi:type="string">data.store_ids</item>
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="customer_conditions" class="Aheadworks\Followupemail2\Ui\Component\Form\CustomerConditions">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Customer Conditions</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">false</item>
+                <item name="sortOrder" xsi:type="number">40</item>
+            </item>
+        </argument>
+        <field name="customer_groups" class="Aheadworks\Followupemail2\Ui\Component\Form\CustomerGroups">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\CustomerGroups</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" xsi:type="string" translate="true">Customer Groups</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="dataScope" xsi:type="string">data.customer_groups</item>
+                    <item name="default" xsi:type="string">all</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/multiselect</item>
+                    <item name="template" xsi:type="string">ui/form/field</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/multiselect</item>
+                </item>
+            </argument>
+        </field>
+        <container name="lifetime_sales">
+            <argument xsi:type="array" name="data">
+                <item xsi:type="string" name="type">group</item>
+                <item xsi:type="array" name="config">
+                    <item xsi:type="string" name="component">Magento_Ui/js/form/components/group</item>
+                    <item xsi:type="string" name="label" translate="true">Lifetime Sales</item>
+                    <item xsi:type="boolean" name="required">true</item>
+                    <item xsi:type="number" name="sortOrder">20</item>
+                    <item xsi:type="boolean" name="validateWholeGroup">true</item>
+                    <item xsi:type="boolean" name="breakLine">false</item>
+                </item>
+            </argument>
+            <field name="lifetime_conditions">
+                <argument name="data" xsi:type="array">
+                    <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Event\LifetimeConditions</item>
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item name="component" xsi:type="string">Aheadworks_Followupemail2\js\ui\event\form\lifetime-select</item>
+                        <item name="label" xsi:type="string" translate="true">Lifetime Sales</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="dataScope" xsi:type="string">data.lifetime_conditions</item>
+                        <item xsi:type="string" name="additionalClasses">admin__field-small aw-followupemail2-lifetime_conditions</item>
+                        <item name="sortOrder" xsi:type="number">20</item>
+                        <item name="switcherConfig" xsi:type="array">
+                            <item name="enabled" xsi:type="boolean">false</item>
+                            <item name="rules" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="value" xsi:type="string">lt</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form.customer_conditions.lifetime_sales.lifetime_value</item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form.customer_conditions.lifetime_sales.lifetime_from</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="2" xsi:type="array">
+                                            <item name="target" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form.customer_conditions.lifetime_sales.lifetime_to</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="value" xsi:type="string">gt</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form.customer_conditions.lifetime_sales.lifetime_value</item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form.customer_conditions.lifetime_sales.lifetime_from</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="2" xsi:type="array">
+                                            <item name="target" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form.customer_conditions.lifetime_sales.lifetime_to</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="2" xsi:type="array">
+                                    <item name="value" xsi:type="string">lteq</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form.customer_conditions.lifetime_sales.lifetime_value</item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form.customer_conditions.lifetime_sales.lifetime_from</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="2" xsi:type="array">
+                                            <item name="target" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form.customer_conditions.lifetime_sales.lifetime_to</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="3" xsi:type="array">
+                                    <item name="value" xsi:type="string">gteq</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form.customer_conditions.lifetime_sales.lifetime_value</item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form.customer_conditions.lifetime_sales.lifetime_from</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="2" xsi:type="array">
+                                            <item name="target" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form.customer_conditions.lifetime_sales.lifetime_to</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="4" xsi:type="array">
+                                    <item name="value" xsi:type="string">range</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form.customer_conditions.lifetime_sales.lifetime_value</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form.customer_conditions.lifetime_sales.lifetime_from</item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                        <item name="2" xsi:type="array">
+                                            <item name="target" xsi:type="string">aw_followupemail2_event_form.aw_followupemail2_event_form.customer_conditions.lifetime_sales.lifetime_to</item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="lifetime_value" class="Aheadworks\Followupemail2\Ui\Component\Form\LifetimeSalesField">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string"></item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="dataScope" xsi:type="string">data.lifetime_value</item>
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item xsi:type="string" name="additionalClasses">admin__field-small aw-followupemail2-lifetime_value</item>
+                        <item name="sortOrder" xsi:type="number">30</item>
+                        <item name="addbefore" xsi:type="string">$</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="lifetime_from" class="Aheadworks\Followupemail2\Ui\Component\Form\LifetimeSalesField">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">from</item>
+                        <item name="labelVisible" xsi:type="boolean">true</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="dataScope" xsi:type="string">data.lifetime_from</item>
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item xsi:type="string" name="additionalClasses">admin__field-small aw-followupemail2-lifetime_from</item>
+                        <item name="sortOrder" xsi:type="number">40</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="lifetime_to" class="Aheadworks\Followupemail2\Ui\Component\Form\LifetimeSalesField">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">to</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="dataScope" xsi:type="string">data.lifetime_to</item>
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item xsi:type="string" name="additionalClasses">admin__field-small aw-followupemail2-lifetime_to</item>
+                        <item name="sortOrder" xsi:type="number">50</item>
+                    </item>
+                </argument>
+            </field>
+        </container>
+    </fieldset>
+    <fieldset name="cart_conditions" class="Aheadworks\Followupemail2\Ui\Component\Form\CartConditions">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Cart Conditions</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">false</item>
+                <item name="sortOrder" xsi:type="number">50</item>
+            </item>
+        </argument>
+        <container name="cart_conditions" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Aheadworks\Followupemail2\Block\Adminhtml\Event\CartConditions</argument>
+            </htmlContent>
+        </container>
+    </fieldset>
+    <fieldset name="order_conditions" class="Aheadworks\Followupemail2\Ui\Component\Form\OrderConditions">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Order Conditions</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">false</item>
+                <item name="sortOrder" xsi:type="number">60</item>
+            </item>
+        </argument>
+        <container name="order_cart_conditions" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Aheadworks\Followupemail2\Block\Adminhtml\Event\OrderConditions</argument>
+            </htmlContent>
+        </container>
+        <field name="order_statuses">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\OrderStatuses</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" xsi:type="string" translate="true">Order Statuses</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="dataScope" xsi:type="string">data.order_statuses</item>
+                    <item name="default" xsi:type="string">all</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="product_conditions" class="Aheadworks\Followupemail2\Ui\Component\Form\ProductConditions">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Products</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">false</item>
+                <item name="sortOrder" xsi:type="number">70</item>
+            </item>
+        </argument>
+        <container name="product_rules">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Aheadworks\Followupemail2\Block\Adminhtml\Event\ProductConditions</argument>
+            </htmlContent>
+        </container>
+        <field name="product_type_ids">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\ProductTypes</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" xsi:type="string" translate="true">Product Types</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="dataScope" xsi:type="string">data.product_type_ids</item>
+                    <item name="default" xsi:type="string">all</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

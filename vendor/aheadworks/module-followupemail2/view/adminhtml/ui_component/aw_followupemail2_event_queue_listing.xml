@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">aw_followupemail2_event_queue_listing.aw_followupemail2_event_queue_listing_data_source</item>
+            <item name="deps" xsi:type="string">aw_followupemail2_event_queue_listing.aw_followupemail2_event_queue_listing_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">aw_followupemail2_event_queue_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="dummy" xsi:type="array">
+                <item name="name" xsi:type="string">dummy</item>
+                <item name="label" xsi:type="string">.</item>
+                <item name="class" xsi:type="string">hidden</item>
+                <item name="url" xsi:type="string">*/*/*</item>
+            </item>
+        </item>
+    </argument>
+    <dataSource name="aw_followupemail2_event_queue_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">AwFollowupemail2EventQueueDataProvider</argument>
+            <argument name="name" xsi:type="string">aw_followupemail2_event_queue_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">event_queue_id</argument>
+            <argument name="requestFieldName" xsi:type="string">event_queue_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">event_queue_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="sticky" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="columnsProvider" xsi:type="string">aw_followupemail2_event_queue_listing.aw_followupemail2_event_queue_listing.aw_followupemail2_event_queue_columns</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">aw_followupemail2_event_queue_listing.aw_followupemail2_event_queue_listing.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.filters</item>
+                    </item>
+                    <item name="childDefaults" xsi:type="array">
+                        <item name="provider" xsi:type="string">aw_followupemail2_event_queue_listing.aw_followupemail2_event_queue_listing.listing_top.listing_filters</item>
+                        <item name="imports" xsi:type="array">
+                            <item name="visible" xsi:type="string">aw_followupemail2_event_queue_listing.aw_followupemail2_event_queue_listing.aw_followupemail2_event_queue_columns.${ $.index }:visible</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </filters>
+        <massaction name="listing_massaction">
+            <action name="send">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">send</item>
+                        <item name="label" xsi:type="string" translate="true">Send now (sends all selected emails)</item>
+                        <item name="url" xsi:type="url" path="aw_followupemail2/event_queue/massSend"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Send Now</item>
+                            <item name="message" xsi:type="string" translate="true">Send selected emails immediately?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+            <action name="cancel">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">cancel</item>
+                        <item name="label" xsi:type="string" translate="true">Cancel selected emails</item>
+                        <item name="url" xsi:type="url" path="aw_followupemail2/event_queue/massCancel"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Cancel</item>
+                            <item name="message" xsi:type="string" translate="true">Cancel selected emails?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+            <action name="cancel_chain">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">cancel_chain</item>
+                        <item name="label" xsi:type="string" translate="true">Cancel selected email chains</item>
+                        <item name="url" xsi:type="url" path="aw_followupemail2/event_queue/massCancelEvent"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Cancel</item>
+                            <item name="message" xsi:type="string" translate="true">Cancel selected email chains?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <container name="listing_preview">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/grid/preview</item>
+                <item name="spinner" xsi:type="string">${ $.parentName }.aw_followupemail2_event_queue_columns</item>
+                <item name="preview_url" xsi:type="url" path="aw_followupemail2/event_queue/preview"/>
+                <item name="send_url" xsi:type="url" path="aw_followupemail2/event_queue/previewSend"/>
+                <item name="popupSelector" xsi:type="string">#aw-followupemail2-preview</item>
+                <item name="modalClass" xsi:type="string">email-preview-modal</item>
+                <item name="modalHeader" xsi:type="string" translate="true">Email Preview</item>
+            </item>
+        </argument>
+    </container>
+    <columns name="aw_followupemail2_event_queue_columns">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="childDefaults" xsi:type="array">
+                    <item name="fieldAction" xsi:type="array">
+                        <item name="provider" xsi:type="string">aw_followupemail2_event_queue_listing.aw_followupemail2_event_queue_listing.listing_preview</item>
+                        <item name="target" xsi:type="string">preview</item>
+                        <item name="params" xsi:type="array">
+                            <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        </item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">event_queue_id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="event_queue_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">ID</item>
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </column>
+        <column name="campaign_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Campaign</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+        </column>
+        <column name="event_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Event Name</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>
+        </column>
+        <column name="event_type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Event\Types</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="label" xsi:type="string" translate="true">Event Type</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                </item>
+            </argument>
+        </column>
+        <column name="email_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Email Name</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                </item>
+            </argument>
+        </column>
+        <column name="ab_testing_mode">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Event\Queue\AbTestingMode</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="label" xsi:type="string" translate="true">A/B Testing Mode</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                </item>
+            </argument>
+        </column>
+        <column name="recipient_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Recipient Name</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
+                </item>
+            </argument>
+        </column>
+        <column name="recipient_email">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Recipient Email</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">80</item>
+                </item>
+            </argument>
+        </column>
+        <column name="store_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\Followupemail2\Model\Source\Stores</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Aheadworks_Followupemail2/js/ui/grid/columns/store-select</item>
+                    <item name="label" xsi:type="string" translate="true">Store View</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="number">90</item>
+                </item>
+            </argument>
+        </column>
+        <column name="scheduled_to" class="Magento\Ui\Component\Listing\Columns\Date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" xsi:type="string" translate="true">Scheduled To</item>
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="sortOrder" xsi:type="number">100</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn class="Aheadworks\Followupemail2\Ui\Component\Listing\Columns\Event\Queue\Actions" name="actions">
+            <argument xsi:type="array" name="data">
+                <item xsi:type="array" name="config">
+                    <item xsi:type="string" name="component">Aheadworks_Followupemail2/js/ui/grid/columns/actions</item>
+                    <item xsi:type="string" name="label" translate="true">Actions</item>
+                    <item xsi:type="string" name="indexField">event_queue_id</item>
+                    <item xsi:type="number" name="sortOrder">200</item>
+                </item>
+            </argument>
+        </actionsColumn>
+    </columns>
+</listing>

@@ -1,0 +1,5 @@
+.inactiveLink {
+    pointer-events: none;
+    cursor: default;
+    color: black;
+}

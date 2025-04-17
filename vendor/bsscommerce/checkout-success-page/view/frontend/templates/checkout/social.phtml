@@ -1,0 +1,44 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_CheckoutSuccessPage
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+// @codingStandardsIgnoreFile
+?>
+<?php /** @var $block Bss\CheckoutSuccessPage\Block\Social */ ?>
+<hr>
+<?php $link = $block->getLink(); ?>
+<p class="share-order1"><?php echo __('Share on Social Networks: ') ?></p>
+<div class="social-share social-right">
+
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="https://twitter.com/share?text=Check%20this%20out!" class="twitter-share-button" 
+    data-url="<?php echo $link; ?>" data-show-count="false">Tweet</a>
+
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <div class="fb-share-button" data-href="<?php echo $link; ?>" 
+    data-layout="button" data-size="small" data-mobile-iframe="true">
+    <a class="fb-xfbml-parse-ignore" target="_blank">Share</a>
+    </div>
+</div>
+
+<p class="share-order2"><?php echo __('Share on Social Networks: ') ?></p>
