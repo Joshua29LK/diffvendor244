@@ -3171,8 +3171,7 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
             case 'mediumtext':
             case 'text':
             case 'longtext':
-                if(!is_array($value)) $value  = (string)$value;
-                else $value = '';
+                $value  = (string)$value;
                 if ($column['NULLABLE'] && $value == '') {
                     $value = null;
                 }

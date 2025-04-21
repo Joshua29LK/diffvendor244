@@ -311,6 +311,8 @@ class Full extends AbstractAction
         if (!empty($entityIds)) {
             $this->dimensionTableMaintainer->createMainTmpTable($dimensions);
             $temporaryTable = $this->dimensionTableMaintainer->getMainTmpTable($dimensions);
+            $this->_emptyTable($temporaryTable);
+
             $priceIndexer->executeByDimensions($dimensions, \SplFixedArray::fromArray($entityIds, false));
 
             // Sync data from temp table to index table
@@ -318,7 +320,6 @@ class Full extends AbstractAction
                 $temporaryTable,
                 $this->dimensionTableMaintainer->getMainReplicaTable($dimensions)
             );
-            $this->_defaultIndexerResource->getConnection()->dropTable($temporaryTable);
         }
     }
 
@@ -353,6 +354,7 @@ class Full extends AbstractAction
         if (!empty($entityIds)) {
             // Temporary table will created if not exists
             $idxTableName = $this->_defaultIndexerResource->getIdxTable();
+            $this->_emptyTable($idxTableName);
 
             if ($priceIndexer->getIsComposite()) {
                 $this->_copyRelationIndexData($entityIds);
@@ -487,7 +489,6 @@ class Full extends AbstractAction
      * Retrieves the index table that should be used
      *
      * @deprecated 102.0.6
-     * @see only used in another deprecated method: _copyRelationIndexData
      */
     protected function getIndexTargetTable(): string
     {

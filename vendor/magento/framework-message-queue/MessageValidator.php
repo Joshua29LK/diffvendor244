@@ -6,7 +6,6 @@
 namespace Magento\Framework\MessageQueue;
 
 use InvalidArgumentException;
-use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Phrase;
 use Magento\Framework\Communication\ConfigInterface as CommunicationConfig;
@@ -22,15 +21,6 @@ class MessageValidator
     private $communicationConfig;
 
     /**
-     * @param CommunicationConfig|null $communicationConfig
-     */
-    public function __construct(CommunicationConfig $communicationConfig = null)
-    {
-        $this->communicationConfig = $communicationConfig
-            ?? ObjectManager::getInstance()->get(CommunicationConfig::class);
-    }
-
-    /**
      * Identify message data schema by topic.
      *
      * @param string $topic
@@ -40,7 +30,7 @@ class MessageValidator
      */
     protected function getTopicSchema($topic, $requestType)
     {
-        $topicConfig = $this->communicationConfig->getTopic($topic);
+        $topicConfig = $this->getCommunicationConfig()->getTopic($topic);
         if ($topicConfig === null) {
             throw new LocalizedException(new Phrase('Specified topic "%topic" is not declared.', ['topic' => $topic]));
         }
@@ -127,14 +117,12 @@ class MessageValidator
     {
         $compareType = $messageType;
         $realType = $this->getRealType($message);
-        if ($realType == 'array') {
-            $compareType = preg_replace('/\[\]/', '', $messageType);
-            foreach ($message as $subMessage) {
-                $this->validatePrimitiveType($subMessage, $compareType, $topic);
-            }
+        if ($realType == 'array' && count($message) == 0) {
             return;
+        } elseif ($realType == 'array' && isset($message[0])) {
+            $realType = $this->getRealType($message[0]);
+            $compareType = preg_replace('/\[\]/', '', $messageType);
         }
-
         if ($realType !== $compareType) {
             throw new InvalidArgumentException(
                 new Phrase(
@@ -163,14 +151,12 @@ class MessageValidator
         $origMessage = $message;
         $compareType = $messageType;
         $realType = $this->getRealType($message);
-        if ($realType == 'array') {
-            $compareType = preg_replace('/\[\]/', '', $messageType);
-            foreach ($message as $subMessage) {
-                $this->validateClassType($subMessage, $compareType, $topic);
-            }
+        if ($realType == 'array' && count($message) == 0) {
             return;
+        } elseif ($realType == 'array' && isset($message[0])) {
+            $message = $message[0];
+            $compareType = preg_replace('/\[\]/', '', $messageType);
         }
-
         if (!($message instanceof $compareType)) {
             throw new InvalidArgumentException(
                 new Phrase(
@@ -198,5 +184,22 @@ class MessageValidator
         $type = $type == 'boolean' ? 'bool' : $type;
         $type = $type == 'double' ? 'float' : $type;
         return $type == "integer" ? "int" : $type;
+    }
+
+    /**
+     * Get communication config.
+     *
+     * @return CommunicationConfig
+     *
+     * @deprecated 103.0.0
+     */
+    private function getCommunicationConfig()
+    {
+        if ($this->communicationConfig === null) {
+            $this->communicationConfig = \Magento\Framework\App\ObjectManager::getInstance()->get(
+                CommunicationConfig::class
+            );
+        }
+        return $this->communicationConfig;
     }
 }

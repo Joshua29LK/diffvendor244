@@ -258,11 +258,8 @@ class View extends DataObject implements ViewInterface
         }
 
         $lastVersionId = (int)$this->getState()->getVersionId();
-        if ($lastVersionId >= $currentVersionId) {
-            return;
-        }
-
         $action = $this->actionFactory->get($this->getActionClass());
+
         try {
             $this->getState()->setStatus(View\StateInterface::STATUS_WORKING)->save();
 

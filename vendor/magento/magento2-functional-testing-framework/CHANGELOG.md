@@ -1,5 +1,126 @@
 Magento Functional Testing Framework Changelog
 ================================================
+
+3.13.3
+---------
+### Fixes
+* Allowed additional actions to read from credentials file to fix page builder failures.
+
+3.13.2
+---------
+### Enhancement
+* Provided support for chrome 131
+
+3.13.1
+---------
+### Fixes
+* Removed support for chrome 131
+
+3.13.0
+---------
+
+### Enhancement
+* Provided support for chrome 131
+
+3.12.5
+---------
+
+### Fixes
+* Provided support for 7.4 and above
+
+3.12.4
+---------
+
+### Fixes
+* Same as 3.12.3
+
+3.12.3
+---------
+
+### Fixes
+* Same as 3.12.2
+
+3.12.2
+---------
+
+### Enhancement
+* Lock php-webdriver ~1.12.0 to overcome webdriver exception
+
+
+3.12.1
+---------
+
+### Enhancement
+* Remove the symfony process from require-dev in MFTF version used by 2.4.6
+
+3.12.0
+---------
+
+### Fixes
+* Removed obsolete docs/directories
+
+3.11.1
+---------
+
+### Fixes
+
+* Removed environment variable MAGENTO_ADMIN_PASSWORD
+* Fixed WaitForElementClickable action cannot be used more than once
+
+3.11.0
+---------
+### Enhancements
+* Composer updated to 2.4.2 version
+* Static check for duplicate step keys in action group
+
+
+### Fixes
+
+* Fixed incorrect MFTF test dependencies path
+* Removed PHP 7.3 build check from MFTF PR build as PHP 7.3 is no longer supported
+* Fixed fatal error when running generate:tests --config parallel -g
+
+
+3.10.3
+---------
+
+### Fixes
+
+* Chrome settings for potential cost reductions
+
+3.10.2
+---------
+
+### Fixes
+
+* Fixed admin credentials being output to console in WebAPIAuth
+* Fixed links in docs
+
+
+3.10.1
+---------
+
+### Fixes
+
+* Fixed allure reports not generating for composer builds.
+* Fixed all MFTF scheduled build not generating allure report.
+
+3.10.0
+---------
+
+### Enhancements
+* Updated symfony/console and symfony/process constraints to support latest Symfony LTS (5.4v)
+* Updated Symfony related code to support latest Symfony LTS (5.4v).
+* Implement rapid times X clicks on UI element in MFTF
+* Log MFTF test dependencies
+* Unused entity static check
+* Updated docs for new location of password
+* Remove any remaining usages of Travis CI from MFTF Repo
+* Unit tests for GenerateTestFailedCommandTest and RunTestFailedCommandTest
+
+### Fixes
+* Hashicorp Vault PHP lib being instantiated with wrong params
+
 3.9.0
 ---------
 

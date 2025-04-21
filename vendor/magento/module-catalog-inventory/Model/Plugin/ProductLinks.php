@@ -44,7 +44,7 @@ class ProductLinks
     public function afterGetProductCollection(Link $subject, Collection $collection)
     {
         if ($this->configuration->isShowOutOfStock() != 1) {
-            $this->stockHelper->addIsInStockFilterToCollection($collection);
+            $this->stockHelper->addInStockFilterToCollection($collection);
         }
         return $collection;
     }

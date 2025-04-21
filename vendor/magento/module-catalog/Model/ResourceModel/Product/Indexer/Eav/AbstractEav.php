@@ -29,18 +29,16 @@ abstract class AbstractEav extends \Magento\Catalog\Model\ResourceModel\Product\
      * @param \Magento\Eav\Model\Config $eavConfig
      * @param \Magento\Framework\Event\ManagerInterface $eventManager
      * @param string $connectionName
-     * @param \Magento\Framework\EntityManager\MetadataPool|null $metadataPool
      */
     public function __construct(
         \Magento\Framework\Model\ResourceModel\Db\Context $context,
         \Magento\Framework\Indexer\Table\StrategyInterface $tableStrategy,
         \Magento\Eav\Model\Config $eavConfig,
         \Magento\Framework\Event\ManagerInterface $eventManager,
-        $connectionName = null,
-        ?\Magento\Framework\EntityManager\MetadataPool $metadataPool = null
+        $connectionName = null
     ) {
         $this->_eventManager = $eventManager;
-        parent::__construct($context, $tableStrategy, $eavConfig, $connectionName, $metadataPool);
+        parent::__construct($context, $tableStrategy, $eavConfig, $connectionName);
     }
 
     /**
@@ -114,8 +112,8 @@ abstract class AbstractEav extends \Magento\Catalog\Model\ResourceModel\Product\
     /**
      * Prepare data index for indexable attributes
      *
-     * @param array $entityIds the entity ids limitation
-     * @param int $attributeId the attribute id limitation
+     * @param array $entityIds      the entity ids limitation
+     * @param int $attributeId      the attribute id limitation
      * @return $this
      */
     abstract protected function _prepareIndex($entityIds = null, $attributeId = null);

@@ -1278,14 +1278,6 @@ class Order extends AbstractModel implements EntityInterface, OrderInterface
             $this->getPayment()->cancel();
             $this->registerCancellation();
 
-            // add log
-            $writer = new \Zend_Log_Writer_Stream(BP . '/var/log/cancel-order.log');
-            $logger = new \Zend_Log();
-            $logger->addWriter($writer);
-            $logger->info('Cancel order: '.$this->getIncrementId());
-            $logger->info(date("Y-m-d h:i:sa"));
-            $logger->info(print_r(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS), true));
-
             $this->_eventManager->dispatch('order_cancel_after', ['order' => $this]);
         }
 
